@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  @apply h-full;
+}
+
+code[class*=language-], pre[class*=language-] {
+  @apply !text-sm !font-mono !bg-gray-900;
+}
