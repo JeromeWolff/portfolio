@@ -1,0 +1,11 @@
+{
+  "title": "Contact",
+  "full-name-label": "Full Name",
+  "full-name-placeholder-text": "Your Name",
+  "email-label": "Email",
+  "email-placeholder-text": "Your Email",
+  "subject-label": "Subject",
+  "subject-placeholder-text": "Subject",
+  "message-label": "Message",
+  "send-message-label": "Send Message"
+}

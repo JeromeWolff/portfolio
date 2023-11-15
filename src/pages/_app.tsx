@@ -7,6 +7,7 @@ import SEO from '@/../next-seo.config';
 import i18nextConfig from '../../next-i18next.config';
 import '@/styles/globals.css';
 import '@/styles/prism.css';
+import UseScrollToTop from "@/hooks/useScrollToTop";
 
 const App = ({Component, pageProps}: AppProps) => {
   return <>

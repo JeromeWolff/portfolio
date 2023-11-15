@@ -6,7 +6,6 @@ export const useRedirect = (to?: string) => {
   const router = useRouter();
   const detectedLanguage = languageDetector.detect();
   useEffect(() => handleRouting(router, to, detectedLanguage), [detectedLanguage, router, to]);
-
   return <></>;
 };
 
@@ -24,7 +23,7 @@ function findRedirectPath(router: NextRouter, target: string, detectedLanguage: 
   if (!target.startsWith(languagePath)) {
     redirectPath += languagePath;
   }
-  redirectPath += router.isFallback || (router.query && router.query.error === "404") ? router.route : target;
+  redirectPath += router.isFallback || (router.query && router.query.error === "404") ? "/404" : target;
   return redirectPath;
 }
 

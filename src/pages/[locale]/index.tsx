@@ -2,6 +2,7 @@ import React from "react";
 import {useTranslation} from "next-i18next"
 import {getStaticPaths, makeStaticProps} from "@/helpers/getStatic";
 import SocialLinks from "@/data/socialLinks";
+import UseScrollToTop from "@/hooks/useScrollToTop";
 
 const namespaces = ["home"];
 
@@ -21,6 +22,7 @@ const Homepage: React.FC<any> = () => {
               </a>
             ))}
           </div>
+          <UseScrollToTop />
         </main>
       </div>
     </div>
