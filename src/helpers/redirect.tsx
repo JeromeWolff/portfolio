@@ -1,30 +1,39 @@
 import React, {useEffect} from 'react';
-import {useRouter} from 'next/router';
+import {NextRouter, useRouter} from 'next/router';
 import languageDetector from './languageDetector';
 
 export const useRedirect = (to?: string) => {
   const router = useRouter();
   const detectedLanguage = languageDetector.detect();
-  useEffect(() => {
-    const target = to || router.asPath;
-    if (detectedLanguage) {
-      const languagePath = '/' + detectedLanguage;
-      let redirectPath = '';
-      if (!target.startsWith(languagePath)) {
-        redirectPath += languagePath;
-      }
-      redirectPath += router.isFallback || (router.query && router.query.error === '404') ? router.route : target;
-      languageDetector.cache!(detectedLanguage);
-      console.log(detectedLanguage);
-      console.log(redirectPath);
-      if (router.asPath !== redirectPath) {
-        router.replace(redirectPath);
-      }
-    }
-  }, [detectedLanguage, router, to]);
+  useEffect(() => handleRouting(router, to, detectedLanguage), [detectedLanguage, router, to]);
 
   return <></>;
 };
+
+function handleRouting(router: NextRouter, to?: string, detectedLanguage?: string) {
+  const target = to || router.asPath;
+  if (detectedLanguage) {
+    languageDetector.cache!(detectedLanguage);
+    replaceRouting(router, target, detectedLanguage);
+  }
+}
+
+function findRedirectPath(router: NextRouter, target: string, detectedLanguage: string) {
+  const languagePath = "/" + detectedLanguage;
+  let redirectPath = "";
+  if (!target.startsWith(languagePath)) {
+    redirectPath += languagePath;
+  }
+  redirectPath += router.isFallback || (router.query && router.query.error === "404") ? router.route : target;
+  return redirectPath;
+}
+
+function replaceRouting(router: NextRouter, target: string, detectedLanguage: string) {
+  const redirectPath = findRedirectPath(router, target, detectedLanguage);
+  if (router.asPath !== redirectPath) {
+    router.replace(redirectPath);
+  }
+}
 
 export const Redirect = () => {
   useRedirect();

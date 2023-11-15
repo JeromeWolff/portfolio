@@ -17,7 +17,6 @@ const config= {
         expirationTime: 60 * 60 * 1000,
       },
     ],
-    //loadPath: `${localePath}{{lng}}/{{ns}}.json`,
     backends: typeof window !== 'undefined' ? [LocalStorageBackend] : [],
   },
   serializeConfig: false,
