@@ -24,7 +24,7 @@ const Contact: React.FC<any> = () => {
               fullNameLabel={t("full-name-label")}
               fullNamePlaceholderText={t("full-name-placeholder-text")}
               emailLabel={t("email-label")}
-              emailPlaceHolderText={t("email-name-placeholder-text")}
+              emailPlaceHolderText={t("email-placeholder-text")}
               subjectLabel={t("subject-label")}
               subjectPlaceHolderText={t("subject-placeholder-text")}
               messageLabel={t("message-label")}
