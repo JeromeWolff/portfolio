@@ -9,10 +9,22 @@ export const getI18nPaths = (): { params: { locale: string } }[] =>
     },
   }));
 
-export const getStaticPaths: GetStaticPaths = () => ({
-  paths: getI18nPaths(),
-  fallback: false,
-});
+export const getStaticPaths: GetStaticPaths = async () => {
+  const locales = i18nextConfig.i18n.locales;
+  const paths = locales.flatMap((locale) => {
+    return getI18nPaths().map((path) => ({
+      ...path,
+      params: {
+        ...path.params,
+        locale,
+      },
+    }));
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
 export const getI18nProps = async (
   ctx: { params?: { locale?: string } },
