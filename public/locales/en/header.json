@@ -1,6 +1,7 @@
 {
-  "resume": "Resume",
-  "projects": "Projects",
+  "brand": "Portfolio",
+  "home": "Home",
   "about": "About",
-  "contact": "Contact"
+  "contact": "Contact",
+  "imprint": "Imprint"
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faGithub,
@@ -6,7 +7,6 @@ import {
   faLinkedin,
   faTwitter, IconDefinition
 } from "@fortawesome/free-brands-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons";
 
 interface SocialLink {

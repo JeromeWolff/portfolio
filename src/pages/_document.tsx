@@ -1,3 +1,4 @@
+import i18nextConfig from '../../next-i18next.config';
 import Document, {
   Html,
   Head,
@@ -6,7 +7,6 @@ import Document, {
   DocumentContext,
   DocumentInitialProps
 } from 'next/document';
-import i18nextConfig from '../../next-i18next.config';
 
 interface CustomDocumentProps extends DocumentInitialProps {
   currentLocale?: string;

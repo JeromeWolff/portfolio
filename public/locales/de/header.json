@@ -1,6 +1,7 @@
 {
-  "resume": "Lebenslauf",
-  "projects": "Projekte",
+  "brand": "Portfolio",
+  "home": "Startseite",
   "about": "Über",
-  "contact": "Kontakt"
+  "contact": "Kontakt",
+  "imprint": "Impressum"
 }

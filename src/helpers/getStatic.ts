@@ -1,5 +1,5 @@
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import i18nextConfig from '../../next-i18next.config';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import {GetStaticPaths, GetStaticProps} from 'next';
 
 export const getI18nPaths = (): { params: { locale: string } }[] =>

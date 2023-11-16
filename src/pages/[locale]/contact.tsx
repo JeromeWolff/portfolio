@@ -1,32 +1,40 @@
 import React from "react";
-import {useTranslation} from "next-i18next"
-import {getStaticPaths, makeStaticProps} from "@/helpers/getStatic";
+import Header from "@/components/header/Header";
 import UseScrollToTop from "@/hooks/useScrollToTop";
 import ContactForm from "@/components/form/ContactForm";
+import {useTranslation} from "next-i18next"
+import {getStaticPaths, makeStaticProps} from "@/helpers/getStatic";
+import navLinks, {createNavLink} from "@/data/navLinks";
 
-const namespaces = ["contact"];
+const namespaces = ["contact", "header"];
 
 const Contact: React.FC<any> = () => {
   const {t} = useTranslation(namespaces);
+  const localizedNavLinks = navLinks.map((link) => {
+    return createNavLink(t("header:" + link.label), link.href, link.icon);
+  });
   return (
-    <div className="bg-gray-900 min-h-full flex items-center justify-center">
-      <div className="text-white w-full max-w-2xl text-center">
-        <main>
-          <ContactForm
-            title={t("title")}
-            fullNameLabel={t("full-name-label")}
-            fullNamePlaceholderText={t("full-name-placeholder-text")}
-            emailLabel={t("email-label")}
-            emailPlaceHolderText={t("email-name-placeholder-text")}
-            subjectLabel={t("subject-label")}
-            subjectPlaceHolderText={t("subject-placeholder-text")}
-            messageLabel={t("message-label")}
-            sendMessageLabel={t("send-message-label")}
-          />
-          <UseScrollToTop/>
-        </main>
+    <>
+      <Header brand={t("header:brand")} navLinks={localizedNavLinks}/>
+      <div className="bg-gray-900 min-h-full flex items-center justify-center">
+        <div className="text-white w-full max-w-2xl text-center">
+          <main>
+            <ContactForm
+              title={t("title")}
+              fullNameLabel={t("full-name-label")}
+              fullNamePlaceholderText={t("full-name-placeholder-text")}
+              emailLabel={t("email-label")}
+              emailPlaceHolderText={t("email-name-placeholder-text")}
+              subjectLabel={t("subject-label")}
+              subjectPlaceHolderText={t("subject-placeholder-text")}
+              messageLabel={t("message-label")}
+              sendMessageLabel={t("send-message-label")}
+            />
+            <UseScrollToTop/>
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
