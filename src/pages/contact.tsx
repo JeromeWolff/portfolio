@@ -1,3 +1,3 @@
-import Redirect from '@/helpers/redirect'
+import {getRedirect} from '@/helpers/redirect'
 
-export default Redirect;
+export default getRedirect("contact");

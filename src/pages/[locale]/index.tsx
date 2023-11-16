@@ -6,10 +6,12 @@ import {useTranslation} from "next-i18next"
 import {getStaticPaths, makeStaticProps} from "@/helpers/getStatic";
 import NavLinks, {createNavLink} from "@/data/navLinks";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 const namespaces = ["home", "header"];
 
 const Homepage: React.FC<any> = () => {
+  const router = useRouter();
   const {t} = useTranslation(namespaces);
   const localizedNavLinks = NavLinks.map((link) => {
     return createNavLink(t("header:" + link.label), link.href, link.icon);
@@ -23,18 +25,17 @@ const Homepage: React.FC<any> = () => {
           <p className="mt-3 text-base text-gray-300 whitespace-pre-line">{t("description")}</p>
           <div className="mt-8 flex items-center justify-center space-x-3">
             {SocialLinks.map((link, index) => (
-              <Link
+              <a
                 key={index}
                 href={link.href}
-                as={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-blue-500">
                 <div>
-                  <span className="sr-only">{link.name}</span>
+                  <p className="sr-only">{link.name}</p>
                   <link.icon className="h-8 w-8"/>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
           <UseScrollToTop/>

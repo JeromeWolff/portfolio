@@ -20,10 +20,10 @@ class Navbar extends React.Component<NavbarProps> {
       <nav className="bg-gray-900 p-4">
         <div className="container mx-auto flex items-center justify-between">
           <Link href="/" className="text-white text-xl font-bold flex items-center">
-
-            <FontAwesomeIcon icon={faHome} className="mr-2"/>
-            {this.props.brand}
-
+            <div>
+              <FontAwesomeIcon icon={faHome} className="mr-2"/>
+              {this.props.brand}
+            </div>
           </Link>
           <div className="flex space-x-4">
             {this.props.navLinks.map((link: NavLink, index: number) => (

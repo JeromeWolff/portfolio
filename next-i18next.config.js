@@ -8,9 +8,10 @@ const config= {
   debug: process.env.NODE_ENV === 'development',
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "de"],
+    locales: ["en", "de"]
   },
   localePath: localePath,
+  languageDetector: false,
   backend: {
     backendOptions: [
       {

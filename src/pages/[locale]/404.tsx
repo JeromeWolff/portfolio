@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Link from "next/link";
 import Header from "@/components/header/Header";
 import UseScrollToTop from "@/hooks/useScrollToTop";
@@ -24,8 +24,8 @@ const Custom404: React.FC<any> = () => {
             <p className="mt-3 text-base text-gray-300">{t("description")}</p>
           </div>
           <div className="mt-8 flex items-center justify-center space-x-3">
-            <Link href="/" className="button text-blue-600" legacyBehavior>
-              {t("common:back-to-home")}
+            <Link href="/" className="button text-blue-600">
+              <p>{t("common:back-to-home")}</p>
             </Link>
           </div>
           <UseScrollToTop />
