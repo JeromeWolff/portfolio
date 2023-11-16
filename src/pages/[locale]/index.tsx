@@ -5,6 +5,7 @@ import UseScrollToTop from "@/hooks/useScrollToTop";
 import {useTranslation} from "next-i18next"
 import {getStaticPaths, makeStaticProps} from "@/helpers/getStatic";
 import NavLinks, {createNavLink} from "@/data/navLinks";
+import Link from "next/link";
 
 const namespaces = ["home", "header"];
 
@@ -23,13 +24,16 @@ const Homepage: React.FC<any> = () => {
             <p className="mt-3 text-base text-gray-300 whitespace-pre-line">{t("description")}</p>
             <div className="mt-8 flex items-center justify-center space-x-3">
               {SocialLinks.map((link, index) => (
-                <a key={index} href={link.href}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   className="text-white hover:text-blue-500">
+                <Link
+                  key={index}
+                  href={link.href}
+                  as={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-blue-500">
                   <span className="sr-only">{link.name}</span>
                   <link.icon className="h-8 w-8"/>
-                </a>
+                </Link>
               ))}
             </div>
             <UseScrollToTop/>

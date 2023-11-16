@@ -4,13 +4,13 @@ import languageDetector from './languageDetector';
 
 export const useRedirect = (to?: string) => {
   const router = useRouter();
-  const detectedLanguage = languageDetector.detect();
-  useEffect(() => handleRouting(router, to, detectedLanguage), [detectedLanguage, router, to]);
+  useEffect(() => handleRouting(router, to), [router, to]);
   return <></>;
 };
 
-function handleRouting(router: NextRouter, to?: string, detectedLanguage?: string) {
+function handleRouting(router: NextRouter, to?: string) {
   const target = to || router.asPath;
+  const detectedLanguage = languageDetector.detect();
   if (detectedLanguage) {
     languageDetector.cache!(detectedLanguage);
     replaceRouting(router, target, detectedLanguage);
