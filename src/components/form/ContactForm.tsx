@@ -19,8 +19,8 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
       <div className="leading-loose">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="w-full m-4 p-6 sm:p-10 bg-gray-900 dark:bg-gray-800 rounded-xl shadow-xl text-left">
-          <p className="font-extrabold text-blue-600 dark:text-white text-2xl mb-8">{props.title}</p>
+          className="w-full m-4 p-4 sm:p-6 bg-gray-900 dark:bg-gray-800 rounded-xl shadow-xl text-left">
+          <p className="mb-4 sm:mb-8 font-extrabold text-center text-blue-600 dark:text-white text-2xl">{props.title}</p>
           <FormInput
             inputLabel={props.fullNameLabel}
             labelFor="name"
@@ -61,7 +61,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
           </div>
           <div className="mt-6">
             <span
-              className="px-7 py-4 text-white text-center font-extrabold tracking-wider bg-blue-600 hover:bg-blue-700 focus:ring-1 focus:ring-blue-900 rounded-lg mt-6 duration-500">
+              className="w-full mt-6 px-7 py-4 block text-white text-center font-extrabold tracking-wider bg-blue-600 hover:bg-blue-700 focus:ring-1 focus:ring-blue-900 rounded-lg duration-500">
               <button title={props.sendMessageLabel} type="submit" aria-label={props.sendMessageLabel}>{props.sendMessageLabel}</button>
             </span>
           </div>

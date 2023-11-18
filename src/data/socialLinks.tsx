@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons";
 
-interface SocialLink {
+export interface SocialLink {
   name: string;
   href: string;
   icon: React.FC<{ className?: string }>;

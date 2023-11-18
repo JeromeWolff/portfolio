@@ -1,40 +1,36 @@
-import React from "react";
-import Link from "next/link";
-import NavItem from "@/components/navbar/NavItem";
+import React, {useEffect, useState} from "react";
 import {NavLink} from "@/data/navLinks";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHome} from "@fortawesome/free-solid-svg-icons";
+import NavbarBranding from "@/components/navbar/NavbarBranding";
+import NavbarMenuButton from "@/components/navbar/NavbarMenuButton";
+import NavbarNavigation from "@/components/navbar/NavbarNavigation";
 
 interface NavbarProps {
-  brand: string;
+  branding: string;
   navLinks: NavLink[];
 }
 
-class Navbar extends React.Component<NavbarProps> {
-  constructor(props: NavbarProps) {
-    super(props);
+const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   }
-
-  render() {
-    return (
-      <nav className="bg-gray-900 p-4">
-        <div className="container mx-auto flex items-center justify-between">
-          <Link href="/" className="text-white text-xl font-bold flex items-center">
-            <div>
-              <FontAwesomeIcon icon={faHome} className="mr-2"/>
-              {this.props.brand}
-            </div>
-          </Link>
-          <div className="flex space-x-4">
-            {this.props.navLinks.map((link: NavLink, index: number) => (
-              <NavItem key={index} label={link.label} href={link.href}
-                       icon={link.icon}/>
-            ))}
-          </div>
-        </div>
-      </nav>
-    );
-  }
+  return (
+    <nav
+      className="lg:w-auto lg:flex lg:items-center justify-between text-white text-lg font-bold">
+      <div className={"hidden lg:block"}>
+        <NavbarBranding
+          branding={props.branding}/>
+      </div>
+      <NavbarMenuButton
+        menuOpen={menuOpen}
+        toggleMenu={toggleMenu}/>
+      <NavbarNavigation
+        branding={props.branding}
+        menuOpen={menuOpen}
+        toggleMenu={toggleMenu}
+        navLinks={props.navLinks}/>
+    </nav>
+  );
 }
 
 export default Navbar;

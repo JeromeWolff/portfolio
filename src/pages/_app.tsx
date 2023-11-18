@@ -15,7 +15,7 @@ const App = ({Component, pageProps}: AppProps) => {
   const router = useRouter();
   useEffect(() => {
     i18n.changeLanguage(router.locale);
-  }, [router.locale]);
+  }, [i18n, router.locale]);
   return <>
     <DefaultSeo {...SEO} />
     <GoogleAnalytics trackPageViews/>

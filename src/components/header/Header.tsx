@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {NavLink} from "@/data/navLinks";
 import Navbar from "@/components/navbar/Navbar";
 
@@ -14,7 +14,13 @@ class Header extends Component<HeaderProps> {
 
   render() {
     return (
-      <Navbar brand={this.props.brand} navLinks={this.props.navLinks} />
+      <header className="top-0 p-4 bg-gray-950">
+        <div className="container mx-auto flex items-center justify-between">
+          <Navbar
+            branding={this.props.brand}
+            navLinks={this.props.navLinks}/>
+        </div>
+      </header>
     );
   }
 }

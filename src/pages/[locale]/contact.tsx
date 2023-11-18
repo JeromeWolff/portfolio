@@ -16,7 +16,7 @@ const Contact: React.FC<any> = () => {
   return (
     <>
       <Header brand={t("header:brand")} navLinks={localizedNavLinks}/>
-      <div className="bg-gray-900 min-h-full flex items-center justify-center">
+      <div className="p-4 sm:p-6 bg-gray-900 min-h-full flex items-center justify-center">
         <div className="text-white w-full max-w-2xl text-center">
           <main>
             <ContactForm

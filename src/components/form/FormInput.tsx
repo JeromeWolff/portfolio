@@ -25,7 +25,7 @@ const FormInput: React.FC<FormInputProps> = ({
         className="block text-lg text-blue-600 dark:text-white mb-1"
         htmlFor={labelFor}>{inputLabel}</label>
       <input
-        className="w-full px-5 py-2 border border-blue-600 dark:border-white border-opacity-50 text-blue-600 dark:text-white bg-gray-900 dark:bg-gray-800 rounded-md shadow-sm text-md"
+        className="w-full px-4 py-2 border border-blue-600 dark:border-white border-opacity-50 text-blue-600 dark:text-white bg-gray-900 dark:bg-gray-800 rounded-md shadow-sm text-md"
         type={inputType}
         id={inputId}
         name={inputName}

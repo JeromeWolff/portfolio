@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Link from "next/link";
 import Header from "@/components/header/Header";
 import UseScrollToTop from "@/hooks/useScrollToTop";
