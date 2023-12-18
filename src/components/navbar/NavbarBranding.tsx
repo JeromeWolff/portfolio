@@ -14,10 +14,12 @@ class NavbarBranding extends Component<NavbarBrandingProps> {
 
   render() {
     return (
-      <Link href="/">
-        <FontAwesomeIcon icon={faHome} className="mr-2"/>
-        {this.props.branding}
-      </Link>
+      <div className={"hidden lg:block"}>
+        <Link href="/">
+          <FontAwesomeIcon icon={faHome} className="mr-2"/>
+          {this.props.branding}
+        </Link>
+      </div>
     );
   }
 }

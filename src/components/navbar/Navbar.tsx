@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {NavLink} from "@/data/navLinks";
 import NavbarBranding from "@/components/navbar/NavbarBranding";
 import NavbarMenuButton from "@/components/navbar/NavbarMenuButton";
@@ -17,10 +17,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
   return (
     <nav
       className="lg:w-auto lg:flex lg:items-center justify-between text-white text-lg font-bold">
-      <div className={"hidden lg:block"}>
-        <NavbarBranding
-          branding={props.branding}/>
-      </div>
+      <NavbarBranding branding={props.branding}/>
       <NavbarMenuButton
         menuOpen={menuOpen}
         toggleMenu={toggleMenu}/>
