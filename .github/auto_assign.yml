@@ -1,0 +1,7 @@
+addReviewers: true
+addAssignees: true
+reviewers: 
+  - JeromeWolff
+skipKeywords:
+  - wip
+numberOfReviewers: 0
