@@ -25,6 +25,9 @@
     "postcss": "^8.4.41",
     "typescript": "^5.5.4"
   },
+  "overrides": {
+    "typescript": "^5.5.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
