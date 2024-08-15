@@ -1,24 +1,42 @@
-import React from 'react';
+import React, {Component, ReactNode} from 'react';
 import {motion} from 'framer-motion';
+import {calculateAge} from "./about.util";
+import {aboutConfig} from "./about.config";
 
-const calculateAge = (birthdate: string): number => {
-    const birthDate = new Date(birthdate).getTime();
-    const ageDifMs = Date.now() - birthDate;
-    const ageDate = new Date(ageDifMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-};
+interface AboutContainerProps {
+    children: ReactNode;
+}
 
-const birthdate = "2004-07-12";
-const age = calculateAge(birthdate);
+export class About extends Component {
+    render() {
+        return (
+            <AboutContainer>
+                <AboutTitle/>
+                <AboutPhrasesContainer/>
+            </AboutContainer>
+        );
+    }
+}
 
-const About: React.FC = () => {
-    return (
-        <motion.div
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            transition={{duration: 1}}
-            className="h-screen flex flex-col items-center justify-center"
-        >
+class AboutContainer extends Component<AboutContainerProps> {
+    render() {
+        let {children} = this.props;
+        return (
+            <motion.div
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{duration: 1}}
+                className="h-screen flex flex-col items-center justify-center"
+            >
+                {children}
+            </motion.div>
+        );
+    }
+}
+
+class AboutTitle extends Component {
+    render() {
+        return (
             <motion.h2
                 className="text-4xl font-bold mb-6"
                 initial={{y: 20, opacity: 0}}
@@ -28,6 +46,14 @@ const About: React.FC = () => {
             >
                 About Me
             </motion.h2>
+        );
+    }
+}
+
+class AboutPhrasesContainer extends Component {
+    render() {
+        let age = calculateAge(aboutConfig.birthdate);
+        return (
             <motion.div
                 initial={{y: 20, opacity: 0}}
                 whileInView={{y: 0, opacity: 1}}
@@ -69,8 +95,6 @@ const About: React.FC = () => {
                     landscapes, or studying historical military tactics, I'm always eager to learn more.
                 </motion.p>
             </motion.div>
-        </motion.div>
-    );
-};
-
-export default About;
+        );
+    }
+}
