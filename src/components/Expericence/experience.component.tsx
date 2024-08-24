@@ -19,17 +19,7 @@ export class Experience extends Component {
         return (
             <ExperienceContainer>
                 <ExperienceTitle/>
-                <Experiences>
-                    {experienceConfig.experiences.map((experience, index) => (
-                        <ExperienceSubject
-                            index={index}
-                            role={experience.role}
-                            company={experience.company}
-                            duration={experience.duration}
-                            description={experience.description}
-                        />
-                    ))}
-                </Experiences>
+                <ExperienceList/>
             </ExperienceContainer>
         );
     }
@@ -67,12 +57,19 @@ class ExperienceTitle extends Component {
     }
 }
 
-class Experiences extends Component<ExperienceContainerProps> {
+class ExperienceList extends Component {
     render() {
-        let {children} = this.props;
         return (
             <div className="space-y-8">
-                {children}
+                {experienceConfig.experiences.map((experience, index) => (
+                    <ExperienceSubject
+                        index={index}
+                        role={experience.role}
+                        company={experience.company}
+                        duration={experience.duration}
+                        description={experience.description}
+                    />
+                ))}
             </div>
         );
     }

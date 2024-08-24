@@ -17,11 +17,7 @@ export class Skills extends Component {
         return (
             <SkillsContainer>
                 <SkillsTitle/>
-                <SkillList>
-                    {skillsConfig.skills.map((skill, index) => (
-                        <Skill index={index} name={skill.name} level={skill.level}/>
-                    ))}
-                </SkillList>
+                <SkillList/>
             </SkillsContainer>
         );
     }
@@ -61,12 +57,13 @@ class SkillsTitle extends Component {
     }
 }
 
-class SkillList extends Component<SkillsContainerProps> {
+class SkillList extends Component {
     render() {
-        let {children} = this.props;
         return (
             <div className="flex flex-wrap justify-center">
-                {children}
+                {skillsConfig.skills.map((skill, index) => (
+                    <Skill index={index} name={skill.name} level={skill.level}/>
+                ))}
             </div>
         );
     }

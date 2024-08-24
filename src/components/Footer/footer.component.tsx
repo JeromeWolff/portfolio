@@ -7,15 +7,6 @@ import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 interface FooterContainerProps {
     children: ReactNode;
 }
-
-interface FooterInformationContainerProps {
-    children: ReactNode;
-}
-
-interface SocialContainerProps {
-    children: ReactNode;
-}
-
 interface SocialLinkProps {
     href: string;
     icon: IconDefinition;
@@ -25,15 +16,8 @@ export class Footer extends Component {
     render() {
         return (
             <FooterContainer>
-                <FooterInformationContainer>
-                    <FooterTitle/>
-                    <FooterSubtext/>
-                </FooterInformationContainer>
-                <SocialContainer>
-                    {socialConfig.socialLinks.map((socialLink) => (
-                        <SocialLink href={socialLink.href} icon={socialLink.icon}/>
-                    ))}
-                </SocialContainer>
+                <FooterInformationContainer/>
+                <SocialContainer/>
                 <CopyrightNotice/>
             </FooterContainer>
         );
@@ -58,9 +42,8 @@ class FooterContainer extends Component<FooterContainerProps> {
     }
 }
 
-class FooterInformationContainer extends Component<FooterInformationContainerProps> {
+class FooterInformationContainer extends Component {
     render() {
-        let {children} = this.props;
         return (
             <motion.div
                 initial={{y: 20, opacity: 0}}
@@ -68,7 +51,8 @@ class FooterInformationContainer extends Component<FooterInformationContainerPro
                 transition={{delay: 0.3}}
                 className="mb-4"
             >
-                {children}
+                <FooterTitle/>
+                <FooterSubtext/>
             </motion.div>
         );
     }
@@ -87,9 +71,8 @@ class FooterSubtext extends Component {
     }
 }
 
-class SocialContainer extends Component<SocialContainerProps> {
+class SocialContainer extends Component {
     render() {
-        let {children} = this.props;
         return (
             <motion.div
                 initial={{y: 20, opacity: 0}}
@@ -97,7 +80,9 @@ class SocialContainer extends Component<SocialContainerProps> {
                 transition={{delay: 0.6}}
                 className="flex justify-center space-x-6 mb-6"
             >
-                {children}
+                {socialConfig.socialLinks.map((socialLink) => (
+                    <SocialLink href={socialLink.href} icon={socialLink.icon}/>
+                ))}
             </motion.div>
         );
     }
