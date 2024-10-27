@@ -27,7 +27,7 @@ class HeroContainer extends Component<HeroContainerProps> {
         transition={{duration: 1}}
         className="h-screen flex items-center justify-center"
       >
-        <div className="text-center text-white">
+        <div>
           {children}
         </div>
       </motion.div>

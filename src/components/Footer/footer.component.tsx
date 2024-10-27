@@ -35,7 +35,7 @@ class FooterContainer extends Component<FooterContainerProps> {
         transition={{duration: 1}}
         className="py-6 mt-12"
       >
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto">
           {children}
         </div>
       </motion.footer>
@@ -67,9 +67,11 @@ class FooterTitle extends Component {
 
 class FooterSubtext extends Component {
   render() {
-    return <p className="text-white">I'd love to hear from you! Feel free to
+    return <p>
+      I'd love to hear from you! Feel free to
       reach out through any of the platforms
-      below.</p>;
+      below.
+    </p>;
   }
 }
 
@@ -111,7 +113,7 @@ class CopyrightNotice extends Component {
         transition={{delay: 0.9}}
       >
         <p
-          className="text-sm text-white">&copy; {new Date().getFullYear()} Jerome
+          className="text-sm">&copy; {new Date().getFullYear()} Jerome
           Wolff. All rights
           reserved.</p>
       </motion.div>

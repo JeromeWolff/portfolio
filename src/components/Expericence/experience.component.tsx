@@ -45,7 +45,7 @@ class ExperienceTitle extends Component {
   render() {
     return (
       <motion.h2
-        className="text-4xl font-bold mb-6"
+        className="text-4xl text-white font-bold mb-6"
         initial={{y: 20, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
         viewport={{once: true}}
@@ -85,11 +85,11 @@ class ExperienceSubject extends Component<ExperienceSubjectProps> {
         whileInView={{y: 0, opacity: 1}}
         viewport={{once: false}}
         transition={{delay: 0.3 + index * 0.2}}
-        className="p-6 bg-white rounded-lg shadow-lg text-left max-w-3xl mx-auto"
+        className="p-6 bg-gray-800 rounded-lg shadow-lg text-left max-w-3xl mx-auto"
       >
         <h3 className="text-2xl font-semibold">{role}</h3>
-        <p className="text-gray-600">{company} | {duration}</p>
-        <p className="mt-4 text-gray-800">{description}</p>
+        <p className="text-gray-400">{company} | {duration}</p>
+        <p className="mt-4">{description}</p>
       </motion.div>
     );
   }

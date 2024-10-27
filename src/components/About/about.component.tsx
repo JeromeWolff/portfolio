@@ -59,7 +59,7 @@ class AboutPhrasesContainer extends Component {
         whileInView={{y: 0, opacity: 1}}
         viewport={{once: false}}
         transition={{delay: 0.6}}
-        className="p-6 bg-white rounded-lg shadow-lg max-w-3xl mx-auto"
+        className="p-6 bg-gray-800 rounded-lg shadow-lg max-w-3xl mx-auto"
       >
         <motion.p
           className="text-lg mb-4"
