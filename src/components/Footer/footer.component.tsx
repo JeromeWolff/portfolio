@@ -84,8 +84,8 @@ class SocialContainer extends Component {
         transition={{delay: 0.6}}
         className="flex justify-center space-x-6 mb-6"
       >
-        {socialConfig.socialLinks.map((socialLink) => (
-          <SocialLink href={socialLink.href} icon={socialLink.icon}/>
+        {socialConfig.socialLinks.map((socialLink, index) => (
+          <SocialLink key={index} href={socialLink.href} icon={socialLink.icon}/>
         ))}
       </motion.div>
     );

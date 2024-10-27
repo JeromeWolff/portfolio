@@ -63,6 +63,7 @@ class ExperienceList extends Component {
       <div className="space-y-8">
         {experienceConfig.experiences.map((experience, index) => (
           <ExperienceSubject
+            key={index}
             index={index}
             role={experience.role}
             company={experience.company}
