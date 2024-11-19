@@ -9,6 +9,7 @@ interface FooterContainerProps {
 }
 
 interface SocialLinkProps {
+  label: string;
   href: string;
   icon: IconDefinition;
 }
@@ -85,7 +86,12 @@ class SocialContainer extends Component {
         className="flex justify-center space-x-6 mb-6"
       >
         {socialConfig.socialLinks.map((socialLink, index) => (
-          <SocialLink key={index} href={socialLink.href} icon={socialLink.icon}/>
+          <SocialLink
+            key={index}
+            label={socialLink.label}
+            href={socialLink.href}
+            icon={socialLink.icon}
+          />
         ))}
       </motion.div>
     );
@@ -94,10 +100,10 @@ class SocialContainer extends Component {
 
 class SocialLink extends Component<SocialLinkProps> {
   render() {
-    let {href, icon} = this.props;
+    let {label, href, icon} = this.props;
     return (
       <a href={href} target="_blank" rel="noopener noreferrer"
-         className="text-white hover:text-gray-400">
+         aria-label={label} className="text-white hover:text-gray-400">
         <FontAwesomeIcon icon={icon} size="lg"/>
       </a>
     );

@@ -11,9 +11,11 @@ export class Home extends Component {
   render() {
     return (
       <Container>
-        <Hero/>
-        <About/>
-        <Experience/>
+        <main>
+          <Hero/>
+          <About/>
+          <Experience/>
+        </main>
         <Footer/>
       </Container>
     );
