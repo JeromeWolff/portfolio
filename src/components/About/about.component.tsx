@@ -2,6 +2,7 @@ import React, {Component, ReactNode} from 'react';
 import {motion} from 'framer-motion';
 import {calculateAge} from "./about.util";
 import {aboutConfig} from "./about.config";
+import {classNames} from "../../helpers";
 
 interface AboutContainerProps {
   children: ReactNode;
@@ -23,10 +24,10 @@ class AboutContainer extends Component<AboutContainerProps> {
     let {children} = this.props;
     return (
       <motion.div
+        className={classNames("h-screen flex flex-col items-center justify-center")}
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{duration: 1}}
-        className="h-screen flex flex-col items-center justify-center"
       >
         {children}
       </motion.div>
@@ -38,7 +39,7 @@ class AboutTitle extends Component {
   render() {
     return (
       <motion.h2
-        className="text-4xl font-bold mb-6"
+        className={classNames("text-4xl", "text-white", "font-bold", "mb-6")}
         initial={{y: 20, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
         viewport={{once: false}}
@@ -55,14 +56,14 @@ class AboutPhrasesContainer extends Component {
     let age = calculateAge(aboutConfig.birthdate);
     return (
       <motion.div
+        className={classNames("p-6", "bg-gray-800", "rounded-lg", "shadow-lg", "max-w-3xl", "mx-auto")}
         initial={{y: 20, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
         viewport={{once: false}}
         transition={{delay: 0.6}}
-        className="p-6 bg-gray-800 rounded-lg shadow-lg max-w-3xl mx-auto"
       >
         <motion.p
-          className="text-lg mb-4"
+          className={classNames("text-lg", "mb-4")}
           initial={{y: 20, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
           viewport={{once: false}}
@@ -75,7 +76,7 @@ class AboutPhrasesContainer extends Component {
           thrill of bringing ideas to life through code.
         </motion.p>
         <motion.p
-          className="text-lg mb-4"
+          className={classNames("text-lg", "mb-4")}
           initial={{y: 20, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
           viewport={{once: false}}
@@ -86,7 +87,7 @@ class AboutPhrasesContainer extends Component {
           enthusiast who enjoys discovering unique scents that tell a story.
         </motion.p>
         <motion.p
-          className="text-lg mb-4"
+          className={classNames("text-lg", "mb-4")}
           initial={{y: 20, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
           viewport={{once: false}}

@@ -1,6 +1,7 @@
 import React, {Component, ReactNode} from 'react';
 import {motion} from 'framer-motion';
 import {heroConfig} from "./hero.config";
+import {classNames} from "../../helpers";
 
 interface HeroContainerProps {
   children: ReactNode;
@@ -22,10 +23,10 @@ class HeroContainer extends Component<HeroContainerProps> {
     let {children} = this.props;
     return (
       <motion.div
+        className={classNames("h-screen", "flex", "items-center", "justify-center")}
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{duration: 1}}
-        className="h-screen flex items-center justify-center"
       >
         <div>
           {children}
@@ -39,7 +40,7 @@ class HeroTitle extends Component {
   render() {
     return (
       <motion.h1
-        className="text-5xl font-bold"
+        className={classNames("text-5xl", "font-bold")}
         initial={{y: 20, opacity: 0}}
         animate={{y: 0, opacity: 1}}
         transition={{delay: 0.5}}
@@ -54,7 +55,7 @@ class HeroSubtext extends Component {
   render() {
     return (
       <motion.p
-        className="text-xl mt-4"
+        className={classNames("text-xl", "mt-4")}
         initial={{y: 20, opacity: 0}}
         animate={{y: 0, opacity: 1}}
         transition={{delay: 1}}
