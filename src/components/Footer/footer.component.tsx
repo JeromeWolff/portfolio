@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 import {socialConfig} from "./footer.config";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
+import {classNames} from "../../helpers";
 
 interface FooterContainerProps {
   children: ReactNode;
@@ -31,10 +32,10 @@ class FooterContainer extends Component<FooterContainerProps> {
     let {children} = this.props;
     return (
       <motion.footer
+        className={classNames("py-6", "mt-12")}
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{duration: 1}}
-        className="py-6 mt-12"
       >
         <div className="container mx-auto">
           {children}
@@ -48,10 +49,10 @@ class FooterInformationContainer extends Component {
   render() {
     return (
       <motion.div
+        className={classNames("mb-4")}
         initial={{y: 20, opacity: 0}}
         animate={{y: 0, opacity: 1}}
         transition={{delay: 0.3}}
-        className="mb-4"
       >
         <FooterTitle/>
         <FooterSubtext/>
@@ -62,7 +63,7 @@ class FooterInformationContainer extends Component {
 
 class FooterTitle extends Component {
   render() {
-    return <h2 className="text-2xl font-semibold">Get in Touch</h2>;
+    return <h2 className={classNames("text-2xl", "font-semibold")}>Get in Touch</h2>;
   }
 }
 
@@ -80,10 +81,10 @@ class SocialContainer extends Component {
   render() {
     return (
       <motion.div
+        className={classNames("flex", "justify-center", "space-x-6", "mb-6")}
         initial={{y: 20, opacity: 0}}
         animate={{y: 0, opacity: 1}}
         transition={{delay: 0.6}}
-        className="flex justify-center space-x-6 mb-6"
       >
         {socialConfig.socialLinks.map((socialLink, index) => (
           <SocialLink
@@ -103,7 +104,7 @@ class SocialLink extends Component<SocialLinkProps> {
     let {label, href, icon} = this.props;
     return (
       <a href={href} target="_blank" rel="noopener noreferrer"
-         aria-label={label} className="text-white hover:text-gray-400">
+         aria-label={label} className={classNames("text-white", "hover:text-gray-400")}>
         <FontAwesomeIcon icon={icon} size="lg"/>
       </a>
     );
