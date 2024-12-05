@@ -20,7 +20,7 @@ export class Experience extends Component {
     return (
       <ExperienceContainer>
         <ExperienceTitle/>
-        <ExperienceList/>
+        <ExperienceTimeline/>
       </ExperienceContainer>
     );
   }
@@ -31,7 +31,7 @@ class ExperienceContainer extends Component<ExperienceContainerProps> {
     let {children} = this.props;
     return (
       <motion.div
-        className={classNames("items-center", "justify-center")}
+        className={classNames("flex", "flex-col", "items-center", "justify-center", "p-8")}
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{duration: 1}}
@@ -58,10 +58,11 @@ class ExperienceTitle extends Component {
   }
 }
 
-class ExperienceList extends Component {
+class ExperienceTimeline extends Component {
   render() {
     return (
-      <div className={classNames("space-y-8")}>
+      <div
+        className={classNames("relative", "space-y-8", "max-w-4xl", "w-full")}>
         {experienceConfig.experiences.map((experience, index) => (
           <ExperienceSubject
             key={index}
@@ -72,7 +73,17 @@ class ExperienceList extends Component {
             description={experience.description}
           />
         ))}
+        <ExperienceTimelineLine/>
       </div>
+    );
+  }
+}
+
+class ExperienceTimelineLine extends Component {
+  render() {
+    return (
+      <div
+        className={classNames("absolute", "left-2", "top-0", "h-full", "w-1", "bg-gray-700", "rounded-full")}/>
     );
   }
 }
@@ -83,15 +94,34 @@ class ExperienceSubject extends Component<ExperienceSubjectProps> {
     return (
       <motion.div
         key={index}
-        className={classNames("p-6", "bg-gray-800", "rounded-lg", "shadow-lg", "text-left", "max-w-3xl", "mx-auto")}
+        className={classNames(
+          "relative",
+          "pl-10",
+          "pr-6",
+          "py-4",
+          "bg-gray-800",
+          "rounded-lg",
+          "shadow-lg",
+          "max-w-3xl",
+          "mx-auto",
+          "hover:bg-gray-700",
+          "hover:scale-105",
+          "transition-transform",
+          "duration-300",
+          "ease-in-out"
+        )}
         initial={{y: 20, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
-        viewport={{once: false}}
+        viewport={{once: true}}
         transition={{delay: 0.3 + index * 0.2}}
       >
-        <h3 className={classNames("text-2xl", "font-semibold")}>{role}</h3>
-        <p className={classNames("text-gray-400")}>{company} | {duration}</p>
-        <p className={classNames("mt-4")}>{description}</p>
+        <div
+          className={classNames("absolute", "-left-5", "top-4", "w-8", "h-8", "bg-gray-700", "rounded-full")}/>
+        <h3
+          className={classNames("text-2xl", "font-semibold", "text-white")}>{role}</h3>
+        <p
+          className={classNames("text-gray-400", "mt-1")}>{company} | {duration}</p>
+        <p className={classNames("mt-4", "text-gray-300")}>{description}</p>
       </motion.div>
     );
   }
