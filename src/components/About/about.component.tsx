@@ -2,10 +2,17 @@ import React, {Component, ReactNode} from 'react';
 import {motion} from 'framer-motion';
 import {calculateAge} from "./about.util";
 import {aboutConfig} from "./about.config";
-import {classNames} from "../../helpers";
+import {classNames, format} from "../../helpers";
 
 interface AboutContainerProps {
   children: ReactNode;
+}
+
+interface AboutSectionProps {
+  index: number;
+  age?: number;
+  title: string;
+  content: string;
 }
 
 export class About extends Component {
@@ -13,7 +20,7 @@ export class About extends Component {
     return (
       <AboutContainer>
         <AboutTitle/>
-        <AboutPhrasesContainer/>
+        <AboutContent/>
       </AboutContainer>
     );
   }
@@ -24,7 +31,7 @@ class AboutContainer extends Component<AboutContainerProps> {
     let {children} = this.props;
     return (
       <motion.div
-        className={classNames("h-screen flex flex-col items-center justify-center")}
+        className={classNames("flex", "flex-col", "items-center", "justify-center", "p-8")}
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{duration: 1}}
@@ -51,58 +58,71 @@ class AboutTitle extends Component {
   }
 }
 
-class AboutPhrasesContainer extends Component {
+class AboutContent extends Component {
   render() {
     let age = calculateAge(aboutConfig.birthdate);
     return (
+      <div className={classNames("relative", "space-y-8", "max-w-4xl", "w-full")}>
+        {aboutConfig.sections.map((section, index) => (
+          <AboutSection
+            key={index}
+            index={index}
+            age={age}
+            title={section.title}
+            content={section.content}
+          />
+        ))}
+        <AboutTimelineline/>
+      </div>
+    );
+  }
+}
+
+class AboutSection extends Component<AboutSectionProps> {
+  render() {
+    let {index, age, title, content} = this.props;
+    return (
       <motion.div
-        className={classNames("p-6", "bg-gray-800", "rounded-lg", "shadow-lg", "max-w-3xl", "mx-auto")}
+        key={index}
+        className={classNames(
+          "relative",
+          "pl-10",
+          "pr-6",
+          "py-4",
+          "bg-gray-800",
+          "rounded-lg",
+          "shadow-lg",
+          "max-w-3xl",
+          "mx-auto",
+          "hover:bg-gray-700",
+          "hover:scale-105",
+          "transition-transform",
+          "duration-300",
+          "ease-in-out"
+        )}
         initial={{y: 20, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
-        viewport={{once: false}}
-        transition={{delay: 0.6}}
+        viewport={{once: true}}
+        transition={{delay: 0.3 + index * 0.2}}
       >
-        <motion.p
-          className={classNames("text-lg", "mb-4")}
-          initial={{y: 20, opacity: 0}}
-          whileInView={{y: 0, opacity: 1}}
-          viewport={{once: false}}
-          transition={{delay: 0.5}}
-        >
-          Hi, I'm a {age}-year-old Full Stack Developer with a passion for
-          creating seamless and efficient
-          web applications. My journey in tech has been driven by a love for
-          problem-solving and the
-          thrill of bringing ideas to life through code.
-        </motion.p>
-        <motion.p
-          className={classNames("text-lg", "mb-4")}
-          initial={{y: 20, opacity: 0}}
-          whileInView={{y: 0, opacity: 1}}
-          viewport={{once: false}}
-          transition={{delay: 0.5}}
-        >
-          When I'm not coding, you'll likely find me exploring the world of
-          fragrances. I'm a true perfume
-          enthusiast who enjoys discovering unique scents that tell a story.
-        </motion.p>
-        <motion.p
-          className={classNames("text-lg", "mb-4")}
-          initial={{y: 20, opacity: 0}}
-          whileInView={{y: 0, opacity: 1}}
-          viewport={{once: false}}
-          transition={{delay: 0.5}}
-        >
-          Beyond technology and perfumes, I have a keen interest in economics,
-          politics, and military
-          strategy. I find the interplay between these fields fascinating and
-          love diving into discussions
-          about how they shape our world. Whether it’s analyzing market trends,
-          understanding political
-          landscapes, or studying historical military tactics, I'm always eager
-          to learn more.
-        </motion.p>
+        <div
+          className={classNames("absolute", "-left-5", "top-4", "w-8", "h-8", "bg-gray-700", "rounded-full")}
+        />
+        <h3 className={classNames("text-2xl", "font-semibold", "text-white")}>
+          {title}
+        </h3>
+        <p className={classNames("mt-4", "text-gray-300")}>{format(content, age)}</p>
       </motion.div>
+    );
+  }
+}
+
+class AboutTimelineline extends Component {
+  render() {
+    return (
+      <div
+        className={classNames("absolute", "left-2", "top-0", "h-full", "w-1", "bg-gray-700", "rounded-full")}
+      />
     );
   }
 }
