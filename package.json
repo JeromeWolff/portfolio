@@ -39,7 +39,7 @@
     "tailwindcss": "^4.0.14",
     "typescript": "^5.5.4",
     "vite": "^6.2.2",
-    "vitest": "^3.0.4"
+    "vitest": "^3.0.9"
   },
   "overrides": {
     "typescript": "^5.5.4"
