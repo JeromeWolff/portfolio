@@ -9,6 +9,14 @@ import './styles/index.scss';
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   sendDefaultPii: true,
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.browserProfilingIntegration(),
+    Sentry.replayIntegration()
+  ],
+  tracesSampleRate: 0.85,
+  replaysSessionSampleRate: 0.1,
+  replaysOnErrorSampleRate: 1.0,
 });
 
 const rootElement = document.getElementById('root') as HTMLElement
