@@ -12,6 +12,7 @@ export class Home extends Component {
     return (
       <Container>
         <main>
+          <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button>;
           <Hero/>
           <About/>
           <Experience/>

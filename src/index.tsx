@@ -7,7 +7,7 @@ import {initSentry} from "./sentry";
 import './styles/index.scss';
 
 initSentry({
-  dsn: process.env.SENTRY_DSN
+  dsn: import.meta.env.SENTRY_DSN
 });
 
 const rootElement = document.getElementById('root') as HTMLElement
