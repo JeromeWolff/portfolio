@@ -7,7 +7,7 @@ import {Analytics} from "@vercel/analytics/react";
 import './styles/index.scss';
 
 Sentry.init({
-  dsn: import.meta.env.SENTRY_DSN,
+  dsn: process.env.SENTRY_DSN,
   sendDefaultPii: true,
 });
 
