@@ -43,7 +43,7 @@
     "postcss-import": "^16.1.1",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.5.4",
-    "vite": "^6.3.5",
+    "vite": "^7.0.0",
     "vitest": "^3.2.4"
   },
   "overrides": {
