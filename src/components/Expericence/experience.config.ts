@@ -1,6 +1,20 @@
 export const experienceConfig = {
   experiences: [
     {
+      company: 'Shabo Group GmbH',
+      role: 'Chief Technology Officer',
+      duration: '06/2025 - Present',
+      description:
+        'Leading of the development of a marketplace for online orders at local Edeka stores via a franchise system',
+    },
+    {
+      company: 'Valorbyte',
+      role: 'Chief Technology Officer',
+      duration: '03/2025 - Present',
+      description:
+        'Leading the development of mobile games and a gaming platform for skill-based competitions',
+    },
+    {
       company: 'GommeHDnet GmbH',
       role: 'Java Developer',
       duration: '10/2020 - 09/2021 & 09/2022 - 03/2024',
