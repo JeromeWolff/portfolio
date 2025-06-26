@@ -1,5 +1,6 @@
 {
   "name": "jeromewolff.github.io",
+  "packageManager": "pnpm@10.12.3",
   "version": "1.0.0",
   "type": "module",
   "private": false,
@@ -34,6 +35,9 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitest/coverage-v8": "^3.2.4",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.34.1",
+    "@eslint/js": "^9.29.0",
     "ajv": "^8.17.1",
     "autoprefixer": "^10.4.21",
     "cookie": "^1.0.2",
@@ -44,7 +48,23 @@
     "tailwindcss": "^4.1.10",
     "typescript": "^5.5.4",
     "vite": "^7.0.0",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsonc": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.2.0",
+    "husky": "^9.1.7",
+    "jsonc-eslint-parser": "^2.4.0",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.1",
+    "stylelint": "^16.21.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-config-tailwindcss": "^1.0.0",
+    "stylelint-prettier": "^5.0.3"
   },
   "overrides": {
     "typescript": "^5.5.4"
@@ -55,7 +75,30 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage --watch=false"
+    "test:coverage": "vitest run --coverage --watch=false",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "preinstall": "npx only-allow pnpm",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "stylelint": "stylelint \"**/*.{css,scss}\"",
+    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
+    "type-check": "tsc --noEmit",
+    "validate": "pnpm run lint && pnpm run format:check && pnpm run stylelint && pnpm run type-check"
+  },
+  "lint-staged": {
+    "*.{cjs,js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,scss,md,html}": [
+      "prettier --write"
+    ]
   },
   "eslintConfig": {
     "extends": [
