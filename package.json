@@ -1,9 +1,16 @@
 {
-  "name": "jeromewolff.github.io",
-  "packageManager": "pnpm@10.12.3",
-  "version": "1.0.0",
-  "type": "module",
-  "private": false,
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
@@ -26,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@eslint/js": "^9.29.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/cli": "^4.1.10",
     "@tailwindcss/forms": "^0.5.10",
@@ -34,21 +42,12 @@
     "@types/node": "^24.0.4",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@vitest/coverage-v8": "^3.2.4",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
     "@typescript-eslint/parser": "^8.34.1",
-    "@eslint/js": "^9.29.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "ajv": "^8.17.1",
     "autoprefixer": "^10.4.21",
     "cookie": "^1.0.2",
-    "jsdom": "^26.1.0",
-    "nth-check": "^2.1.1",
-    "postcss": "^8.5.6",
-    "postcss-import": "^16.1.1",
-    "tailwindcss": "^4.1.10",
-    "typescript": "^5.5.4",
-    "vite": "^7.0.0",
-    "vitest": "^3.2.4",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.32.0",
@@ -58,34 +57,26 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.2.0",
     "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
     "jsonc-eslint-parser": "^2.4.0",
     "lint-staged": "^16.1.2",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
     "prettier": "^3.6.1",
     "stylelint": "^16.21.0",
     "stylelint-config-standard": "^38.0.0",
     "stylelint-config-tailwindcss": "^1.0.0",
-    "stylelint-prettier": "^5.0.3"
+    "stylelint-prettier": "^5.0.3",
+    "tailwindcss": "^4.1.10",
+    "typescript": "^5.5.4",
+    "vite": "^7.0.0",
+    "vitest": "^3.2.4"
   },
-  "overrides": {
-    "typescript": "^5.5.4"
-  },
-  "scripts": {
-    "start": "vite",
-    "dev": "vite dev",
-    "build": "tsc && vite build",
-    "serve": "vite preview",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage --watch=false",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "preinstall": "npx only-allow pnpm",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "prepare": "husky",
-    "stylelint": "stylelint \"**/*.{css,scss}\"",
-    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
-    "type-check": "tsc --noEmit",
-    "validate": "pnpm run lint && pnpm run format:check && pnpm run stylelint && pnpm run type-check"
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
   },
   "lint-staged": {
     "*.{cjs,js,jsx,ts,tsx}": [
@@ -100,21 +91,30 @@
       "prettier --write"
     ]
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+  "name": "jeromewolff.github.io",
+  "overrides": {
+    "typescript": "^5.5.4"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "packageManager": "pnpm@10.12.3",
+  "private": false,
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky",
+    "serve": "vite preview",
+    "start": "vite",
+    "stylelint": "stylelint \"**/*.{css,scss}\"",
+    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage --watch=false",
+    "type-check": "tsc --noEmit",
+    "validate": "pnpm run lint && pnpm run format:check && pnpm run stylelint && pnpm run type-check"
+  },
+  "type": "module",
+  "version": "1.0.0"
 }
