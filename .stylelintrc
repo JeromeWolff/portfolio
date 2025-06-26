@@ -1,12 +1,28 @@
 {
-  "extends": [
-    "stylelint-config-standard",
-    "stylelint-config-tailwindcss",
-    "stylelint-prettier/recommended"
-  ],
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
+  "plugins": ["stylelint-order", "stylelint-prettier"],
   "rules": {
+    "order/order": ["custom-properties", "dollar-variables", "declarations", "rules", "at-rules"],
+    "order/properties-order": [
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "z-index",
+      "display",
+      "justify-content",
+      "align-items",
+      "float",
+      "clear"
+    ],
     "selector-class-pattern": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "scss/at-mixin-pattern": null,
+    "scss/dollar-variable-pattern": null,
+    "scss/percent-placeholder-pattern": null,
+    "prettier/prettier": true,
+    "keyframes-name-pattern": null
   },
-  "ignoreFiles": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/public/**"]
+  "ignoreFiles": ["**/node_modules/**", "**/dist/**", "**/build/**"]
 }
