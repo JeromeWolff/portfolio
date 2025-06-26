@@ -1,2 +1,2 @@
-export * from "./experience.component";
-export * from "./experience.config";
+export * from './experience.component';
+export * from './experience.config';

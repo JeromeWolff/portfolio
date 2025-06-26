@@ -1,2 +1,2 @@
-export * from "./footer.component";
-export * from "./footer.config"
+export * from './footer.component';
+export * from './footer.config';
