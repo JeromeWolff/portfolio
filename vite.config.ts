@@ -28,7 +28,6 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
     build: {
-      outDir: 'build',
       sourcemap: true,
     },
     define: {
