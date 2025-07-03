@@ -22,8 +22,8 @@ Allow: /
 Sitemap: ${SITE_URL.replace(/\/$/, '')}/sitemap.xml
 `;
 
-// Write files to project root
-fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap);
-fs.writeFileSync(path.join(__dirname, 'robots.txt'), robots);
+// Write files to public directory
+fs.writeFileSync(path.join(__dirname, 'public', 'sitemap.xml'), sitemap);
+fs.writeFileSync(path.join(__dirname, 'public', 'robots.txt'), robots);
 
 console.log('sitemap.xml and robots.txt generated!');
