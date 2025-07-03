@@ -93,7 +93,7 @@
   "packageManager": "pnpm@10.12.4",
   "private": false,
   "scripts": {
-    "build": "tsc && vite build && pnpm run generate:sitemap",
+    "build": "pnpm run generate:sitemap && tsc && vite build",
     "dev": "vite dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
