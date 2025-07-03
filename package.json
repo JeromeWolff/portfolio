@@ -103,7 +103,7 @@
     "prepare": "husky",
     "serve": "vite preview",
     "start": "vite",
-    "generate:sitemap": "node scripts/generate-sitemap-and-robots.cjs",
+    "generate:sitemap": "node generate-sitemap-and-robots.cjs",
     "stylelint": "stylelint \"**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
     "test": "vitest",
