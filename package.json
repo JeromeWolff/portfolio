@@ -94,7 +94,7 @@
   "packageManager": "pnpm@10.12.4",
   "private": false,
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && pnpm run generate:sitemap",
     "dev": "vite dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -104,6 +104,7 @@
     "prepare": "husky",
     "serve": "vite preview",
     "start": "vite",
+    "generate:sitemap": "node scripts/generate-sitemap-and-robots.cjs",
     "stylelint": "stylelint \"**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
     "test": "vitest",
