@@ -4,9 +4,7 @@
 .container {
   max-width: 1200px;
   margin: $spacing-12 auto $spacing-16 auto;
-  background: $card-bg;
-  border-radius: $border-radius-lg;
-  border: 1px solid $border-color;
+  background: $body-bg;
   box-shadow: none;
   padding: $spacing-8 $spacing-6;
   width: 100%;
