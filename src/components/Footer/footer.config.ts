@@ -5,7 +5,7 @@ export const socialConfig = {
   socialLinks: [
     {
       label: 'Email',
-      href: 'mailto:jerome.wolff@innovaflux.com',
+      href: 'mailto:hello@jeromewolff.de',
       icon: faEnvelope,
     },
     {

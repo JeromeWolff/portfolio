@@ -1,0 +1,163 @@
+// Grayscale
+$white: #fff;
+$gray-50: #f6f8fa;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+$black: #000;
+
+// Primary Colors
+$primary: #635bff;
+$primary-dark: #3a2fd5;
+$primary-light: #7a75ff;
+
+// Secondary Colors
+$secondary: $gray-900;
+$secondary-dark: #23272f;
+$secondary-light: $gray-100;
+
+// Semantic Colors
+$success: #10b981;
+$info: #3b82f6;
+$warning: #f59e0b;
+$danger: #ef4444;
+
+// Background Colors
+$body-bg: $gray-50;
+$card-bg: $white;
+$header-bg: $secondary;
+$footer-bg: $secondary;
+
+// Text Colors
+$text-primary: $secondary;
+$text-secondary: $gray-600;
+$text-muted: $gray-400;
+
+// Border Colors
+$border-color: $gray-200;
+$border-light: $gray-100;
+
+// Tailwind Emerald and Cyan (500)
+$emerald-500: #10b981;
+$cyan-500: #06b6d4;
+
+// Typography
+// ==========================================
+$font-family-sans:
+  'Roboto',
+  -apple-system,
+  blinkmacsystemfont,
+  'Segoe UI',
+  'Noto Sans',
+  helvetica,
+  arial,
+  sans-serif,
+  'Apple Color Emoji',
+  'Segoe UI Emoji';
+$font-family-mono: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, monospace;
+$font-family-serif: georgia, 'Times New Roman', times, serif;
+$font-size-base: 1rem; // 16px
+$font-size-sm: 0.875rem; // 14px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.5rem; // 24px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem; // 36px
+$font-size-5xl: 3rem; // 48px
+$font-size-6xl: 3.75rem; // 60px
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$line-height-none: 1;
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Spacing
+// ==========================================
+$spacing-0: 0;
+$spacing-1: 0.25rem; // 4px
+$spacing-2: 0.5rem; // 8px
+$spacing-3: 0.75rem; // 12px
+$spacing-4: 1rem; // 16px
+$spacing-5: 1.25rem; // 20px
+$spacing-6: 1.5rem; // 24px
+$spacing-8: 2rem; // 32px
+$spacing-10: 2.5rem; // 40px
+$spacing-12: 3rem; // 48px
+$spacing-16: 4rem; // 64px
+$spacing-20: 5rem; // 80px
+$spacing-24: 6rem; // 96px
+$spacing-32: 8rem; // 128px
+$spacing-40: 10rem; // 160px
+$spacing-48: 12rem; // 192px
+$spacing-56: 14rem; // 224px
+$spacing-64: 16rem; // 256px
+
+// Border Radius
+// ==========================================
+$border-radius-none: 0;
+$border-radius-sm: 0.125rem; // 2px
+$border-radius: 0.5rem;
+$border-radius-md: 0.375rem; // 6px
+$border-radius-lg: 0.75rem;
+$border-radius-xl: 1rem;
+$border-radius-2xl: 1.25rem;
+$border-radius-3xl: 1.5rem; // 24px
+$border-radius-full: 9999px;
+
+// Box Shadow
+// ==========================================
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+$shadow:
+  0 1px 3px 0 rgb(0 0 0 / 10%),
+  0 1px 2px 0 rgb(0 0 0 / 6%);
+$shadow-md: 0 4px 8px 0 rgb(99 91 255 / 6%);
+$shadow-lg: 0 8px 24px 0 rgb(99 91 255 / 10%);
+$shadow-xl:
+  0 20px 25px -5px rgb(99 91 255 / 10%),
+  0 10px 10px -5px rgb(99 91 255 / 4%);
+$shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
+$shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 6%);
+$shadow-outline: 0 0 0 3px rgb(66 153 225 / 50%);
+$shadow-none: none;
+
+// Z-Index
+// ==========================================
+$z-index-0: 0;
+$z-index-10: 10;
+$z-index-20: 20;
+$z-index-30: 30;
+$z-index-40: 40;
+$z-index-50: 50;
+$z-index-auto: auto;
+
+// Transitions
+// ==========================================
+$transition-default: all 0.3s ease;
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.5s ease;
+
+// Container
+// ==========================================
+$container-padding: $spacing-4;
+$container-max-width: 1200px;
+
+// Breakpoints
+// ==========================================
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;

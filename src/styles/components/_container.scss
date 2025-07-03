@@ -1,0 +1,17 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.container {
+  max-width: 1200px;
+  margin: $spacing-12 auto $spacing-16 auto;
+  background: $body-bg;
+  box-shadow: none;
+  padding: $spacing-8 $spacing-6;
+  width: 100%;
+}
+
+@include respond-to('sm') {
+  .container {
+    padding: $spacing-6 $spacing-3;
+  }
+}

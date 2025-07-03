@@ -1,0 +1,224 @@
+@use '../utils/mixins' as *;
+
+// Container
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @include container;
+
+  @include respond-to('md') {
+    max-width: 720px;
+  }
+
+  @include respond-to('lg') {
+    max-width: 960px;
+  }
+
+  @include respond-to('xl') {
+    max-width: 1140px;
+  }
+
+  @include respond-to('xxl') {
+    max-width: 1320px;
+  }
+}
+
+// Grid
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+// Grid Columns
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    grid-column: span $i;
+  }
+}
+
+// Responsive Grid Columns
+@each $breakpoint, $width in $breakpoints {
+  @if $breakpoint != 'xs' {
+    @media (min-width: $width) {
+      @for $i from 1 through 12 {
+        .col-#{$breakpoint}-#{$i} {
+          grid-column: span $i;
+        }
+      }
+    }
+  }
+}
+
+// Grid Gaps
+$grid-gaps: (
+  '0': 0,
+  '1': 0.25rem,
+  '2': 0.5rem,
+  '3': 1rem,
+  '4': 1.5rem,
+  '5': 3rem,
+);
+
+@each $name, $size in $grid-gaps {
+  .gap-#{$name} {
+    gap: $size;
+  }
+
+  .gap-x-#{$name} {
+    column-gap: $size;
+  }
+
+  .gap-y-#{$name} {
+    row-gap: $size;
+  }
+}
+
+// Flex Utilities
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+// Spacing Utilities
+$spacing-sizes: (
+  '0': 0,
+  '1': 0.25rem,
+  '2': 0.5rem,
+  '3': 1rem,
+  '4': 1.5rem,
+  '5': 3rem,
+  'auto': auto,
+);
+
+@each $name, $size in $spacing-sizes {
+  // Margin
+  .m-#{$name} {
+    margin: $size;
+  }
+  .mx-#{$name} {
+    margin-left: $size;
+    margin-right: $size;
+  }
+  .my-#{$name} {
+    margin-top: $size;
+    margin-bottom: $size;
+  }
+  .mt-#{$name} {
+    margin-top: $size;
+  }
+  .mr-#{$name} {
+    margin-right: $size;
+  }
+  .mb-#{$name} {
+    margin-bottom: $size;
+  }
+  .ml-#{$name} {
+    margin-left: $size;
+  }
+
+  // Padding
+  .p-#{$name} {
+    padding: $size;
+  }
+  .px-#{$name} {
+    padding-left: $size;
+    padding-right: $size;
+  }
+  .py-#{$name} {
+    padding-top: $size;
+    padding-bottom: $size;
+  }
+  .pt-#{$name} {
+    padding-top: $size;
+  }
+  .pr-#{$name} {
+    padding-right: $size;
+  }
+  .pb-#{$name} {
+    padding-bottom: $size;
+  }
+  .pl-#{$name} {
+    padding-left: $size;
+  }
+}
+
+// Display Utilities
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.hidden {
+  display: none;
+}
+
+// Responsive Display Utilities
+@each $breakpoint, $width in $breakpoints {
+  @media (min-width: $width) {
+    .#{$breakpoint}\:block {
+      display: block;
+    }
+    .#{$breakpoint}\:inline-block {
+      display: inline-block;
+    }
+    .#{$breakpoint}\:inline {
+      display: inline;
+    }
+    .#{$breakpoint}\:flex {
+      display: flex;
+    }
+    .#{$breakpoint}\:inline-flex {
+      display: inline-flex;
+    }
+    .#{$breakpoint}\:grid {
+      display: grid;
+    }
+    .#{$breakpoint}\:hidden {
+      display: none;
+    }
+  }
+}

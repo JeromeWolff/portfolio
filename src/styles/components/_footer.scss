@@ -1,0 +1,105 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: $footer-bg;
+  color: $gray-300;
+  padding: $spacing-10 0 $spacing-6 0;
+  width: 100%;
+  border-top: 1px solid rgba($white, 0.08);
+  box-shadow: 0 -2px 24px 0 rgb(99 91 255 / 6%);
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.footer__container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+  padding: 0 $spacing-4;
+  text-align: center;
+  width: 100%;
+}
+
+.footer__information-title {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-2;
+  color: $white;
+  letter-spacing: -0.01em;
+  text-align: center;
+  width: 100%;
+}
+
+.footer__information-subtext {
+  color: $gray-400;
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-2;
+  text-align: center;
+  width: 100%;
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-6;
+  margin: $spacing-2 0 $spacing-2 0;
+  width: 100%;
+
+  a {
+    color: $primary;
+    background: $gray-900;
+    border-radius: $border-radius-full;
+    padding: $spacing-2;
+    font-size: 2rem;
+    box-shadow: 0 2px 8px 0 rgb(99 91 255 / 8%);
+    transition:
+      color 0.2s,
+      background 0.2s,
+      transform 0.2s;
+
+    &:hover {
+      color: $white;
+      background: $primary;
+      transform: translateY(-2px) scale(1.1);
+    }
+  }
+}
+
+.footer__copyright {
+  font-size: 0.95rem;
+  color: $gray-400;
+  margin: $spacing-2 0 0 0;
+  text-align: center;
+  letter-spacing: 0.01em;
+  width: 100%;
+}
+
+// Responsive: always center content
+@include respond-to('md') {
+  .footer__container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $spacing-6;
+    padding: 0 $spacing-8;
+  }
+
+  .footer__social {
+    justify-content: center;
+  }
+}
+
+@include respond-to('lg') {
+  .footer {
+    padding: $spacing-16 0 $spacing-10 0;
+  }
+}

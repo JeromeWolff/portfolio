@@ -5,14 +5,16 @@ import { Container, Hero, About, Experience, Footer } from '../components';
 export class Home extends Component {
   render() {
     return (
-      <Container>
-        <main>
-          <Hero />
-          <About />
-          <Experience />
-        </main>
+      <>
+        <Container>
+          <main>
+            <Hero />
+            <About />
+            <Experience />
+          </main>
+        </Container>
         <Footer />
-      </Container>
+      </>
     );
   }
 }

@@ -1,0 +1,156 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use 'sass:color';
+
+.experience-section {
+  background: $body-bg;
+  color: $text-primary;
+  padding: $spacing-12 0;
+  display: flex;
+  justify-content: center;
+  margin-bottom: $spacing-16;
+}
+
+.experience-list {
+  margin-top: $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+  overflow: visible;
+}
+
+.experience-card {
+  background: $card-bg;
+  border: 1px solid $gray-200;
+  border-radius: $border-radius-lg;
+  padding: $spacing-6 $spacing-5;
+  margin-bottom: 0;
+  box-shadow: none;
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s,
+    transform 0.2s,
+    background 0.2s;
+  will-change: box-shadow, border-color, transform, background;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    border-color: $primary;
+    transform: translateY(-8px) scale(1.03);
+    background: color.adjust($card-bg, $lightness: 2%);
+    z-index: 1;
+  }
+
+  .experience-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-2;
+    margin-bottom: $spacing-1;
+
+    .experience-role {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $secondary;
+      min-width: 0;
+      flex: 1 1 0%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .experience-company {
+      background: $primary;
+      color: $white;
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      border-radius: $border-radius;
+      padding: 0 $spacing-2;
+      margin-left: $spacing-2;
+      flex-shrink: 0;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .experience-duration {
+    display: inline-block;
+    margin-top: $spacing-1;
+    color: $gray-500;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    border-radius: $border-radius;
+    min-width: 70px;
+    text-align: left;
+
+    &.badge,
+    &.current {
+      background: $gray-100;
+      color: $primary;
+      padding: 0 $spacing-2;
+    }
+
+    &.current {
+      background: $primary;
+      color: $white;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .experience-description {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    margin-bottom: 0;
+    text-align: left;
+  }
+}
+
+.experience-content {
+  max-width: 700px;
+  background: $card-bg;
+  padding: $spacing-8 $spacing-6;
+  border-radius: $border-radius-lg;
+  box-shadow: none;
+  border: 1px solid $border-color;
+  text-align: left;
+  margin: 0 auto;
+
+  .section-label {
+    color: $primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-2;
+    display: block;
+    text-align: center;
+  }
+
+  h1,
+  h2 {
+    color: $secondary;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-8;
+    letter-spacing: -0.01em;
+    text-align: center;
+  }
+
+  h3 {
+    color: $secondary;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-3;
+    text-align: left;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-3;
+    line-height: $line-height-relaxed;
+    text-align: left;
+  }
+}

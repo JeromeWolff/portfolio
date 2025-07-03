@@ -32,13 +32,7 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@eslint/js": "^9.30.1",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/cli": "^4.1.10",
-    "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.1.10",
-    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^24.0.10",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -64,15 +58,14 @@
     "postcss": "^8.5.6",
     "postcss-import": "^16.1.1",
     "prettier": "^3.6.2",
-    "stylelint": "^16.21.0",
+    "stylelint": "^16.21.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^38.0.0",
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-order": "^7.0.0",
     "stylelint-prettier": "^5.0.3",
-    "tailwindcss": "^4.1.10",
-    "typescript": "^5.5.4",
-    "vite": "^7.0.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.1",
     "vitest": "^3.2.4"
   },
   "eslintConfig": {
@@ -97,13 +90,14 @@
   "overrides": {
     "typescript": "^5.5.4"
   },
-  "packageManager": "pnpm@10.12.3",
+  "packageManager": "pnpm@10.12.4",
   "private": false,
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "generate:sitemap": "node generate-sitemap-and-robots.cjs",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "preinstall": "npx only-allow pnpm",

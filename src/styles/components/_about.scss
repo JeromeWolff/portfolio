@@ -1,0 +1,111 @@
+@use 'sass:color';
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.about-section {
+  background: $body-bg;
+  color: $text-primary;
+  padding: $spacing-12 0;
+  display: flex;
+  justify-content: center;
+  margin-bottom: $spacing-16;
+}
+
+.about-sections {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+  margin-top: $spacing-6;
+}
+
+.about-section-card {
+  background: $card-bg;
+  border: 1px solid $gray-200;
+  border-radius: $border-radius-lg;
+  padding: $spacing-6 $spacing-5;
+  margin-bottom: 0;
+  box-shadow: none;
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s,
+    transform 0.2s,
+    background 0.2s;
+  will-change: box-shadow, border-color, transform, background;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    border-color: $primary;
+    transform: translateY(-8px) scale(1.03);
+    background: color.adjust($card-bg, $lightness: 2%);
+    z-index: 1;
+  }
+
+  .about-section-title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $secondary;
+    min-width: 0;
+    flex: 1 1 0%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .about-section-content p {
+    color: $text-secondary;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-3;
+    line-height: $line-height-relaxed;
+    text-align: left;
+  }
+}
+
+.about-content {
+  max-width: 700px;
+  text-align: left;
+  margin: 0 auto;
+
+  .section-label {
+    color: $primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-2;
+    display: block;
+  }
+
+  h1 {
+    color: $secondary;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-4;
+    letter-spacing: -0.01em;
+    text-align: left;
+  }
+
+  h2,
+  h3 {
+    color: $secondary;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-3;
+    text-align: left;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-3;
+    line-height: $line-height-relaxed;
+    text-align: left;
+  }
+
+  .about-links {
+    margin-top: $spacing-6;
+
+    a {
+      margin: 0 $spacing-2;
+    }
+  }
+}
