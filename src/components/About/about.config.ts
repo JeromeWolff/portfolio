@@ -1,9 +1,17 @@
-export const aboutConfig = {
+interface AboutConfig {
+  birthdate: string;
+  sections: Array<{
+    title: string;
+    content: string;
+  }>;
+}
+
+export const aboutConfig: AboutConfig = {
   birthdate: '2004-07-12',
   sections: [
     {
       title: 'Introduction',
-      content: `Hi, I'm a {0}-year-old Full Stack Developer with a passion for creating seamless and efficient web applications. My journey in tech has been driven by a love for problem-solving and the thrill of bringing ideas to life through code.`,
+      content: `Hi, I'm a {age}-year-old Full Stack Developer with a passion for creating seamless and efficient web applications. My journey in tech has been driven by a love for problem-solving and the thrill of bringing ideas to life through code.`,
     },
     {
       title: 'Hobbies',
