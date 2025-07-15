@@ -31,7 +31,16 @@ const es2021Globals = filterGlobals(globals.es2021);
 export default [
   // Global ignores
   {
-    ignores: ['node_modules/', 'dist/', 'build/', '.vercel/', '.netlify/', 'package-lock.json'],
+    ignores: [
+      'node_modules/',
+      'dist/',
+      'build/',
+      '.vercel/',
+      '.netlify/',
+      'package-lock.json',
+      'yarn.lock',
+      'pnpm-lock.yaml',
+    ],
   },
   // Base JavaScript and TypeScript configuration
   {

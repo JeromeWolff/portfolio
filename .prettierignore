@@ -1,0 +1,31 @@
+# Ignore build output
+build/
+dist/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore coverage reports
+coverage/
+
+# Ignore environment files
+.env
+
+# Ignore temporary files
+*.tmp
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore OS generated files
+.DS_Store
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
