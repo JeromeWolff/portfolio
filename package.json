@@ -23,7 +23,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "@vitejs/plugin-react-swc": "^3.10.2",
     "dotenv": "^17.2.0",
-    "framer-motion": "^12.23.5",
+    "framer-motion": "^12.23.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sass": "^1.89.2",
