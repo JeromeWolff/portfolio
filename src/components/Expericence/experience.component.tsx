@@ -1,6 +1,6 @@
 import { Card } from '@components/Card';
 import { Section } from '@components/Section';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { experienceConfig } from './experience.config';
 
@@ -16,44 +16,52 @@ interface ExperienceProps {
   experiences?: ExperienceItem[];
 }
 
-export const Experience: React.FC<ExperienceProps> = ({
-  title = 'Experience',
-  experiences = experienceConfig.experiences,
-}) => {
-  return (
-    <Section
-      title={title}
-      className="experience-section"
-      titleClassName="experience-title"
-      contentClassName="experience-list"
-    >
-      {experiences.map((exp, idx) => (
-        <ExperienceCard key={idx} index={idx} {...exp} />
-      ))}
-    </Section>
-  );
-};
+export const Experience: React.FC<ExperienceProps> = React.memo(
+  ({ title = 'Experience', experiences = experienceConfig.experiences }) => {
+    // Memoize experience cards to prevent recreating them on every render
+    const experienceCards = useMemo(
+      () => experiences.map((exp, idx) => <ExperienceCard key={idx} index={idx} {...exp} />),
+      [experiences]
+    );
+    return (
+      <Section
+        title={title}
+        className="experience-section"
+        titleClassName="experience-title"
+        contentClassName="experience-list"
+      >
+        {experienceCards}
+      </Section>
+    );
+  }
+);
 
 interface ExperienceCardProps extends ExperienceItem {
   index: number;
 }
 
-const ExperienceCard: React.FC<ExperienceCardProps> = ({
-  index: _index,
-  role,
-  company,
-  duration,
-  description,
-}) => {
-  const isCurrent = /heute|present|current/i.test(duration);
-  return (
-    <Card className="experience-card">
-      <div className="experience-header">
-        <span className="experience-role">{role}</span>
-        <span className="experience-company">{company}</span>
-      </div>
-      <span className={`experience-duration${isCurrent ? ' current badge' : ''}`}>{duration}</span>
-      {description && <p className="experience-description">{description}</p>}
-    </Card>
-  );
-};
+// Regular expression compiled only once
+const currentRegex = /heute|present|current/i;
+
+const ExperienceCard: React.FC<ExperienceCardProps> = React.memo(
+  ({ index: _index, role, company, duration, description }) => {
+    // Memoize the current status check to prevent recalculating on every render
+    const isCurrent = useMemo(() => currentRegex.test(duration), [duration]);
+    // Memoize the class name to prevent string concatenation on every render
+    const durationClassName = useMemo(
+      () => `experience-duration${isCurrent ? ' current badge' : ''}`,
+      [isCurrent]
+    );
+
+    return (
+      <Card className="experience-card">
+        <div className="experience-header">
+          <span className="experience-role">{role}</span>
+          <span className="experience-company">{company}</span>
+        </div>
+        <span className={durationClassName}>{duration}</span>
+        {description && <p className="experience-description">{description}</p>}
+      </Card>
+    );
+  }
+);

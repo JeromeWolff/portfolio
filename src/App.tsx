@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Home } from './pages';
 import '@styles/base/_global.scss';
 
-class App extends Component {
-  render() {
-    return <Home />;
-  }
-}
+const App: React.FC = () => {
+  return <Home />;
+};
 
-export default App;
+export default React.memo(App);
