@@ -13,7 +13,7 @@ export const experienceConfig = {
         'Leading of the development of a marketplace for online orders at local Edeka stores via a franchise system',
     },
     {
-      company: 'Valorbyte',
+      company: 'Valorbyte UG',
       role: 'Chief Technology Officer & Managing Director',
       duration: '03/2025 - Present',
       description:
