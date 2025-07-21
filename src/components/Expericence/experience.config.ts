@@ -1,6 +1,11 @@
 export const experienceConfig = {
   experiences: [
     {
+      company: 'WIG Capital UG',
+      role: 'Managing Director',
+      duration: '07/2025 - Present',
+    },
+    {
       company: 'Shabo Group GmbH',
       role: 'Chief Technology Officer',
       duration: '06/2025 - Present',
@@ -9,7 +14,7 @@ export const experienceConfig = {
     },
     {
       company: 'Valorbyte',
-      role: 'Chief Technology Officer',
+      role: 'Chief Technology Officer & Managing Director',
       duration: '03/2025 - Present',
       description:
         'Leading the development of mobile games and a gaming platform for skill-based competitions',
