@@ -8,7 +8,7 @@ export interface ExperienceItem {
   role: string;
   company: string;
   duration: string;
-  description: string;
+  description?: string;
 }
 
 interface ExperienceProps {
@@ -53,7 +53,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         <span className="experience-company">{company}</span>
       </div>
       <span className={`experience-duration${isCurrent ? ' current badge' : ''}`}>{duration}</span>
-      <p className="experience-description">{description}</p>
+      {description && <p className="experience-description">{description}</p>}
     </Card>
   );
 };
