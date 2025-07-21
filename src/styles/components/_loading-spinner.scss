@@ -1,0 +1,104 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+// Loading Spinner Component
+.loading-spinner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  // Spinner bars
+  .loading-spinner-bar {
+    width: 25%;
+    height: 100%;
+    border-radius: $border-radius;
+    background-color: $primary;
+
+    &.loading-spinner-bar-primary {
+      background-color: $primary;
+    }
+
+    &.loading-spinner-bar-secondary {
+      background-color: $secondary;
+    }
+
+    &.loading-spinner-bar-white {
+      background-color: $white;
+    }
+
+    &.loading-spinner-bar-gray {
+      background-color: $gray-400;
+    }
+  }
+
+  // Screen reader only text
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+// Spinner sizes
+.loading-spinner-sm {
+  width: 24px;
+  height: 24px;
+
+  .loading-spinner-bar {
+    width: 4px;
+  }
+}
+
+.loading-spinner-md {
+  width: 40px;
+  height: 40px;
+
+  .loading-spinner-bar {
+    width: 8px;
+  }
+}
+
+.loading-spinner-lg {
+  width: 64px;
+  height: 64px;
+
+  .loading-spinner-bar {
+    width: 12px;
+  }
+}
+
+// Loading fallback container
+.loading-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: $spacing-16;
+  min-height: 200px;
+
+  .loading-text {
+    margin-top: $spacing-4;
+    color: $text-secondary;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// Loading placeholder (simple text version)
+.loading-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $spacing-8;
+  min-height: 100px;
+  color: $text-secondary;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+}

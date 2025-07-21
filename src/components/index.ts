@@ -5,4 +5,5 @@ export * from './Container';
 export * from './Expericence';
 export * from './Footer';
 export * from './Hero';
+export * from './LoadingSpinner';
 export * from './Section';

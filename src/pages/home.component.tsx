@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 
-import { Container, Hero } from '../components';
+import { Container, Hero, LoadingFallback } from '../components';
 
 // Lazy load components that are not needed for initial render
 const About = lazy(() =>
@@ -14,9 +14,6 @@ const Experience = lazy(() =>
 const Footer = lazy(() =>
   import('../components/Footer/footer.component').then((module) => ({ default: module.Footer }))
 );
-
-// Loading fallback component
-const LoadingFallback = () => <div className="loading-placeholder">Loading...</div>;
 
 export const Home: React.FC = React.memo(() => {
   return (
