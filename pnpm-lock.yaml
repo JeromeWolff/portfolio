@@ -27,8 +27,8 @@ importers:
         specifier: ^9.41.0
         version: 9.41.0(react@19.1.0)
       '@sentry/vite-plugin':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.1
+        version: 4.0.1
       '@vercel/analytics':
         specifier: ^1.5.0
         version: 1.5.0(react@19.1.0)
@@ -793,16 +793,16 @@ packages:
     resolution: {integrity: sha512-BgKsRtZge0hKbJyWM1M1KOJeGrNMp5Ej6GnT2gLGZIYlOCHX0pq1rI+xnxT6x/3/oBU7sMaeqKZRG2GFjdMIcQ==}
     engines: {node: '>=18'}
 
-  '@sentry/babel-plugin-component-annotate@4.0.0':
-    resolution: {integrity: sha512-1sozj4esnQBhJ2QO4imiLMl1858StkLjUxFF1KxgX/X1uEL/QlW2MYL8CKzbLeACy1SkR9h4V8GXSZvCnci5Dw==}
+  '@sentry/babel-plugin-component-annotate@4.0.1':
+    resolution: {integrity: sha512-wjxM5Gqms71tfPntejHix3sUJBFW/v04P0iPUDyvi30slbSlNnyOajwBPNDv+VE5Y6OANV8UV1IOksMaGW1n4Q==}
     engines: {node: '>= 14'}
 
   '@sentry/browser@9.41.0':
     resolution: {integrity: sha512-gdyZPqtf2jee2+nbT4GBQziX217/2vRRqcSGIib+2uSpx/2rq+QN7oZowDSeQxtYfHcu2uWEw9cTdNiG5jHpKg==}
     engines: {node: '>=18'}
 
-  '@sentry/bundler-plugin-core@4.0.0':
-    resolution: {integrity: sha512-dTdbcctT5MJUwdbttZm2zomO+ui1F062ZIkogHeHqlA938Fwd1+9JIJ328+XL4XdcUG2yiFAZBWUPW3bYwoN9A==}
+  '@sentry/bundler-plugin-core@4.0.1':
+    resolution: {integrity: sha512-V3k9nkh1eHHPw5wNnwCAYlR1yEMNaM1XkPtHj43vIWdy9cqqCGeRnGC8h+m4q61JdzGwZDufOhzs095Ib6TukA==}
     engines: {node: '>= 14'}
 
   '@sentry/cli-darwin@2.50.2':
@@ -867,8 +867,8 @@ packages:
     peerDependencies:
       react: ^16.14.0 || 17.x || 18.x || 19.x
 
-  '@sentry/vite-plugin@4.0.0':
-    resolution: {integrity: sha512-JX5irzvyoOSKto0U0eXDqigsTXdXnPRQaAms/kcU6A6Bf+WaPfCTE5NrJWg6ZeLvi7GiPWch11OO+TB6ZN8RKA==}
+  '@sentry/vite-plugin@4.0.1':
+    resolution: {integrity: sha512-7f6uXfRQv/zrgYaJz0VbN2znMkwIgWgEgZrQUpihG8KjTP+ea9MYYoumIzC0FN+1je85ZC1uWqkqeYNTeHPO+g==}
     engines: {node: '>= 14'}
 
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0':
@@ -3918,7 +3918,7 @@ snapshots:
       '@sentry-internal/browser-utils': 9.41.0
       '@sentry/core': 9.41.0
 
-  '@sentry/babel-plugin-component-annotate@4.0.0': {}
+  '@sentry/babel-plugin-component-annotate@4.0.1': {}
 
   '@sentry/browser@9.41.0':
     dependencies:
@@ -3928,10 +3928,10 @@ snapshots:
       '@sentry-internal/replay-canvas': 9.41.0
       '@sentry/core': 9.41.0
 
-  '@sentry/bundler-plugin-core@4.0.0':
+  '@sentry/bundler-plugin-core@4.0.1':
     dependencies:
       '@babel/core': 7.28.0
-      '@sentry/babel-plugin-component-annotate': 4.0.0
+      '@sentry/babel-plugin-component-annotate': 4.0.1
       '@sentry/cli': 2.50.2
       dotenv: 16.6.1
       find-up: 5.0.0
@@ -3995,9 +3995,9 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       react: 19.1.0
 
-  '@sentry/vite-plugin@4.0.0':
+  '@sentry/vite-plugin@4.0.1':
     dependencies:
-      '@sentry/bundler-plugin-core': 4.0.0
+      '@sentry/bundler-plugin-core': 4.0.1
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
