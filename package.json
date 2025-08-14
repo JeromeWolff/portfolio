@@ -90,7 +90,7 @@
   "overrides": {
     "typescript": "^5.5.4"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "private": false,
   "scripts": {
     "build": "pnpm run generate:sitemap && tsc && vite build",
