@@ -52,7 +52,7 @@
     "globals": "^16.4.0",
     "husky": "^9.1.7",
     "jsdom": "^27.0.0",
-    "jsonc-eslint-parser": "^2.4.0",
+    "jsonc-eslint-parser": "^2.4.1",
     "lint-staged": "^16.1.6",
     "nth-check": "^2.1.1",
     "postcss": "^8.5.6",
