@@ -1,0 +1,90 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.projects {
+  padding: $spacing-8 0;
+}
+
+.projects-inner {
+  max-width: $container-max-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+  box-sizing: border-box;
+}
+
+.projects-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-2;
+  font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: $spacing-5;
+  text-align: center;
+
+  .projects-title-icon {
+    flex-shrink: 0;
+    color: $primary-light;
+  }
+}
+
+/* Dense responsive grid - cards, not huge stacks */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-4;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.project-card-title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: 0;
+}
+
+.project-card-description {
+  font-size: $font-size-base;
+  color: $text-secondary;
+  line-height: $line-height-relaxed;
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project-card-tag {
+  font-size: $font-size-sm;
+  color: $text-muted;
+  background: rgba($primary, 0.1);
+  padding: $spacing-1 $spacing-2;
+  border-radius: $border-radius;
+}
+
+.project-card-links {
+  display: flex;
+  gap: $spacing-3;
+  margin-top: $spacing-2;
+}
+
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-1;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}

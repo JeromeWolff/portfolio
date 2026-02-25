@@ -1,10 +1,14 @@
-import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import React from 'react';
 
 import { Button } from '../';
 
 import { heroConfig } from './hero.config';
 
+/**
+ * Hero: single H1 for SEO, immediate clarity on who and what.
+ * Animations: CSS-only for performance (no framer-motion here).
+ */
 interface HeroProps {
   title?: string;
   subtext?: string;
@@ -19,46 +23,19 @@ export const Hero: React.FC<HeroProps> = React.memo(
     ctaLabel = heroConfig.ctaLabel,
     ctaHref = heroConfig.ctaHref,
   }) => {
-    // Memoize animation variants to prevent recreating objects on each render
-    const titleAnimation = React.useMemo(
-      () => ({
-        initial: { y: 20, opacity: 0 },
-        animate: { y: 0, opacity: 1 },
-        transition: { delay: 0.2 },
-      }),
-      []
-    );
-    const subtextAnimation = React.useMemo(
-      () => ({
-        initial: { y: 20, opacity: 0 },
-        animate: { y: 0, opacity: 1 },
-        transition: { delay: 0.4 },
-      }),
-      []
-    );
-    const actionsAnimation = React.useMemo(
-      () => ({
-        initial: { y: 20, opacity: 0 },
-        animate: { y: 0, opacity: 1 },
-        transition: { delay: 0.6 },
-      }),
-      []
-    );
-
     return (
-      <section className="hero-section">
+      <section id="hero" className="hero-section" aria-labelledby="hero-title">
         <div className="hero-content">
-          <motion.h1 className="hero-title" {...titleAnimation}>
+          <h1 id="hero-title" className="hero-title">
             {title}
-          </motion.h1>
-          <motion.p className="hero-subtext" {...subtextAnimation}>
-            {subtext}
-          </motion.p>
-          <motion.div className="hero-actions" {...actionsAnimation}>
-            <Button as="a" href={ctaHref} variant="primary" size="lg">
-              {ctaLabel}
+          </h1>
+          <p className="hero-subtext">{subtext}</p>
+          <div className="hero-actions">
+            <Button as="a" href={ctaHref} variant="primary" size="lg" className="hero-cta">
+              <span>{ctaLabel}</span>
+              <ArrowRight size={18} aria-hidden />
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
     );

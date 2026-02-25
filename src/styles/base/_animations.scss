@@ -1,7 +1,8 @@
+/* Minimal section entrance - CSS only for performance */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
 
   to {
@@ -10,6 +11,10 @@
   }
 }
 
-.fade-in-up {
-  animation: fadeInUp 1s ease-out;
+.app-section .section-content {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.hero-section .hero-content {
+  animation: fadeInUp 0.5s ease-out both;
 }

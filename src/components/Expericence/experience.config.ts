@@ -1,6 +1,11 @@
 export const experienceConfig = {
   experiences: [
     {
+      company: 'Wolff-Consulting GbR',
+      role: 'Partner',
+      duration: '12/2025 - Present',
+    },
+    {
       company: 'WIG Capital UG',
       role: 'Managing Director',
       duration: '07/2025 - Present',
@@ -10,7 +15,7 @@ export const experienceConfig = {
       role: 'Chief Technology Officer',
       duration: '06/2025 - Present',
       description:
-        'Leading of the development of a marketplace for online orders at local Edeka stores via a franchise system',
+        'Leading of the development of a marketplace for online orders at local Edeka stores via a franchise system.',
     },
     {
       company: 'Valorbyte UG',

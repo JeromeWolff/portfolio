@@ -1,43 +1,40 @@
-import { motion } from 'framer-motion';
 import React from 'react';
 
+/**
+ * Semantic section with H2. Optional title icon (e.g. Lucide). CSS-only fade-in.
+ */
 interface SectionProps {
+  id?: string;
+  titleId?: string;
   title: string;
+  titleIcon?: React.ReactNode;
   className?: string;
   titleClassName?: string;
   contentClassName?: string;
   children: React.ReactNode;
-  titleDelay?: number;
-  contentDelay?: number;
 }
 
 export const Section: React.FC<SectionProps> = ({
+  id,
+  titleId,
   title,
+  titleIcon,
   className = '',
   titleClassName = '',
   contentClassName = '',
   children,
-  titleDelay = 0.2,
-  contentDelay = 0.4,
 }) => (
-  <section className={`app-section ${className}`}>
+  <section id={id} className={`app-section ${className}`} aria-labelledby={titleId ?? undefined}>
     <div className="section-content">
-      <motion.h2
-        className={`section-title ${titleClassName}`}
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: titleDelay }}
-      >
+      <h2 id={titleId} className={`section-title ${titleClassName}`}>
+        {titleIcon && (
+          <span className="section-title-icon" aria-hidden>
+            {titleIcon}
+          </span>
+        )}
         {title}
-      </motion.h2>
-      <motion.div
-        className={`section-children ${contentClassName}`}
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: contentDelay }}
-      >
-        {children}
-      </motion.div>
+      </h2>
+      <div className={`section-children ${contentClassName}`}>{children}</div>
     </div>
   </section>
 );

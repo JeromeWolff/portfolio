@@ -12,54 +12,54 @@ $gray-800: #1f2937;
 $gray-900: #111827;
 $black: #000;
 
-// Primary Colors
-$primary: #635bff;
-$primary-dark: #3a2fd5;
-$primary-light: #7a75ff;
+// --- Dark theme: deep navy, blue accents ---
+$navy-950: #0a0e17;
+$navy-900: #0f1629;
+$navy-800: #151d33;
+$navy-700: #1e2a47;
+$navy-600: #2a3a5c;
 
-// Secondary Colors
-$secondary: $gray-900;
-$secondary-dark: #23272f;
-$secondary-light: $gray-100;
+// Primary (blue accent)
+$primary: #3b82f6;
+$primary-dark: #2563eb;
+$primary-light: #60a5fa;
+$primary-glow: rgb(59 130 246 / 25%);
 
-// Semantic Colors
+// Secondary (headings, emphasis)
+$secondary: #f1f5f9;
+$secondary-dark: #cbd5e1;
+$secondary-light: #f8fafc;
+
+// Semantic
 $success: #10b981;
 $info: #3b82f6;
 $warning: #f59e0b;
 $danger: #ef4444;
 
-// Background Colors
-$body-bg: $gray-50;
-$card-bg: $white;
-$header-bg: $secondary;
-$footer-bg: $secondary;
+// Backgrounds (dark theme)
+$body-bg: $navy-950;
+$card-bg: $navy-800;
+$card-bg-hover: $navy-700;
+$header-bg: $navy-900;
+$footer-bg: $navy-900;
 
-// Text Colors
-$text-primary: $secondary;
-$text-secondary: $gray-600;
-$text-muted: $gray-400;
+// Text
+$text-primary: #e2e8f0;
+$text-secondary: #94a3b8;
+$text-muted: #64748b;
 
-// Border Colors
-$border-color: $gray-200;
-$border-light: $gray-100;
+// Borders & depth
+$border-color: rgb(148 163 184 / 12%);
+$border-light: rgb(148 163 184 / 8%);
 
 // Tailwind Emerald and Cyan (500)
 $emerald-500: #10b981;
 $cyan-500: #06b6d4;
 
-// Typography
-// ==========================================
+// Typography (system stack for performance; no external font)
 $font-family-sans:
-  'Roboto',
-  -apple-system,
-  blinkmacsystemfont,
-  'Segoe UI',
-  'Noto Sans',
-  helvetica,
-  arial,
-  sans-serif,
-  'Apple Color Emoji',
-  'Segoe UI Emoji';
+  -apple-system, blinkmacsystemfont, 'Segoe UI', 'Noto Sans', helvetica, arial, sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji';
 $font-family-mono: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, monospace;
 $font-family-serif: georgia, 'Times New Roman', times, serif;
 $font-size-base: 1rem; // 16px
@@ -117,20 +117,22 @@ $border-radius-2xl: 1.25rem;
 $border-radius-3xl: 1.5rem; // 24px
 $border-radius-full: 9999px;
 
-// Box Shadow
-// ==========================================
-$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+// Box Shadow (soft depth, subtle glow)
+$shadow-sm: 0 1px 2px rgb(0 0 0 / 20%);
 $shadow:
-  0 1px 3px 0 rgb(0 0 0 / 10%),
-  0 1px 2px 0 rgb(0 0 0 / 6%);
-$shadow-md: 0 4px 8px 0 rgb(99 91 255 / 6%);
-$shadow-lg: 0 8px 24px 0 rgb(99 91 255 / 10%);
+  0 2px 8px rgb(0 0 0 / 20%),
+  0 1px 2px rgb(0 0 0 / 10%);
+$shadow-md: 0 4px 12px rgb(0 0 0 / 25%);
+$shadow-lg:
+  0 8px 24px rgb(0 0 0 / 30%),
+  0 0 0 1px $border-color;
+$shadow-glow: 0 0 24px $primary-glow;
 $shadow-xl:
-  0 20px 25px -5px rgb(99 91 255 / 10%),
-  0 10px 10px -5px rgb(99 91 255 / 4%);
-$shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
-$shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 6%);
-$shadow-outline: 0 0 0 3px rgb(66 153 225 / 50%);
+  0 12px 32px rgb(0 0 0 / 35%),
+  0 0 0 1px $border-color;
+$shadow-2xl: 0 24px 48px rgb(0 0 0 / 40%);
+$shadow-inner: inset 0 2px 4px rgb(0 0 0 / 20%);
+$shadow-outline: 0 0 0 3px $primary-glow;
 $shadow-none: none;
 
 // Z-Index
@@ -149,10 +151,9 @@ $transition-default: all 0.3s ease;
 $transition-fast: all 0.15s ease;
 $transition-slow: all 0.5s ease;
 
-// Container
-// ==========================================
+// Container: content max-width so sections can use full viewport width
 $container-padding: $spacing-4;
-$container-max-width: 1200px;
+$container-max-width: 1280px;
 
 // Breakpoints
 // ==========================================
