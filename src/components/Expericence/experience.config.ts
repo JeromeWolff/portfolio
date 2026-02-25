@@ -6,7 +6,7 @@ export const experienceConfig = {
       duration: '12/2025 - Present',
     },
     {
-      company: 'WIG Capital UG',
+      company: 'WIG Capital UG (haftungsbeschränkt)',
       role: 'Managing Director',
       duration: '07/2025 - Present',
     },
@@ -18,7 +18,7 @@ export const experienceConfig = {
         'Leading of the development of a marketplace for online orders at local Edeka stores via a franchise system.',
     },
     {
-      company: 'Valorbyte UG',
+      company: 'Valorbyte UG (haftungsbeschränkt)',
       role: 'Chief Technology Officer & Managing Director',
       duration: '03/2025 - Present',
       description:

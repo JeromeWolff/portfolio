@@ -72,8 +72,10 @@
 }
 
 .experience-company {
-  font-size: $font-size-base;
+  background: rgba($primary, 0.15);
   color: $primary-light;
+  padding: $spacing-1 $spacing-2;
+  border-radius: $border-radius;
   font-weight: $font-weight-medium;
 }
 
