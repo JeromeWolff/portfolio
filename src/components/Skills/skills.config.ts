@@ -1,15 +1,15 @@
-/**
- * Tech stack from README — Software Architect & Full-Stack Engineer (Java/Cloud).
- * Grouped by category for scannability.
- */
+import { Cloud, Code2, Database, Languages, Smartphone } from 'lucide-react';
+
 export const skillsConfig = {
   categories: [
     {
       title: 'Languages',
+      icon: Languages,
       items: ['Java', 'Kotlin', 'TypeScript', 'JavaScript', 'C#', 'Rust', 'Python'],
     },
     {
       title: 'Backend',
+      icon: Code2,
       items: [
         'Spring Boot',
         'Spring Cloud',
@@ -23,6 +23,7 @@ export const skillsConfig = {
     },
     {
       title: 'DevOps & Cloud',
+      icon: Cloud,
       items: [
         'Docker',
         'Kubernetes',
@@ -36,6 +37,7 @@ export const skillsConfig = {
     },
     {
       title: 'Data & Messaging',
+      icon: Database,
       items: [
         'PostgreSQL',
         'MySQL',
@@ -49,6 +51,7 @@ export const skillsConfig = {
     },
     {
       title: 'Frontend & Mobile',
+      icon: Smartphone,
       items: ['React', 'React Native', 'Angular', 'Astro', 'Flutter', 'HTML/CSS'],
     },
   ],

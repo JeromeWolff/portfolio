@@ -5,25 +5,35 @@ import { skillsConfig } from './skills.config';
 
 interface SkillsProps {
   title?: string;
-  categories?: ReadonlyArray<{ title: string; items: readonly string[] }>;
+  categories?: ReadonlyArray<{
+    title: string;
+    icon?: React.ComponentType<{ size?: number; className?: string }>;
+    items: readonly string[];
+  }>;
 }
 
 export const Skills: React.FC<SkillsProps> = React.memo(
   ({ title = 'Skills', categories = skillsConfig.categories }) => {
     const rows = useMemo(
       () =>
-        categories.map((cat, i) => (
-          <div key={i} className="skills-row" aria-label={`${cat.title} skills`}>
-            <span className="skills-row-label">{cat.title}</span>
-            <ul className="skills-pills" role="list">
-              {cat.items.map((skill, j) => (
-                <li key={j}>
-                  <span className="skills-pill">{skill}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )),
+        categories.map((cat, i) => {
+          const Icon = cat.icon;
+          return (
+            <div key={i} className="skills-row" aria-label={`${cat.title} skills`}>
+              <span className="skills-row-label">
+                {Icon && <Icon size={16} aria-hidden className="skills-row-icon" />}
+                {cat.title}
+              </span>
+              <ul className="skills-pills" role="list">
+                {cat.items.map((skill, j) => (
+                  <li key={j}>
+                    <span className="skills-pill">{skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }),
       [categories]
     );
 

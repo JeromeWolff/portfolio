@@ -44,6 +44,9 @@
 }
 
 .skills-row-label {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
   flex-shrink: 0;
   font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
@@ -51,6 +54,12 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   min-width: 6rem;
+
+  .skills-row-icon {
+    flex-shrink: 0;
+    color: $primary-light;
+    opacity: 0.9;
+  }
 }
 
 .skills-pills {
