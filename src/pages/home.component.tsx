@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 
-import { Header, Hero, LoadingFallback } from '../components';
+import { Footer, Header, Hero, LoadingFallback } from '../components';
 
 const About = lazy(() =>
   import('../components/About/about.component').then((module) => ({ default: module.About }))
@@ -17,9 +17,6 @@ const Experience = lazy(() =>
   import('../components/Expericence/experience.component').then((module) => ({
     default: module.Experience,
   }))
-);
-const Footer = lazy(() =>
-  import('../components/Footer/footer.component').then((module) => ({ default: module.Footer }))
 );
 
 /**
@@ -43,9 +40,7 @@ export const Home: React.FC = React.memo(() => {
           <Experience />
         </Suspense>
       </main>
-      <Suspense fallback={<LoadingFallback />}>
-        <Footer />
-      </Suspense>
+      <Footer />
     </>
   );
 });
