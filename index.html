@@ -45,6 +45,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/manifest.json" />
+    <!-- Preconnect: warm connection for Sentry ingest (saves ~300 ms when vendor runs) -->
+    <link rel="preconnect" href="https://o4509282383101952.ingest.de.sentry.io" crossorigin />
     <!-- Critical hero CSS: system fonts only, no external font (no font-display / gstatic) -->
     <style>
       body {
