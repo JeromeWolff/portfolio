@@ -45,6 +45,53 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/manifest.json" />
+    <!-- Critical hero CSS: system fonts only, no external font (no font-display / gstatic) -->
+    <style>
+      body {
+        background: #0a0e17;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+      #root .hero-section {
+        width: 100%;
+        background: linear-gradient(180deg, #0f1629 0%, #0a0e17 100%);
+        color: #e2e8f0;
+        padding: 2.5rem 0 2rem;
+        display: flex;
+        justify-content: center;
+      }
+      #root .hero-content {
+        max-width: 640px;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+      #root .hero-title {
+        font-family: inherit;
+        font-size: clamp(1.875rem, 5vw, 3rem);
+        font-weight: 700;
+        margin: 0 0 0.75rem;
+        color: #e2e8f0;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+      #root .hero-subtext {
+        font-family: inherit;
+        font-size: 1.125rem;
+        color: #94a3b8;
+        margin: 0;
+        line-height: 1.6;
+      }
+      #root .hero-placeholder {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0a0e17;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -74,7 +121,20 @@
         ]
       }
     </script>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static hero shell: LCP element (h1) visible before JS, replaced by React -->
+      <div class="hero-placeholder" aria-hidden="true">
+        <section id="hero" class="hero-section" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <h1 id="hero-title" class="hero-title">Jerome Wolff</h1>
+            <p class="hero-subtext">
+              Software Architect &amp; Full-Stack Engineer (Java/Cloud). Building scalable backend
+              systems, cloud-native platforms, and pragmatic developer workflows.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
     <script type="module" src="src/index.tsx"></script>
   </body>
 </html>
