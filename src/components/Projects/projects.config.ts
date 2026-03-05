@@ -13,31 +13,24 @@ export interface ProjectItem {
 export const projectsConfig: { projects: ProjectItem[] } = {
   projects: [
     {
-      title: 'Marketplace & franchise platform',
+      title: 'Platform for Serverless Functions on German Infrastructure',
       description:
-        'Leading development of a marketplace for online orders at local Edeka stores via a franchise system.',
-      tags: ['Marketplace', 'E-commerce'],
+        'Development of a platform for deploying and managing serverless functions hosted entirely on German infrastructure with a focus on data sovereignty, scalability, and developer-friendly APIs.',
+      tags: ['Serverless', 'Cloud', 'Infrastructure', 'Rust', 'WASM'],
       href: undefined,
     },
     {
-      title: 'Mobile games & skill-based platform',
+      title: 'Marketplace & Franchise Platform',
       description:
-        'Leading development of mobile games and a gaming platform for skill-based competitions.',
-      tags: ['Mobile', 'Games', 'TypeScript'],
+        'Leading development of a marketplace platform enabling local franchise stores to manage online orders, inventory, and logistics through a scalable multi-tenant architecture.',
+      tags: ['Marketplace', 'E-Commerce', 'Franchise', 'Python', 'Angular', 'Rust'],
       href: undefined,
     },
     {
-      title: 'Multiplayer mini-games & frameworks',
+      title: 'Multiplayer Games, Frameworks & Backends',
       description:
-        'Development of mini-games and frameworks for a multiplayer network with 4.4M+ registered users. Cassandra, MySQL, Redis, Netty.',
-      tags: ['Java', 'Netty', 'Cassandra'],
-      href: undefined,
-    },
-    {
-      title: 'React Native & Spring stack',
-      description:
-        'Mobile app and backend: React Native + TypeScript frontend, Java, Spring, MariaDB backend.',
-      tags: ['React Native', 'Spring', 'MariaDB'],
+        'Development of multiplayer games and backend frameworks powering a large-scale gaming network with millions of registered users using distributed systems and high-performance networking.',
+      tags: ['Java', 'ASP.NET', 'Games', 'Backend', 'Distributed Systems'],
       href: undefined,
     },
   ],
