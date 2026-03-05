@@ -1,0 +1,90 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.skills {
+  padding: $spacing-8 0;
+}
+
+.skills-inner {
+  max-width: $container-max-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+  box-sizing: border-box;
+}
+
+.skills-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-2;
+  font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: $spacing-6;
+  text-align: center;
+
+  .skills-title-icon {
+    flex-shrink: 0;
+    color: $primary-light;
+  }
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-5;
+}
+
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: $spacing-2 $spacing-4;
+}
+
+.skills-row-label {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  flex-shrink: 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 6rem;
+
+  .skills-row-icon {
+    flex-shrink: 0;
+    color: $primary-light;
+    opacity: 0.9;
+  }
+}
+
+.skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skills-pill {
+  display: inline-block;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  background: rgba($primary, 0.08);
+  border: 1px solid $border-color;
+  padding: $spacing-1 $spacing-3;
+  border-radius: $border-radius-full;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+
+  &:hover {
+    border-color: rgba($primary, 0.3);
+    background: rgba($primary, 0.12);
+  }
+}

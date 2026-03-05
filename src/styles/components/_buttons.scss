@@ -1,6 +1,5 @@
 @use '../utils/variables' as *;
 @use '../utils/mixins' as *;
-@use 'sass:color';
 
 .btn {
   display: inline-flex;
@@ -9,8 +8,6 @@
   font-weight: $font-weight-semibold;
   text-align: center;
   white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
   border: none;
   padding: $spacing-2 $spacing-4;
   font-size: $font-size-base;
@@ -18,37 +15,28 @@
   border-radius: $border-radius;
   background: $primary;
   color: $white;
-  box-shadow: none;
-  transition:
-    background 0.2s,
-    box-shadow 0.2s,
-    color 0.2s;
   cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background: $primary-dark;
     color: $white;
-    box-shadow: 0 2px 8px 0 rgb(99 91 255 / 10%);
-    outline: none;
+    box-shadow: $shadow-glow;
   }
 
-  &:active {
-    background: $primary-light;
+  &:focus-visible {
+    outline: 2px solid $primary-light;
+    outline-offset: 2px;
   }
 
-  &:disabled,
-  &.disabled {
+  &:disabled {
     opacity: 0.5;
     pointer-events: none;
   }
-}
-
-// Button Sizes
-.btn-sm {
-  padding: $spacing-1 $spacing-2;
-  font-size: $font-size-sm;
-  border-radius: $border-radius;
 }
 
 .btn-lg {
@@ -57,78 +45,26 @@
   border-radius: $border-radius-lg;
 }
 
-// Secondary Button
 .btn-secondary {
-  background: $white;
-  color: $primary;
-  border: 1px solid $primary;
-
-  &:hover,
-  &:focus {
-    background: $primary-light;
-    color: $white;
-    border-color: $primary-dark;
-  }
-}
-
-// Outline Button
-.btn-outline {
   background: transparent;
   color: $primary;
   border: 1px solid $primary;
 
   &:hover,
-  &:focus {
-    background: $primary-light;
-    color: $white;
-    border-color: $primary-dark;
+  &:focus-visible {
+    background: rgba($primary, 0.15);
+    color: $primary-light;
   }
 }
 
-// Button Block
-.btn-block {
-  display: block;
-  width: 100%;
-}
+.btn-outline {
+  background: transparent;
+  color: $primary;
+  border: 1px solid $border-color;
 
-// Button with Icon
-.btn-icon {
-  display: inline-flex;
-  align-items: center;
-
-  .icon {
-    margin-right: $spacing-2;
-  }
-
-  &.icon-right {
-    flex-direction: row-reverse;
-
-    .icon {
-      margin-right: 0;
-      margin-left: $spacing-2;
-    }
-  }
-}
-
-// Button Group
-.btn-group {
-  position: relative;
-  display: inline-flex;
-  vertical-align: middle;
-
-  .btn {
-    position: relative;
-    flex: 1 1 auto;
-
-    &:not(:first-child) {
-      margin-left: -1px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    &:not(:last-child) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+  &:hover,
+  &:focus-visible {
+    border-color: $primary;
+    color: $primary-light;
   }
 }

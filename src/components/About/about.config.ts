@@ -1,8 +1,13 @@
+import { Briefcase, Sparkles, Target } from 'lucide-react';
+
+import type { LucideIcon } from 'lucide-react';
+
 interface AboutConfig {
   birthdate: string;
   sections: Array<{
     title: string;
     content: string;
+    icon: LucideIcon;
   }>;
 }
 
@@ -10,18 +15,22 @@ export const aboutConfig: AboutConfig = {
   birthdate: '2004-07-12',
   sections: [
     {
-      title: 'Introduction',
-      content: `Hi, I'm a {age}-year-old Full Stack Developer with a passion for creating seamless and efficient web applications. My journey in tech has been driven by a love for problem-solving and the thrill of bringing ideas to life through code.`,
+      title: 'Focus',
+      content:
+        'Distributed systems, microservices, DevOps/CI/CD, and cloud architecture. Strong in the Java/Spring ecosystems, databases and messaging, and container platforms. I also focus on technical leadership: architecture, platform direction, and delivery enablement.',
+      icon: Target,
     },
     {
-      title: 'Hobbies',
+      title: 'What I work on',
       content:
-        "When I'm not coding, you'll likely find me exploring the world of fragrances. I'm a true perfume enthusiast who enjoys discovering unique scents that tell a story.",
+        'Backend and architecture — designing APIs and services with maintainability and scale in mind. Cloud and platform — containers, orchestration, infrastructure-as-code, observability-ready setups. Delivery — CI/CD pipelines and developer experience improvements that actually ship.',
+      icon: Briefcase,
     },
     {
-      title: 'Interests',
+      title: 'Beyond work',
       content:
-        'Beyond technology and perfumes, I have a keen interest in economics, politics, and military strategy. I find the interplay between these fields fascinating and love diving into discussions about how they shape our world.',
+        "When I'm not designing systems or shipping code, I enjoy exploring fragrances and diving into economics, politics, and strategy.",
+      icon: Sparkles,
     },
   ],
 };

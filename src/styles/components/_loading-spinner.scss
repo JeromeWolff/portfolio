@@ -1,76 +1,44 @@
 @use '../utils/variables' as *;
 @use '../utils/mixins' as *;
 
-// Loading Spinner Component
+/* CSS-only spinner: minimal, no JS animation lib */
 .loading-spinner {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  border: 2px solid $border-color;
+  border-top-color: $primary;
+  border-radius: 50%;
+  animation: loading-spin 0.7s linear infinite;
 
-  // Spinner bars
-  .loading-spinner-bar {
-    width: 25%;
-    height: 100%;
-    border-radius: $border-radius;
-    background-color: $primary;
-
-    &.loading-spinner-bar-primary {
-      background-color: $primary;
-    }
-
-    &.loading-spinner-bar-secondary {
-      background-color: $secondary;
-    }
-
-    &.loading-spinner-bar-white {
-      background-color: $white;
-    }
-
-    &.loading-spinner-bar-gray {
-      background-color: $gray-400;
-    }
-  }
-
-  // Screen reader only text
   .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-    border-width: 0;
+    @include visually-hidden;
   }
 }
 
-// Spinner sizes
+.loading-spinner-primary {
+  border-top-color: $primary;
+}
+
 .loading-spinner-sm {
   width: 24px;
   height: 24px;
-
-  .loading-spinner-bar {
-    width: 4px;
-  }
 }
 
 .loading-spinner-md {
   width: 40px;
   height: 40px;
-
-  .loading-spinner-bar {
-    width: 8px;
-  }
 }
 
 .loading-spinner-lg {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
+}
 
-  .loading-spinner-bar {
-    width: 12px;
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 

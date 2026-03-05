@@ -2,16 +2,9 @@
 @use '../utils/mixins' as *;
 
 .container {
-  max-width: 1200px;
-  margin: $spacing-12 auto $spacing-16 auto;
-  background: $body-bg;
-  box-shadow: none;
-  padding: $spacing-8 $spacing-6;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
   width: 100%;
-}
-
-@include respond-to('sm') {
-  .container {
-    padding: $spacing-6 $spacing-3;
-  }
+  flex: 1;
 }

@@ -4,37 +4,76 @@
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="description" content="Jerome Wolff's Portfolio" />
+    <!-- SEO: Primary meta -->
+    <title>Jerome Wolff | Full Stack Developer & CTO</title>
+    <meta
+      name="description"
+      content="Full Stack Developer and CTO specializing in Java, TypeScript, React Native, Spring, and scalable systems. Portfolio, projects, and experience."
+    />
     <meta
       name="keywords"
-      content="Jerome Wolff, Full Stack Developer, Java, TypeScript, React Native, Spring, MySQL, Redis, Git, Maven, CTO, Managing Director, Java Developer, IT Specialist, web development, mobile games, marketplace development, multiplayer networks, economics, technology"
+      content="Jerome Wolff, Full Stack Developer, Java, TypeScript, React Native, Spring, MySQL, Redis, CTO, Managing Director, web development, mobile games, marketplace, multiplayer, developer portfolio"
     />
     <meta name="robots" content="index, follow" />
+    <meta name="author" content="Jerome Wolff" />
+    <!-- Dark theme & PWA -->
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a0e17" />
+    <!-- Open Graph -->
     <meta property="og:site_name" content="Jerome Wolff" />
-    <meta property="og:title" content="Jerome Wolff" />
-    <meta property="og:description" content="Jerome Wolff's Portfolio" />
-    <meta property="og:image" content="/android-chrome-512x512.png" />
-    <meta property="og:url" content="https://jeromewolff.github.io" />
+    <meta property="og:title" content="Jerome Wolff | Full Stack Developer & CTO" />
+    <meta
+      property="og:description"
+      content="Full Stack Developer and CTO. Java, TypeScript, React Native, Spring. Portfolio and experience."
+    />
+    <meta property="og:image" content="https://www.jeromewolff.de/android-chrome-512x512.png" />
+    <meta property="og:url" content="https://www.jeromewolff.de" />
     <meta property="og:type" content="website" />
-    <meta name="twitter:title" content="Jerome Wolff" />
-    <meta name="twitter:description" content="Jerome Wolff's Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/android-chrome-512x512.png" />
+    <meta name="twitter:title" content="Jerome Wolff | Full Stack Developer & CTO" />
+    <meta
+      name="twitter:description"
+      content="Full Stack Developer and CTO. Portfolio, projects, and experience."
+    />
+    <meta name="twitter:image" content="https://www.jeromewolff.de/android-chrome-512x512.png" />
     <meta name="twitter:site" content="@LinuxServerDEV" />
     <meta name="twitter:creator" content="@LinuxServerDEV" />
+    <!-- Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
-    <title>Jerome Wolff</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- JSON-LD structured data for SEO (Person + WebSite) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Jerome Wolff",
+            "jobTitle": "Full Stack Developer",
+            "url": "https://www.jeromewolff.de",
+            "sameAs": [
+              "https://github.com/JeromeWolff",
+              "https://www.linkedin.com/in/jerome-wolff"
+            ],
+            "email": "hello@jeromewolff.de"
+          },
+          {
+            "@type": "WebSite",
+            "name": "Jerome Wolff Portfolio",
+            "url": "https://www.jeromewolff.de",
+            "author": { "@type": "Person", "name": "Jerome Wolff" },
+            "description": "Full Stack Developer and CTO portfolio - projects, skills, experience."
+          }
+        ]
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="src/index.tsx"></script>
   </body>
