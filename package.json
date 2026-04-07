@@ -21,7 +21,7 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "@vitejs/plugin-react-swc": "^4.3.0",
-    "dotenv": "^17.4.0",
+    "dotenv": "^17.4.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.58.0",
@@ -51,7 +51,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^17.4.0",
     "husky": "^9.1.7",
-    "jsdom": "^29.0.1",
+    "jsdom": "^29.0.2",
     "jsonc-eslint-parser": "^3.1.0",
     "lint-staged": "^16.4.0",
     "nth-check": "^3.0.1",
@@ -65,7 +65,7 @@
     "stylelint-order": "^8.1.1",
     "stylelint-prettier": "^5.0.3",
     "typescript": "^5.9.3",
-    "vite": "^8.0.3",
+    "vite": "^8.0.5",
     "vitest": "^3.2.4"
   },
   "eslintConfig": {
