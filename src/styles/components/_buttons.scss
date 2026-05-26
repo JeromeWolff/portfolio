@@ -45,6 +45,17 @@
   border-radius: $border-radius-lg;
 }
 
+.btn-primary {
+  background: $primary-dark;
+  color: $white;
+
+  &:hover,
+  &:focus-visible {
+    background: #1d4ed8;
+    color: $white;
+  }
+}
+
 .btn-secondary {
   background: transparent;
   color: $primary;
