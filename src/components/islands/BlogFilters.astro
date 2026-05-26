@@ -1,0 +1,245 @@
+---
+import { BookOpen, CalendarDays, Funnel, Search } from '@lucide/astro';
+
+import { getBlogList } from '@blog/utils/listing';
+
+import type {
+  BlogListFilters,
+  BlogPostRecord,
+  BlogSortOrder,
+  BlogTaxonomyOption,
+} from '@blog/types';
+
+interface Props {
+  posts: BlogPostRecord[];
+  availableTags: BlogTaxonomyOption[];
+  availableCategories: BlogTaxonomyOption[];
+  initialFilters?: BlogListFilters;
+  introText: string;
+}
+
+const { posts, availableTags, availableCategories, initialFilters = {}, introText } = Astro.props;
+
+const resolvedInitialFilters: BlogListFilters = {
+  page: 1,
+  pageSize: 6,
+  sort: 'newest' satisfies BlogSortOrder,
+  ...initialFilters,
+};
+
+const initialListing = getBlogList(
+  posts,
+  availableTags,
+  availableCategories,
+  resolvedInitialFilters
+);
+
+const idPrefix = `blog-filters-${
+  Astro.url.pathname.replaceAll('/', '-').replace(/[^a-z0-9-]/gi, '') || 'index'
+}`;
+
+const stateJson = JSON.stringify({
+  posts,
+  availableTags,
+  availableCategories,
+  initialFilters: resolvedInitialFilters,
+}).replace(/</g, '\\u003c');
+---
+
+<section
+  id="blog"
+  class="app-section blog-list-section"
+  aria-labelledby={`${idPrefix}-heading`}
+  data-blog-filters
+>
+  <script type="application/json" data-blog-state is:inline set:html={stateJson} />
+
+  <div class="section-content">
+    <h1 id={`${idPrefix}-heading`} class="section-title blog-list-title">
+      <span class="section-title-icon" aria-hidden>
+        <BookOpen size={28} />
+      </span>
+      Blog
+    </h1>
+
+    <div class="section-children blog-list-content">
+      <p class="blog-list-intro">{introText}</p>
+
+      <div class="blog-list-toolbar">
+        <label class="blog-search" for={`${idPrefix}-search`}>
+          <Search size={16} aria-hidden />
+          <input
+            id={`${idPrefix}-search`}
+            type="search"
+            value={initialListing.appliedFilters.search}
+            placeholder="Search posts"
+            aria-label="Search blog posts"
+            data-blog-search
+          />
+        </label>
+
+        <div class="blog-filters" aria-label="Blog filters">
+          <div class="blog-filter">
+            <label for={`${idPrefix}-tag`}>
+              <span>
+                <Funnel size={14} aria-hidden />
+                Tag
+              </span>
+            </label>
+            <select
+              id={`${idPrefix}-tag`}
+              value={initialListing.appliedFilters.tag ?? ''}
+              data-blog-tag
+            >
+              <option value="">All tags</option>
+              {
+                availableTags.map((tag) => (
+                  <option value={tag.slug}>
+                    {tag.name} ({tag.count})
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div class="blog-filter">
+            <label for={`${idPrefix}-category`}>
+              <span>
+                <Funnel size={14} aria-hidden />
+                Category
+              </span>
+            </label>
+            <select
+              id={`${idPrefix}-category`}
+              value={initialListing.appliedFilters.category ?? ''}
+              data-blog-category
+            >
+              <option value="">All categories</option>
+              {
+                availableCategories.map((category) => (
+                  <option value={category.slug}>
+                    {category.name} ({category.count})
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div class="blog-filter">
+            <label for={`${idPrefix}-sort`}>
+              <span>
+                <CalendarDays size={14} aria-hidden />
+                Sort
+              </span>
+            </label>
+            <select
+              id={`${idPrefix}-sort`}
+              value={initialListing.appliedFilters.sort}
+              data-blog-sort
+            >
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div data-blog-results>
+        {
+          initialListing.posts.length === 0 ? (
+            <div class="blog-list-empty">
+              <h3>No posts found</h3>
+              <p>Try adjusting the search term or active filters.</p>
+            </div>
+          ) : (
+            <div class="blog-list-grid">
+              {initialListing.posts.map((post) => (
+                <article class="blog-card">
+                  {post.metadata.featuredImage ? (
+                    <a
+                      href={`/blog/${post.metadata.slug}`}
+                      class="blog-card-media-link"
+                      data-astro-prefetch="hover"
+                    >
+                      <figure class="blog-image blog-card-media">
+                        <img
+                          src={post.metadata.featuredImage}
+                          alt={post.metadata.title}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </figure>
+                    </a>
+                  ) : null}
+
+                  <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                      <span>{post.metadata.category}</span>
+                      <span>
+                        {new Date(post.metadata.publishedAt).toLocaleDateString('en', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </span>
+                      <span>{post.metadata.readingTimeText}</span>
+                    </div>
+                    <h2 class="blog-card-title">
+                      <a href={`/blog/${post.metadata.slug}`} data-astro-prefetch="hover">
+                        {post.metadata.title}
+                      </a>
+                    </h2>
+                    <p class="blog-card-description">{post.metadata.description}</p>
+                    <ul class="blog-card-tags">
+                      {post.metadata.tags.map((tag) => (
+                        <li class="blog-card-tag">{tag}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      <div data-blog-pagination>
+        {
+          initialListing.posts.length > 0 ? (
+            <div class="blog-list-pagination">
+              <button
+                type="button"
+                class="btn btn-outline"
+                data-page-target={Math.max(1, initialListing.page - 1)}
+                disabled={initialListing.page <= 1}
+              >
+                Previous
+              </button>
+              <span class="blog-list-pagination-label">
+                Page {initialListing.page} of {initialListing.totalPages}
+              </span>
+              <button
+                type="button"
+                class="btn btn-outline"
+                data-page-target={Math.min(initialListing.totalPages, initialListing.page + 1)}
+                disabled={initialListing.page >= initialListing.totalPages}
+              >
+                Next
+              </button>
+            </div>
+          ) : null
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initializeBlogFilters } from './blog-filters';
+
+  document.querySelectorAll('[data-blog-filters]').forEach((element) => {
+    if (element instanceof HTMLElement) {
+      initializeBlogFilters(element);
+    }
+  });
+</script>

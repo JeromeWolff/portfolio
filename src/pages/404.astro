@@ -1,0 +1,24 @@
+---
+import Seo from '@components/Seo.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+---
+
+<PageLayout>
+  <Seo
+    slot="head"
+    title="Page not found | Jerome Wolff"
+    description="The requested page could not be found."
+    path="/404"
+    noindex
+  />
+
+  <section class="blog-post-not-found">
+    <div class="blog-post-hero-inner">
+      <h1 class="blog-post-title">Page not found</h1>
+      <p class="blog-post-description">
+        The page you were looking for does not exist or is no longer public.
+      </p>
+      <a href="/" class="btn btn-primary btn-lg" data-astro-prefetch="hover">Back home</a>
+    </div>
+  </section>
+</PageLayout>

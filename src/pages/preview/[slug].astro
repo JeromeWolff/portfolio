@@ -1,0 +1,46 @@
+---
+export const prerender = false;
+
+import { render } from 'astro:content';
+
+import Seo from '@components/Seo.astro';
+import BlogLayout from '@layouts/BlogLayout.astro';
+
+import { blogService } from '@blog/services/blog.service';
+
+const slug = Astro.params.slug;
+const post = slug ? await blogService.getPostBySlug(slug, { includeDrafts: true }) : undefined;
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(post.entry);
+---
+
+<BlogLayout>
+  <Seo
+    slot="head"
+    title={`Preview: ${post.metadata.title} | Jerome Wolff`}
+    description={post.metadata.description}
+    path={`/preview/${post.metadata.slug}`}
+    image={post.metadata.featuredImage}
+    noindex
+  />
+
+  <section class="blog-post-hero">
+    <div class="blog-post-hero-inner">
+      <p class="blog-post-category">Preview</p>
+      <h1 class="blog-post-title">{post.metadata.title}</h1>
+      <p class="blog-post-description">{post.metadata.description}</p>
+    </div>
+  </section>
+
+  <section class="blog-post-layout">
+    <article class="blog-post-article">
+      <div class="blog-markdown">
+        <Content />
+      </div>
+    </article>
+  </section>
+</BlogLayout>

@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /drafts
-
-Sitemap: https://www.jeromewolff.de/sitemap.xml

@@ -1,0 +1,39 @@
+---
+import Seo from '@components/Seo.astro';
+import BlogFilters from '@components/islands/BlogFilters.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+
+import { blogService } from '@blog/services/blog.service';
+
+export async function getStaticPaths() {
+  const tags = await blogService.getAllTags();
+
+  return tags.map((tag) => ({
+    params: { tag: tag.slug },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const posts = await blogService.getAllPosts();
+const availableTags = await blogService.getAllTags();
+const availableCategories = await blogService.getAllCategories();
+const serializablePosts = posts.map(({ entry: _entry, ...post }) => post);
+const introText = `Tagged with “${tag.name}”`;
+---
+
+<PageLayout>
+  <Seo
+    slot="head"
+    title={`${tag.name} Articles | Jerome Wolff`}
+    description={`Articles tagged ${tag.name}.`}
+    path={`/blog/tag/${tag.slug}`}
+  />
+  <BlogFilters
+    posts={serializablePosts}
+    availableTags={availableTags}
+    availableCategories={availableCategories}
+    initialFilters={{ page: 1, pageSize: 6, sort: 'newest', tag: tag.slug }}
+    introText={introText}
+  />
+</PageLayout>

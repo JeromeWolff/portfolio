@@ -1,0 +1,76 @@
+---
+import { siteConfig } from '@config/site';
+
+type SeoType = 'website' | 'article';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  type?: SeoType;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  path = '/',
+  image = siteConfig.defaultImage,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  author = siteConfig.person.name,
+  tags = [],
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? siteConfig.person.url;
+const canonicalUrl = new URL(path, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+const robots = noindex ? 'noindex, nofollow' : 'index, follow';
+const keywords = tags.length > 0 ? tags.join(', ') : siteConfig.keywords.join(', ');
+const jsonLdEntries = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="robots" content={robots} />
+<meta name="author" content={author} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:type" content={type} />
+<meta property="og:locale" content={siteConfig.locale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:site" content={siteConfig.twitter.site} />
+<meta name="twitter:creator" content={siteConfig.twitter.creator} />
+
+{publishedTime ? <meta property="article:published_time" content={publishedTime} /> : null}
+{modifiedTime ? <meta property="article:modified_time" content={modifiedTime} /> : null}
+{tags.map((tag) => <meta property="article:tag" content={tag} />)}
+
+{
+  jsonLdEntries.map((entry) => (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
+  ))
+}

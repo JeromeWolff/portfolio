@@ -1,87 +1,119 @@
-import { blogRepository } from '../repository/blog.repository';
+import { getCollection } from 'astro:content';
+
+import { buildTaxonomyOptions, getBlogList } from '../utils/listing';
+import { calculateReadingTime, stripMarkdownForText } from '../utils/reading-time';
+import { assertUniquePostSlugs, slugifySegment } from '../utils/validation';
 
 import type {
   AdjacentBlogPosts,
+  BlogEntry,
   BlogListFilters,
   BlogPost,
-  BlogSortOrder,
-  PaginatedBlogPosts,
+  BlogTaxonomyOption,
 } from '../types';
 
-function sortPosts(posts: BlogPost[], sortOrder: BlogSortOrder): BlogPost[] {
-  const sorted = [...posts].sort((left, right) => {
-    const leftValue = new Date(left.metadata.updatedAt ?? left.metadata.publishedAt).getTime();
-    const rightValue = new Date(right.metadata.updatedAt ?? right.metadata.publishedAt).getTime();
-    return rightValue - leftValue;
-  });
+function createExcerpt(markdown: string, fallback: string): string {
+  const normalized = stripMarkdownForText(markdown);
 
-  return sortOrder === 'oldest' ? sorted.reverse() : sorted;
-}
-
-function matchesSearch(post: BlogPost, search: string): boolean {
-  if (!search) {
-    return true;
+  if (!normalized) {
+    return fallback;
   }
 
-  const term = search.toLowerCase();
-  const haystack = [
-    post.metadata.title,
-    post.metadata.description,
-    post.metadata.author,
-    post.metadata.category,
-    post.metadata.tags.join(' '),
-    post.excerpt,
-    post.content,
-  ]
-    .join(' ')
-    .toLowerCase();
+  return normalized.length > 180 ? `${normalized.slice(0, 177).trimEnd()}...` : normalized;
+}
 
-  return haystack.includes(term);
+function getPostTimestamp(post: BlogPost): number {
+  return new Date(post.metadata.updatedAt ?? post.metadata.publishedAt).getTime();
+}
+
+function normalizePost(entry: BlogEntry): BlogPost {
+  const body = entry.body ?? '';
+  const readingTime = calculateReadingTime(body);
+
+  return {
+    entry,
+    metadata: {
+      title: entry.data.title,
+      slug: slugifySegment(entry.data.slug),
+      description: entry.data.description,
+      author: entry.data.author,
+      publishedAt: entry.data.publishedAt.toISOString(),
+      updatedAt: entry.data.updatedAt?.toISOString(),
+      tags: entry.data.tags,
+      tagSlugs: entry.data.tags.map((tag) => slugifySegment(tag)),
+      category: entry.data.category,
+      categorySlug: slugifySegment(entry.data.category),
+      featuredImage: entry.data.featuredImage,
+      draft: entry.data.draft,
+      readingTimeMinutes: readingTime.minutes,
+      readingTimeText: readingTime.text,
+    },
+    content: body.trim(),
+    excerpt: createExcerpt(body, entry.data.description),
+  };
+}
+
+let cachedPostsPromise: Promise<BlogPost[]> | undefined;
+
+async function loadAllPosts(): Promise<BlogPost[]> {
+  if (!cachedPostsPromise) {
+    cachedPostsPromise = getCollection('blog')
+      .then((entries) => entries.map((entry) => normalizePost(entry)))
+      .then((posts) => {
+        assertUniquePostSlugs(posts.map((post) => post.metadata.slug));
+        return posts.sort((left, right) => getPostTimestamp(right) - getPostTimestamp(left));
+      });
+  }
+
+  return cachedPostsPromise;
+}
+
+async function loadPublishedPosts(): Promise<BlogPost[]> {
+  const posts = await loadAllPosts();
+  return posts.filter((post) => !post.metadata.draft);
+}
+
+function getTags(posts: BlogPost[]): BlogTaxonomyOption[] {
+  return buildTaxonomyOptions(
+    posts.flatMap((post) =>
+      post.metadata.tags.map((tag, index) => ({ name: tag, slug: post.metadata.tagSlugs[index] }))
+    )
+  );
+}
+
+function getCategories(posts: BlogPost[]): BlogTaxonomyOption[] {
+  return buildTaxonomyOptions(
+    posts.map((post) => ({
+      name: post.metadata.category,
+      slug: post.metadata.categorySlug,
+    }))
+  );
 }
 
 export const blogService = {
-  getList(filters: BlogListFilters = {}): PaginatedBlogPosts {
-    const { search = '', tag, category, sort = 'newest', page = 1, pageSize = 6 } = filters;
-
-    const filtered = sortPosts(
-      blogRepository
-        .getPublishedPosts()
-        .filter((post) => matchesSearch(post, search))
-        .filter((post) => (tag ? post.metadata.tagSlugs.includes(tag) : true))
-        .filter((post) => (category ? post.metadata.categorySlug === category : true)),
-      sort
-    );
-
-    const safePageSize = Math.max(1, pageSize);
-    const totalItems = filtered.length;
-    const totalPages = Math.max(1, Math.ceil(totalItems / safePageSize));
-    const currentPage = Math.min(Math.max(1, page), totalPages);
-    const startIndex = (currentPage - 1) * safePageSize;
-
-    return {
-      posts: filtered.slice(startIndex, startIndex + safePageSize),
-      page: currentPage,
-      pageSize: safePageSize,
-      totalItems,
-      totalPages,
-      availableTags: blogRepository.getAllTags(),
-      availableCategories: blogRepository.getAllCategories(),
-      appliedFilters: {
-        search,
-        tag,
-        category,
-        sort,
-      },
-    };
+  async getList(filters: BlogListFilters = {}) {
+    const posts = await loadPublishedPosts();
+    return getBlogList(posts, getTags(posts), getCategories(posts), filters);
   },
 
-  getPostBySlug(slug: string): BlogPost | undefined {
-    const post = blogRepository.getPostBySlug(slug);
-    return post && !post.metadata.draft ? post : undefined;
+  async getAllPosts(): Promise<BlogPost[]> {
+    return loadPublishedPosts();
   },
 
-  getAdjacentPosts(slug: string): AdjacentBlogPosts {
-    const posts = blogRepository.getPublishedPosts();
+  async getAllPostsIncludingDrafts(): Promise<BlogPost[]> {
+    return loadAllPosts();
+  },
+
+  async getPostBySlug(
+    slug: string,
+    options: { includeDrafts?: boolean } = {}
+  ): Promise<BlogPost | undefined> {
+    const posts = options.includeDrafts ? await loadAllPosts() : await loadPublishedPosts();
+    return posts.find((post) => post.metadata.slug === slug);
+  },
+
+  async getAdjacentPosts(slug: string): Promise<AdjacentBlogPosts> {
+    const posts = await loadPublishedPosts();
     const index = posts.findIndex((post) => post.metadata.slug === slug);
 
     if (index === -1) {
@@ -94,9 +126,10 @@ export const blogService = {
     };
   },
 
-  getRelatedPosts(currentPost: BlogPost, limit = 3): BlogPost[] {
-    return blogRepository
-      .getPublishedPosts()
+  async getRelatedPosts(currentPost: BlogPost, limit = 3): Promise<BlogPost[]> {
+    const posts = await loadPublishedPosts();
+
+    return posts
       .filter((post) => post.metadata.slug !== currentPost.metadata.slug)
       .map((post) => {
         const sharedTags = post.metadata.tagSlugs.filter((slug) =>
@@ -116,15 +149,11 @@ export const blogService = {
       .map((entry) => entry.post);
   },
 
-  getAllPosts(): BlogPost[] {
-    return blogRepository.getPublishedPosts();
+  async getAllTags(): Promise<BlogTaxonomyOption[]> {
+    return getTags(await loadPublishedPosts());
   },
 
-  getAllTags() {
-    return blogRepository.getAllTags();
-  },
-
-  getAllCategories() {
-    return blogRepository.getAllCategories();
+  async getAllCategories(): Promise<BlogTaxonomyOption[]> {
+    return getCategories(await loadPublishedPosts());
   },
 };

@@ -1,28 +1,17 @@
 {
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
     "paths": {
-      "@": ["./src"],
-      "@components/*": ["./src/components/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@/*": ["src/*"],
+      "@blog/*": ["src/blog/*"],
+      "@components/*": ["src/components/*"],
+      "@config/*": ["src/config/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@styles/*": ["src/styles/*"]
     },
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext",
-    "types": ["node", "vite/client", "vite-plugin-svgr/client"]
+    "types": ["astro/client", "node"]
   },
-  "include": ["src"]
+  "exclude": ["dist"],
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"]
 }

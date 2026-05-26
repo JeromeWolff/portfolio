@@ -1,0 +1,55 @@
+---
+import { Briefcase, FolderKanban, House, Mail, NotebookPen, SquareCode, User } from '@lucide/astro';
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/';
+const getPrefetchStrategy = (href: string) => (href.startsWith('/') ? 'hover' : undefined);
+
+const homeLinks = [
+  { label: 'About', href: '#about', icon: User },
+  { label: 'Skills', href: '#skills', icon: SquareCode },
+  { label: 'Projects', href: '#projects', icon: FolderKanban },
+  { label: 'Experience', href: '#experience', icon: Briefcase },
+  { label: 'Blog', href: '/blog', icon: NotebookPen, isActive: pathname === '/blog' },
+  { label: 'Contact', href: '#contact', icon: Mail },
+];
+
+const blogLinks = [
+  { label: 'Home', href: '/', icon: House, isActive: pathname === '/' },
+  { label: 'Blog', href: '/blog', icon: NotebookPen, isActive: pathname.startsWith('/blog') },
+  { label: 'Contact', href: '/#contact', icon: Mail },
+];
+
+const links = isHome ? homeLinks : blogLinks;
+---
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a
+      href={isHome ? '#hero' : '/'}
+      class="site-header-logo"
+      aria-label="Jerome Wolff - Home"
+      data-astro-prefetch={!isHome ? 'hover' : undefined}
+    >
+      Jerome Wolff
+    </a>
+    <nav class="site-header-nav" aria-label="Main navigation">
+      <ul class="site-header-list">
+        {
+          links.map(({ href, icon: Icon, isActive, label }) => (
+            <li>
+              <a
+                href={href}
+                class:list={['site-header-link', isActive && 'site-header-link-active']}
+                data-astro-prefetch={getPrefetchStrategy(href)}
+              >
+                <Icon size={16} aria-hidden />
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

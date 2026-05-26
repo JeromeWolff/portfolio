@@ -1,0 +1,32 @@
+---
+import { ArrowRight } from '@lucide/astro';
+
+import { heroConfig } from '@config/hero';
+
+interface Props {
+  title?: string;
+  subtext?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  title = heroConfig.title,
+  subtext = heroConfig.subtext,
+  ctaLabel = heroConfig.ctaLabel,
+  ctaHref = heroConfig.ctaHref,
+} = Astro.props;
+---
+
+<section id="hero" class="hero-section" aria-labelledby="hero-title">
+  <div class="hero-content">
+    <h1 id="hero-title" class="hero-title">{title}</h1>
+    <p class="hero-subtext">{subtext}</p>
+    <div class="hero-actions">
+      <a href={ctaHref} class="btn btn-primary btn-lg hero-cta">
+        <span>{ctaLabel}</span>
+        <ArrowRight size={18} aria-hidden />
+      </a>
+    </div>
+  </div>
+</section>

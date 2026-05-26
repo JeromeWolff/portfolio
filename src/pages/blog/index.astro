@@ -1,0 +1,28 @@
+---
+import Seo from '@components/Seo.astro';
+import BlogFilters from '@components/islands/BlogFilters.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+
+import { blogService } from '@blog/services/blog.service';
+
+const posts = await blogService.getAllPosts();
+const availableTags = await blogService.getAllTags();
+const availableCategories = await blogService.getAllCategories();
+const serializablePosts = posts.map(({ entry: _entry, ...post }) => post);
+---
+
+<PageLayout>
+  <Seo
+    slot="head"
+    title="Blog | Jerome Wolff"
+    description="Writing on software architecture, frontend performance, cloud platforms, and engineering delivery."
+    path="/blog"
+  />
+  <BlogFilters
+    posts={serializablePosts}
+    availableTags={availableTags}
+    availableCategories={availableCategories}
+    initialFilters={{ page: 1, pageSize: 6, sort: 'newest' }}
+    introText="Thoughts on architecture, frontend performance, and platform engineering."
+  />
+</PageLayout>

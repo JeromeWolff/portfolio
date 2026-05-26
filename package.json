@@ -12,61 +12,38 @@
     ]
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.2.0",
-    "@fortawesome/free-brands-svg-icons": "^7.2.0",
-    "@fortawesome/free-solid-svg-icons": "^7.2.0",
-    "@fortawesome/react-fontawesome": "^3.3.1",
-    "@sentry/react": "^10.53.1",
-    "@sentry/vite-plugin": "^5.3.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "@vitejs/plugin-react": "^6.0.2",
-    "dotenv": "^17.4.2",
-    "framer-motion": "^12.40.0",
-    "github-slugger": "^2.0.0",
-    "gray-matter": "^4.0.3",
-    "highlight.js": "^11.11.1",
-    "lucide-react": "^0.577.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "react-helmet-async": "^3.0.0",
-    "react-markdown": "^10.1.0",
-    "react-router-dom": "^7.15.1",
     "rehype-autolink-headings": "^7.1.0",
-    "rehype-highlight": "^7.0.2",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "sass": "^1.100.0",
-    "ts-node": "^10.9.2",
-    "vite-plugin-svgr": "^5.2.0"
+    "sass": "^1.100.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^10.0.7",
     "@eslint/js": "^10.0.1",
+    "@lucide/astro": "^1.16.0",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.1",
-    "@types/react": "^19.2.15",
-    "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.59.4",
     "@typescript-eslint/parser": "^8.59.4",
     "@vitest/coverage-v8": "^4.1.7",
-    "ajv": "^8.20.0",
-    "autoprefixer": "^10.5.0",
-    "cookie": "^1.1.1",
+    "astro": "^6.3.7",
+    "astro-expressive-code": "^0.42.0",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-import-x": "^4.16.2",
     "eslint-plugin-jsonc": "^3.1.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
-    "jsdom": "^29.1.1",
     "jsonc-eslint-parser": "^3.1.0",
     "lint-staged": "^16.4.0",
-    "nth-check": "^3.0.1",
-    "postcss": "^8.5.15",
-    "postcss-import": "^16.1.1",
     "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
     "stylelint": "^17.12.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^40.0.0",
@@ -74,51 +51,45 @@
     "stylelint-order": "^8.1.1",
     "stylelint-prettier": "^5.0.3",
     "typescript": "^6.0.3",
-    "vite": "^8.0.14",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.7"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
   "lint-staged": {
-    "*.{cjs,js,jsx,ts,tsx}": [
+    "*.{astro,cjs,js,jsx,ts,tsx}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{astro,json,css,scss,md,html}": [
       "prettier --write"
     ],
     "*.{css,scss}": [
       "stylelint --fix",
       "prettier --write"
-    ],
-    "*.{json,css,scss,md,html}": [
-      "prettier --write"
     ]
   },
   "name": "jeromewolff.github.io",
-  "overrides": {
-    "typescript": "^5.5.4"
-  },
   "packageManager": "pnpm@11.2.2",
   "private": false,
   "scripts": {
-    "build": "pnpm run generate:sitemap && tsc && vite build",
-    "dev": "vite dev",
+    "build": "astro build",
+    "dev": "astro dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "generate:sitemap": "node generate-sitemap-and-robots.cjs",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
-    "serve": "vite preview",
-    "start": "vite",
+    "preview": "astro preview",
+    "serve": "astro preview",
+    "start": "astro dev",
     "stylelint": "stylelint \"**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
-    "test": "vitest",
+    "test": "pnpm run test:unit && pnpm run test:e2e",
     "test:coverage": "vitest run --coverage --watch=false",
-    "type-check": "tsc --noEmit",
-    "validate": "pnpm run lint && pnpm run format:check && pnpm run stylelint && pnpm run type-check"
+    "test:e2e": "playwright test",
+    "test:unit": "vitest run",
+    "type-check": "astro check",
+    "validate": "pnpm run lint && pnpm run stylelint && pnpm run format:check && pnpm run type-check"
   },
   "type": "module",
   "version": "1.0.0"

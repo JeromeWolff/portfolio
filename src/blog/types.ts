@@ -1,3 +1,6 @@
+import type { CollectionEntry } from 'astro:content';
+
+export type BlogEntry = CollectionEntry<'blog'>;
 export type BlogSortOrder = 'newest' | 'oldest';
 
 export interface BlogHeading {
@@ -21,14 +24,16 @@ export interface BlogMetadata {
   draft: boolean;
   readingTimeMinutes: number;
   readingTimeText: string;
-  sourcePath: string;
 }
 
-export interface BlogPost {
+export interface BlogPostRecord {
   metadata: BlogMetadata;
   content: string;
   excerpt: string;
-  headings: BlogHeading[];
+}
+
+export interface BlogPost extends BlogPostRecord {
+  entry: BlogEntry;
 }
 
 export interface BlogTaxonomyOption {
@@ -46,20 +51,22 @@ export interface BlogListFilters {
   pageSize?: number;
 }
 
+export interface AppliedBlogFilters {
+  search: string;
+  tag?: string;
+  category?: string;
+  sort: BlogSortOrder;
+}
+
 export interface PaginatedBlogPosts {
-  posts: BlogPost[];
+  posts: BlogPostRecord[];
   page: number;
   pageSize: number;
   totalItems: number;
   totalPages: number;
   availableTags: BlogTaxonomyOption[];
   availableCategories: BlogTaxonomyOption[];
-  appliedFilters: {
-    search: string;
-    tag?: string;
-    category?: string;
-    sort: BlogSortOrder;
-  };
+  appliedFilters: AppliedBlogFilters;
 }
 
 export interface AdjacentBlogPosts {

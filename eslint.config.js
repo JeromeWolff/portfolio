@@ -1,10 +1,8 @@
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
+import astroPlugin from 'eslint-plugin-astro';
 import { importX } from 'eslint-plugin-import-x';
 import jsoncPlugin from 'eslint-plugin-jsonc';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import * as jsoncParser from 'jsonc-eslint-parser';
 
@@ -27,32 +25,33 @@ const browserGlobals = filterGlobals(globals.browser);
 const nodeGlobals = filterGlobals(globals.node);
 const es2021Globals = filterGlobals(globals.es2021);
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   // Global ignores
   {
     ignores: [
+      '.astro/',
       'node_modules/',
       'dist/',
       'build/',
       '.vercel/',
       '.netlify/',
+      'playwright-report/',
       'package-lock.json',
       'yarn.lock',
       'pnpm-lock.yaml',
+      'test-results/',
     ],
   },
+  ...astroPlugin.configs.recommended,
+  ...astroPlugin.configs['jsx-a11y-recommended'],
   // Base JavaScript and TypeScript configuration
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{cjs,js,mjs,ts}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       parser: tsParser,
       parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
@@ -65,9 +64,6 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       'import-x': importX,
-      react: reactPlugin,
-      'react-hooks': reactHooks,
-      'jsx-a11y': jsxA11y,
     },
     rules: {
       // Base rules
@@ -111,18 +107,6 @@ export default [
       'import-x/no-mutable-exports': 'error',
       'import-x/no-unresolved': 'off', // Handled by TypeScript
       'import-x/no-default-export': 'off',
-
-      // React rules
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off', // Not needed with TypeScript
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      'jsx-a11y/alt-text': 'warn',
-      'jsx-a11y/aria-props': 'warn',
-      'jsx-a11y/aria-proptypes': 'warn',
-      'jsx-a11y/aria-unsupported-elements': 'warn',
-      'jsx-a11y/role-has-required-aria-props': 'warn',
-      'jsx-a11y/role-supports-aria-props': 'warn',
     },
   },
   // JSON configuration

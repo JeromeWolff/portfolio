@@ -1,4 +1,5 @@
 # Ignore build output
+.astro/
 build/
 dist/
 
@@ -11,6 +12,8 @@ logs/
 
 # Ignore coverage reports
 coverage/
+playwright-report/
+test-results/
 
 # Ignore environment files
 .env

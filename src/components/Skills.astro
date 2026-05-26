@@ -1,0 +1,45 @@
+---
+import { Cloud, Database, Languages, Smartphone, SquareCode } from '@lucide/astro';
+
+import { skillsConfig } from '@config/skills';
+
+const iconMap = {
+  Cloud,
+  Database,
+  Languages,
+  Smartphone,
+  SquareCode,
+};
+---
+
+<section id="skills" class="skills" aria-labelledby="skills-heading">
+  <div class="skills-inner">
+    <h2 id="skills-heading" class="skills-title">
+      <SquareCode size={28} aria-hidden class="skills-title-icon" />
+      Skills
+    </h2>
+    <div class="skills-list">
+      {
+        skillsConfig.categories.map(({ icon, items, title }) => {
+          const Icon = iconMap[icon];
+
+          return (
+            <div class="skills-row" aria-label={`${title} skills`}>
+              <span class="skills-row-label">
+                <Icon size={16} aria-hidden class="skills-row-icon" />
+                {title}
+              </span>
+              <ul class="skills-pills">
+                {items.map((skill) => (
+                  <li>
+                    <span class="skills-pill">{skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import { Cloud, ExternalLink, FolderKanban, Gamepad2, ShoppingCart } from '@lucide/astro';
+
+import Section from './Section.astro';
+
+import { projectsConfig } from '@config/projects';
+
+const iconMap = {
+  Cloud,
+  Gamepad2,
+  ShoppingCart,
+};
+---
+
+<Section
+  id="projects"
+  titleId="projects-heading"
+  title="Projects"
+  class="projects-section"
+  titleClass="projects-title"
+  contentClass="projects-content"
+>
+  <FolderKanban slot="icon" size={28} aria-hidden />
+  <div class="projects-grid">
+    {
+      projectsConfig.projects.map(({ description, href, icon, repo, tags, title }) => {
+        const Icon = iconMap[icon];
+
+        return (
+          <article class="project-subsection">
+            <h3 class="project-subsection-heading">
+              <Icon size={18} aria-hidden class="project-subsection-icon" />
+              {title}
+            </h3>
+            <p class="project-subsection-text">{description}</p>
+            {tags?.length ? (
+              <ul class="project-subsection-tags" aria-label="Technologies">
+                {tags.map((tag) => (
+                  <li>
+                    <span class="project-subsection-tag">{tag}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            {href || repo ? (
+              <div class="project-subsection-links">
+                {href ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-subsection-link"
+                  >
+                    <ExternalLink size={14} aria-hidden />
+                    View live
+                  </a>
+                ) : null}
+                {repo ? (
+                  <a
+                    href={repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-subsection-link"
+                  >
+                    <ExternalLink size={14} aria-hidden />
+                    Repo
+                  </a>
+                ) : null}
+              </div>
+            ) : null}
+          </article>
+        );
+      })
+    }
+  </div>
+</Section>

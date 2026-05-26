@@ -1,0 +1,202 @@
+---
+import { ArrowLeft, ArrowRight, BookOpenText, CalendarDays, Clock3, Tag } from '@lucide/astro';
+import { render } from 'astro:content';
+
+import TOC from '@components/Blog/TOC.astro';
+import Seo from '@components/Seo.astro';
+import BlogLayout from '@layouts/BlogLayout.astro';
+
+import { blogService } from '@blog/services/blog.service';
+
+import { siteConfig } from '@config/site';
+
+export async function getStaticPaths() {
+  const posts = await blogService.getAllPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.metadata.slug },
+    props: { slug: post.metadata.slug },
+  }));
+}
+
+const { slug } = Astro.props;
+const post = await blogService.getPostBySlug(slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const adjacent = await blogService.getAdjacentPosts(post.metadata.slug);
+const related = await blogService.getRelatedPosts(post);
+const { Content, headings } = await render(post.entry);
+
+const tocHeadings = headings
+  .filter((heading: { depth: number; slug: string; text: string }) => heading.depth >= 2)
+  .map((heading: { depth: number; slug: string; text: string }) => ({
+    depth: heading.depth,
+    slug: heading.slug,
+    value: heading.text,
+  }));
+
+const seoPath = `/blog/${post.metadata.slug}`;
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.metadata.title,
+  description: post.metadata.description,
+  author: {
+    '@type': 'Person',
+    name: post.metadata.author,
+  },
+  datePublished: post.metadata.publishedAt,
+  dateModified: post.metadata.updatedAt ?? post.metadata.publishedAt,
+  image: post.metadata.featuredImage
+    ? [new URL(post.metadata.featuredImage, siteConfig.person.url).toString()]
+    : undefined,
+  keywords: post.metadata.tags,
+  articleSection: post.metadata.category,
+  mainEntityOfPage: new URL(seoPath, siteConfig.person.url).toString(),
+};
+
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BlogLayout>
+  <Seo
+    slot="head"
+    title={`${post.metadata.title} | Jerome Wolff`}
+    description={post.metadata.description}
+    path={seoPath}
+    image={post.metadata.featuredImage}
+    type="article"
+    publishedTime={post.metadata.publishedAt}
+    modifiedTime={post.metadata.updatedAt ?? post.metadata.publishedAt}
+    author={post.metadata.author}
+    tags={post.metadata.tags}
+    structuredData={blogPostingSchema}
+  />
+
+  <section class="blog-post-hero">
+    <div class="blog-post-hero-inner">
+      <a href="/blog" class="blog-post-backlink" data-astro-prefetch="hover">
+        <ArrowLeft size={16} aria-hidden />
+        Back to blog
+      </a>
+      <div class="blog-post-taxonomy">
+        <span class="blog-post-category">{post.metadata.category}</span>
+        {
+          post.metadata.tags.map((tag) => (
+            <span class="blog-post-tag">
+              <Tag size={12} aria-hidden />
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+      <h1 class="blog-post-title">{post.metadata.title}</h1>
+      <p class="blog-post-description">{post.metadata.description}</p>
+      <div class="blog-post-meta">
+        <span>
+          <CalendarDays size={16} aria-hidden />
+          {dateFormatter.format(new Date(post.metadata.publishedAt))}
+        </span>
+        <span>
+          <Clock3 size={16} aria-hidden />
+          {post.metadata.readingTimeText}
+        </span>
+      </div>
+      {
+        post.metadata.featuredImage ? (
+          <figure class="blog-image blog-post-featured-image">
+            <img
+              src={post.metadata.featuredImage}
+              alt={post.metadata.title}
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        ) : null
+      }
+    </div>
+  </section>
+
+  <section class="blog-post-layout">
+    <article class="blog-post-article">
+      <div class="blog-markdown">
+        <Content />
+      </div>
+    </article>
+
+    <aside class="blog-post-sidebar">
+      <TOC headings={tocHeadings} />
+    </aside>
+  </section>
+
+  <section class="blog-post-footer-sections">
+    <div class="blog-post-navigation">
+      {
+        adjacent.previous ? (
+          <a
+            href={`/blog/${adjacent.previous.metadata.slug}`}
+            class="blog-post-nav-link"
+            data-astro-prefetch="hover"
+          >
+            <ArrowLeft size={16} aria-hidden />
+            <span>
+              <strong>Previous article</strong>
+              <span>{adjacent.previous.metadata.title}</span>
+            </span>
+          </a>
+        ) : (
+          <div />
+        )
+      }
+      {
+        adjacent.next ? (
+          <a
+            href={`/blog/${adjacent.next.metadata.slug}`}
+            class="blog-post-nav-link blog-post-nav-link-next"
+            data-astro-prefetch="hover"
+          >
+            <span>
+              <strong>Next article</strong>
+              <span>{adjacent.next.metadata.title}</span>
+            </span>
+            <ArrowRight size={16} aria-hidden />
+          </a>
+        ) : (
+          <div />
+        )
+      }
+    </div>
+
+    {
+      related.length > 0 ? (
+        <section class="blog-post-related" aria-labelledby="related-posts-heading">
+          <div class="blog-post-hero-inner">
+            <h2 id="related-posts-heading" class="blog-post-related-title">
+              <BookOpenText size={24} aria-hidden />
+              Related articles
+            </h2>
+            <div class="blog-post-related-grid">
+              {related.map((relatedPost) => (
+                <article class="blog-post-related-card">
+                  <h3>
+                    <a href={`/blog/${relatedPost.metadata.slug}`} data-astro-prefetch="hover">
+                      {relatedPost.metadata.title}
+                    </a>
+                  </h3>
+                  <p>{relatedPost.metadata.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null
+    }
+  </section>
+</BlogLayout>

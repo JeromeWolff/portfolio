@@ -1,0 +1,55 @@
+---
+import { Globe, Mail, SquareCode, UserRound } from '@lucide/astro';
+
+import { socialLinks } from '@config/social';
+
+const iconMap = {
+  Globe,
+  Github: SquareCode,
+  Linkedin: UserRound,
+  Mail,
+};
+
+interface Props {
+  title?: string;
+  subtext?: string;
+  copyright?: string;
+}
+
+const {
+  title = 'Get in Touch',
+  subtext = "I'd love to hear from you! Reach out via the links below.",
+  copyright = `© ${new Date().getFullYear()} Jerome Wolff. All rights reserved.`,
+} = Astro.props;
+---
+
+<footer id="contact" class="footer" role="contentinfo" aria-labelledby="contact-heading">
+  <div class="footer-container">
+    <div class="footer-information">
+      <h2 id="contact-heading" class="footer-information-title">{title}</h2>
+      <p class="footer-information-subtext">{subtext}</p>
+    </div>
+    <div class="footer-social">
+      {
+        socialLinks.map(({ href, icon, label }) => {
+          const Icon = iconMap[icon];
+
+          return (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              class="footer-social-link"
+            >
+              <Icon size={20} aria-hidden />
+            </a>
+          );
+        })
+      }
+    </div>
+    <div class="footer-copyright">
+      <p>{copyright}</p>
+    </div>
+  </div>
+</footer>
