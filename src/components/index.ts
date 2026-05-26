@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Blog';
 export * from './Card';
 export * from './Container';
 export * from './Footer';
@@ -6,3 +7,4 @@ export * from './Header';
 export * from './Hero';
 export * from './LoadingSpinner';
 export * from './Section';
+export * from './Seo';

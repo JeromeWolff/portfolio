@@ -1,0 +1,36 @@
+@use '../utils/variables' as *;
+
+.blog-toc {
+  padding: $spacing-4;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-xl;
+  background: $card-bg;
+}
+
+.blog-toc-title {
+  margin-bottom: $spacing-3;
+  color: $text-primary;
+  font-weight: $font-weight-semibold;
+}
+
+.blog-toc-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-toc-item + .blog-toc-item {
+  margin-top: $spacing-2;
+}
+
+.blog-toc-item-depth-3,
+.blog-toc-item-depth-4,
+.blog-toc-item-depth-5,
+.blog-toc-item-depth-6 {
+  padding-left: $spacing-3;
+}
+
+.blog-toc-link {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}

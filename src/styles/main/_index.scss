@@ -9,6 +9,9 @@
 @use '../layout/footer' as footer-layout;
 @use '../layout/grid';
 @use '../components/about';
+@use '../components/blog-list';
+@use '../components/blog-markdown';
+@use '../components/blog-post';
 @use '../components/buttons';
 @use '../components/container';
 @use '../components/experience';
@@ -16,5 +19,7 @@
 @use '../components/hero';
 @use '../components/loading-spinner';
 @use '../components/projects';
+@use '../components/reading-progress';
 @use '../components/section';
 @use '../components/skills';
+@use '../components/toc';

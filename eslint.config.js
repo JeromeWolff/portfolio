@@ -1,6 +1,6 @@
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import importPlugin from 'eslint-plugin-import';
+import { importX } from 'eslint-plugin-import-x';
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
@@ -64,7 +64,7 @@ export default [
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
-      import: importPlugin,
+      'import-x': importX,
       react: reactPlugin,
       'react-hooks': reactHooks,
       'jsx-a11y': jsxA11y,
@@ -90,7 +90,7 @@ export default [
       '@typescript-eslint/no-non-null-assertion': 'off',
 
       // Import rules
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           groups: [
@@ -107,10 +107,10 @@ export default [
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
-      'import/first': 'error',
-      'import/no-mutable-exports': 'error',
-      'import/no-unresolved': 'off', // Handled by TypeScript
-      'import/no-default-export': 'off',
+      'import-x/first': 'error',
+      'import-x/no-mutable-exports': 'error',
+      'import-x/no-unresolved': 'off', // Handled by TypeScript
+      'import-x/no-default-export': 'off',
 
       // React rules
       'react/react-in-jsx-scope': 'off',

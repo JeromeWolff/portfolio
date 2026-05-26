@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
@@ -5,4 +7,10 @@ declare global {
       SENTRY_AUTH_TOKEN: string;
     }
   }
+
+  interface ImportMetaEnv {
+    readonly VITE_SITE_URL?: string;
+  }
 }
+
+export {};

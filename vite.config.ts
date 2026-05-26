@@ -4,17 +4,17 @@ import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
+
   return {
     build: {
       sourcemap: 'hidden',
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            // React core in one chunk for better caching
             if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
               return 'react';
             }
-            // Sentry and analytics in vendor chunk to keep main app small
+
             if (id.includes('node_modules/@sentry/') || id.includes('node_modules/@vercel/')) {
               return 'vendor';
             }

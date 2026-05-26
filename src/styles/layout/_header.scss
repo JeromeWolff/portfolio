@@ -73,7 +73,17 @@
   }
 }
 
+.site-header-link-active {
+  color: $primary-light;
+  background: rgba($primary, 0.12);
+}
+
 @media (width <= 640px) {
+  .site-header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .site-header-list {
     gap: 0;
   }
