@@ -91,7 +91,7 @@ describe('getBlogList', () => {
       tag: 'react',
       category: 'frontend-engineering',
       page: 1,
-      pageSize: 6,
+      pageSize: 10,
     });
 
     expect(result.posts).toHaveLength(1);
