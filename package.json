@@ -24,7 +24,7 @@
     "dotenv": "^17.4.2",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.577.0",
-    "react": "^19.2.5",
+    "react": "^19.2.6",
     "react-dom": "^19.2.5",
     "sass": "^1.99.0",
     "ts-node": "^10.9.2",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^25.6.0",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.59.1",
     "@typescript-eslint/parser": "^8.59.2",
