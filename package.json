@@ -68,7 +68,7 @@
     ]
   },
   "name": "jeromewolff.github.io",
-  "packageManager": "pnpm@11.2.2",
+  "packageManager": "pnpm@11.4.0",
   "private": false,
   "scripts": {
     "build": "astro build",
