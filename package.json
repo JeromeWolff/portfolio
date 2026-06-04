@@ -52,7 +52,7 @@
     "stylelint-prettier": "^5.0.3",
     "typescript": "^6.0.3",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.8"
   },
   "lint-staged": {
     "*.{astro,cjs,js,jsx,ts,tsx}": [
