@@ -40,8 +40,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.4.1)
       '@lucide/astro':
-        specifier: ^1.17.0
-        version: 1.17.0(astro@6.4.6(@types/node@25.9.2)(@vercel/functions@3.6.1)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0))
+        specifier: ^1.18.0
+        version: 1.18.0(astro@6.4.6(@types/node@25.9.2)(@vercel/functions@3.6.1)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0))
       '@playwright/test':
         specifier: ^1.60.0
         version: 1.60.0
@@ -708,8 +708,8 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@lucide/astro@1.17.0':
-    resolution: {integrity: sha512-wF5wyjF8zThvI5JVUWG1WLoFdbTcMNXouxnholAyR0EEFfWNnGP1DGsvuu7cym/2mj2vUEjPbIPPDgWwjabFRQ==}
+  '@lucide/astro@1.18.0':
+    resolution: {integrity: sha512-ADqovmJAZ9GRJz0pSWqurlAZ5PjauZSRNO+suFC+MwVdC+fwyBxJ88UDhmBVxKEdE0Eyhw9J6D0P9H0syOCJ4w==}
     peerDependencies:
       astro: ^4 || ^5 || ^6
 
@@ -4834,7 +4834,7 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@lucide/astro@1.17.0(astro@6.4.6(@types/node@25.9.2)(@vercel/functions@3.6.1)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0))':
+  '@lucide/astro@1.18.0(astro@6.4.6(@types/node@25.9.2)(@vercel/functions@3.6.1)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0))':
     dependencies:
       astro: 6.4.6(@types/node@25.9.2)(@vercel/functions@3.6.1)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0)
 
