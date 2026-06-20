@@ -1,3 +1,4 @@
+import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import { defineConfig, envField } from 'astro/config';
@@ -39,15 +40,17 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkGfm, remarkBlogCallouts],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        { behavior: 'append', properties: { className: ['blog-heading-anchor'] } },
+    processor: unified({
+      remarkPlugins: [remarkGfm, remarkBlogCallouts],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          { behavior: 'append', properties: { className: ['blog-heading-anchor'] } },
+        ],
+        rehypeBlogContent,
       ],
-      rehypeBlogContent,
-    ],
+    }),
   },
   vite: {
     build: {
