@@ -20,7 +20,7 @@ const iconMap = {
   titleClass="projects-title"
   contentClass="projects-content"
 >
-  <FolderKanban slot="icon" size={28} aria-hidden />
+  <FolderKanban slot="icon" size={28} aria-hidden="true" />
   <div class="projects-grid">
     {
       projectsConfig.projects.map(({ description, href, icon, repo, tags, title }) => {
@@ -29,7 +29,7 @@ const iconMap = {
         return (
           <article class="project-subsection">
             <h3 class="project-subsection-heading">
-              <Icon size={18} aria-hidden class="project-subsection-icon" />
+              <Icon size={18} aria-hidden="true" class="project-subsection-icon" />
               {title}
             </h3>
             <p class="project-subsection-text">{description}</p>
@@ -51,7 +51,7 @@ const iconMap = {
                     rel="noopener noreferrer"
                     class="project-subsection-link"
                   >
-                    <ExternalLink size={14} aria-hidden />
+                    <ExternalLink size={14} aria-hidden="true" />
                     View live
                   </a>
                 ) : null}
@@ -62,7 +62,7 @@ const iconMap = {
                     rel="noopener noreferrer"
                     class="project-subsection-link"
                   >
-                    <ExternalLink size={14} aria-hidden />
+                    <ExternalLink size={14} aria-hidden="true" />
                     Repo
                   </a>
                 ) : null}

@@ -83,7 +83,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   <section class="blog-post-hero">
     <div class="blog-post-hero-inner">
       <a href="/blog" class="blog-post-backlink" data-astro-prefetch="hover">
-        <ArrowLeft size={16} aria-hidden />
+        <ArrowLeft size={16} aria-hidden="true" />
         Back to blog
       </a>
       <div class="blog-post-taxonomy">
@@ -91,7 +91,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
         {
           post.metadata.tags.map((tag) => (
             <span class="blog-post-tag">
-              <Tag size={12} aria-hidden />
+              <Tag size={12} aria-hidden="true" />
               {tag}
             </span>
           ))
@@ -101,11 +101,11 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
       <p class="blog-post-description">{post.metadata.description}</p>
       <div class="blog-post-meta">
         <span>
-          <CalendarDays size={16} aria-hidden />
+          <CalendarDays size={16} aria-hidden="true" />
           {dateFormatter.format(new Date(post.metadata.publishedAt))}
         </span>
         <span>
-          <Clock3 size={16} aria-hidden />
+          <Clock3 size={16} aria-hidden="true" />
           {post.metadata.readingTimeText}
         </span>
       </div>
@@ -145,7 +145,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
             class="blog-post-nav-link"
             data-astro-prefetch="hover"
           >
-            <ArrowLeft size={16} aria-hidden />
+            <ArrowLeft size={16} aria-hidden="true" />
             <span>
               <strong>Previous article</strong>
               <span>{adjacent.previous.metadata.title}</span>
@@ -166,7 +166,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
               <strong>Next article</strong>
               <span>{adjacent.next.metadata.title}</span>
             </span>
-            <ArrowRight size={16} aria-hidden />
+            <ArrowRight size={16} aria-hidden="true" />
           </a>
         ) : (
           <div />
@@ -179,7 +179,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
         <section class="blog-post-related" aria-labelledby="related-posts-heading">
           <div class="blog-post-hero-inner">
             <h2 id="related-posts-heading" class="blog-post-related-title">
-              <BookOpenText size={24} aria-hidden />
+              <BookOpenText size={24} aria-hidden="true" />
               Related articles
             </h2>
             <div class="blog-post-related-grid">

@@ -16,7 +16,7 @@ const currentRegex = /heute|present|current/i;
   titleClass="experience-title"
   contentClass="experience-content"
 >
-  <Briefcase slot="icon" size={28} aria-hidden />
+  <Briefcase slot="icon" size={28} aria-hidden="true" />
   <ol class="experience-timeline">
     {
       experienceConfig.experiences.map((experience) => {
@@ -26,7 +26,7 @@ const currentRegex = /heute|present|current/i;
 
         return (
           <li class="experience-item">
-            <div class="experience-marker" aria-hidden />
+            <div class="experience-marker" aria-hidden="true" />
             <div class="experience-body">
               <div class="experience-meta">
                 <span class="experience-role">{role}</span>

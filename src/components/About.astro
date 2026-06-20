@@ -30,7 +30,7 @@ const age = calculateAge(aboutConfig.birthdate);
   titleClass="about-title"
   contentClass="about-content"
 >
-  <User slot="icon" size={28} aria-hidden />
+  <User slot="icon" size={28} aria-hidden="true" />
   <div class="about-bio">
     {
       aboutConfig.sections.map(({ content, icon, title }) => {
@@ -39,7 +39,7 @@ const age = calculateAge(aboutConfig.birthdate);
         return (
           <article class="about-subsection">
             <h3 class="about-subsection-heading">
-              <Icon size={18} aria-hidden class="about-subsection-icon" />
+              <Icon size={18} aria-hidden="true" class="about-subsection-icon" />
               {title}
             </h3>
             <p class="about-subsection-text">{content.replace('{age}', age.toString())}</p>

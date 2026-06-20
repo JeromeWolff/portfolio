@@ -24,7 +24,7 @@ const hasIcon = Astro.slots.has('icon');
     <h2 id={titleId} class:list={['section-title', titleClass]}>
       {
         hasIcon ? (
-          <span class="section-title-icon" aria-hidden>
+          <span class="section-title-icon" aria-hidden="true">
             <slot name="icon" />
           </span>
         ) : null
