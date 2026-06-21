@@ -84,45 +84,38 @@ function escapeHtml(value: string): string {
 
 function renderPostCard(post: BlogPostRecord): string {
   const postUrl = `/blog/${encodeURIComponent(post.metadata.slug)}`;
+  const date = escapeHtml(dateFormatter.format(new Date(post.metadata.publishedAt)));
+
   const featuredImage = post.metadata.featuredImage
-    ? `
-      <a href="${postUrl}" class="blog-card-media-link">
-        <figure class="blog-image blog-card-media">
-          <img
-            src="${escapeHtml(post.metadata.featuredImage)}"
-            alt="${escapeHtml(post.metadata.title)}"
-            loading="lazy"
-            decoding="async"
-          />
+    ? `<a href="${postUrl}" class="block" tabindex="-1" aria-hidden="true">
+        <figure class="m-0 flex aspect-video items-center justify-center border-b border-divider p-4" style="background: radial-gradient(circle at top, rgba(96,165,250,0.1), transparent 48%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(15,22,41,0.96));">
+          <img src="${escapeHtml(post.metadata.featuredImage)}" alt="${escapeHtml(post.metadata.title)}" loading="lazy" decoding="async" class="max-h-full w-full object-contain" />
         </figure>
-      </a>
-    `
+      </a>`
     : '';
 
-  const tags = post.metadata.tags
-    .map(
-      (tag) => `
-        <li class="blog-card-tag">${escapeHtml(tag)}</li>
-      `
-    )
-    .join('');
+  const tags =
+    post.metadata.tags.length > 0
+      ? `<ul class="m-0 flex flex-wrap gap-1.5 p-0 list-none">
+          ${post.metadata.tags.map((tag) => `<li class="rounded-full border border-divider-2 px-2.5 py-0.5 text-xs text-subtle">${escapeHtml(tag)}</li>`).join('')}
+        </ul>`
+      : '';
 
   return `
-    <article class="blog-card">
+    <article class="group flex flex-col overflow-hidden rounded-2xl border border-divider transition-all duration-200 hover:border-primary/20 hover:bg-card-hover" style="background: var(--color-card);">
       ${featuredImage}
-      <div class="blog-card-body">
-        <div class="blog-card-meta">
-          <span>${escapeHtml(post.metadata.category)}</span>
-          <span>${escapeHtml(dateFormatter.format(new Date(post.metadata.publishedAt)))}</span>
-          <span>${escapeHtml(post.metadata.readingTimeText)}</span>
+      <div class="flex flex-1 flex-col gap-3 p-5">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="rounded-full border border-primary/20 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-primary-light" style="background: rgba(59,130,246,0.08);">${escapeHtml(post.metadata.category)}</span>
+          <span class="text-xs text-subtle">${date}</span>
+          <span class="text-xs text-subtle">·</span>
+          <span class="text-xs text-subtle">${escapeHtml(post.metadata.readingTimeText)}</span>
         </div>
-        <h2 class="blog-card-title">
-          <a href="${postUrl}">${escapeHtml(post.metadata.title)}</a>
+        <h2 class="m-0 text-base font-bold leading-snug text-foreground">
+          <a href="${postUrl}" class="transition-colors hover:text-primary-light">${escapeHtml(post.metadata.title)}</a>
         </h2>
-        <p class="blog-card-description">${escapeHtml(post.metadata.description)}</p>
-        <ul class="blog-card-tags">
-          ${tags}
-        </ul>
+        <p class="m-0 flex-1 text-sm leading-relaxed text-secondary">${escapeHtml(post.metadata.description)}</p>
+        ${tags}
       </div>
     </article>
   `;
@@ -131,15 +124,15 @@ function renderPostCard(post: BlogPostRecord): string {
 function renderResults(listing: PaginatedBlogPosts): string {
   if (listing.posts.length === 0) {
     return `
-      <div class="blog-list-empty">
-        <h3>No posts found</h3>
-        <p>Try adjusting the search term or active filters.</p>
+      <div class="rounded-2xl border border-dashed border-divider p-12 text-center" style="background: var(--color-card);">
+        <p class="m-0 text-secondary">No posts found.</p>
+        <p class="m-0 mt-1 text-sm text-subtle">Try adjusting the search term or active filters.</p>
       </div>
     `;
   }
 
   const postsMarkup = listing.posts.map((post) => renderPostCard(post)).join('');
-  return `<div class="blog-list-grid">${postsMarkup}</div>`;
+  return `<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">${postsMarkup}</div>`;
 }
 
 function renderPagination(listing: PaginatedBlogPosts): string {
@@ -151,26 +144,15 @@ function renderPagination(listing: PaginatedBlogPosts): string {
   const nextPage = Math.min(listing.totalPages, listing.page + 1);
   const previousDisabled = listing.page <= 1 ? ' disabled' : '';
   const nextDisabled = listing.page >= listing.totalPages ? ' disabled' : '';
+  const btnClass =
+    'rounded-xl border border-divider px-4 py-2 text-sm font-medium text-secondary transition-all duration-150 hover:border-primary/30 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40';
+  const btnStyle = 'background: var(--color-card);';
 
   return `
-    <div class="blog-list-pagination">
-      <button
-        type="button"
-        class="btn btn-outline"
-        data-page-target="${previousPage}"${previousDisabled}
-      >
-        Previous
-      </button>
-      <span class="blog-list-pagination-label">
-        Page ${listing.page} of ${listing.totalPages}
-      </span>
-      <button
-        type="button"
-        class="btn btn-outline"
-        data-page-target="${nextPage}"${nextDisabled}
-      >
-        Next
-      </button>
+    <div class="mt-10 flex items-center justify-center gap-4">
+      <button type="button" class="${btnClass}" style="${btnStyle}" data-page-target="${previousPage}"${previousDisabled}>Previous</button>
+      <span class="text-sm text-subtle">Page ${listing.page} of ${listing.totalPages}</span>
+      <button type="button" class="${btnClass}" style="${btnStyle}" data-page-target="${nextPage}"${nextDisabled}>Next</button>
     </div>
   `;
 }

@@ -1,51 +1,114 @@
 ---
-import { Briefcase, Sparkles, Target, User } from '@lucide/astro';
-
-import Section from './Section.astro';
+import { Briefcase, Check, MapPin, Sparkles, Target, User } from '@lucide/astro';
 
 import { aboutConfig } from '@config/about';
 
-const iconMap = {
-  Briefcase,
-  Sparkles,
-  Target,
-};
+const iconMap = { Briefcase, Sparkles, Target };
 
 function calculateAge(birthdate: string): number {
   const birthDate = new Date(birthdate).getTime();
   const ageDifMs = Date.now() - birthDate;
-  const ageDate = new Date(ageDifMs);
-
-  return Math.abs(ageDate.getUTCFullYear() - 1970);
+  return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
 }
 
 const age = calculateAge(aboutConfig.birthdate);
 ---
 
-<Section
-  id="about"
-  titleId="about-heading"
-  title="About"
-  class="about-section"
-  titleClass="about-title"
-  contentClass="about-content"
->
-  <User slot="icon" size={28} aria-hidden="true" />
-  <div class="about-bio">
-    {
-      aboutConfig.sections.map(({ content, icon, title }) => {
-        const Icon = iconMap[icon];
+<section id="about" class="w-full py-20 md:py-28" aria-labelledby="about-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-10 text-center">
+      <div
+        class="mb-4 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
+        style="background: rgba(59, 130, 246, 0.08);"
+      >
+        <User size={11} aria-hidden="true" />
+        About
+      </div>
+      <h2 id="about-heading" class="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+        Who I am
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-secondary">
+        {aboutConfig.intro}
+      </p>
+    </div>
 
-        return (
-          <article class="about-subsection">
-            <h3 class="about-subsection-heading">
-              <Icon size={18} aria-hidden="true" class="about-subsection-icon" />
-              {title}
-            </h3>
-            <p class="about-subsection-text">{content.replace('{age}', age.toString())}</p>
-          </article>
-        );
-      })
-    }
+    <!-- Quick-facts bar -->
+    <div
+      class="mb-4 rounded-2xl border border-divider px-6 py-5"
+      style="background: var(--color-card);"
+    >
+      <dl class="flex flex-wrap items-center justify-center gap-6 sm:gap-12">
+        <div class="flex flex-col items-center gap-1">
+          <dt class="text-xs font-semibold uppercase tracking-widest text-subtle">Age</dt>
+          <dd class="text-2xl font-bold tracking-tight gradient-text">{age}</dd>
+        </div>
+        <div class="hidden h-8 w-px sm:block" style="background: var(--color-divider);"></div>
+        <div class="flex flex-col items-center gap-1">
+          <dt class="text-xs font-semibold uppercase tracking-widest text-subtle">Based in</dt>
+          <dd class="flex items-center gap-1.5 text-lg font-semibold text-foreground">
+            <MapPin size={14} class="text-secondary" aria-hidden="true" />
+            {aboutConfig.location}
+          </dd>
+        </div>
+        <div class="hidden h-8 w-px sm:block" style="background: var(--color-divider);"></div>
+        <div class="flex flex-col items-center gap-1">
+          <dt class="text-xs font-semibold uppercase tracking-widest text-subtle">Status</dt>
+          <dd class="flex items-center gap-2 text-lg font-semibold text-success">
+            <span
+              class="h-2 w-2 rounded-full bg-success"
+              style="animation: var(--animate-pulse-soft);"
+              aria-hidden="true"></span>
+            Open to work
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Three equal cards -->
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      {
+        aboutConfig.sections.map((section) => {
+          const Icon = iconMap[section.icon as keyof typeof iconMap];
+          const hasItems = 'items' in section;
+          const content = !hasItems ? section.content : undefined;
+          const items = hasItems ? section.items : undefined;
+
+          return (
+            <article
+              class="group relative overflow-hidden rounded-2xl border border-divider p-6 transition-all duration-300 hover:border-primary/20 hover:bg-card-hover"
+              style="background: var(--color-card);"
+            >
+              <div
+                class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-light"
+                style="background: rgba(59, 130, 246, 0.08);"
+              >
+                <Icon size={11} aria-hidden="true" />
+                {section.title}
+              </div>
+
+              {content && <p class="text-sm leading-relaxed text-secondary m-0">{content}</p>}
+
+              {items && (
+                <ul class="m-0 flex flex-col gap-2.5 p-0 list-none">
+                  {items.map((item) => (
+                    <li class="flex items-start gap-2.5 text-sm leading-relaxed text-secondary">
+                      <span
+                        class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border border-primary/25"
+                        style="background: rgba(59,130,246,0.08);"
+                        aria-hidden="true"
+                      >
+                        <Check size={10} class="text-primary-light" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
   </div>
-</Section>
+</section>

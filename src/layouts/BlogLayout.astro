@@ -6,12 +6,12 @@ import ReadingProgress from '@components/islands/ReadingProgress.astro';
 import BaseLayout from './BaseLayout.astro';
 ---
 
-<BaseLayout bodyClass="blog-page">
+<BaseLayout>
   <slot name="head" slot="head" />
   <a href="#main" class="skip-link">Skip to main content</a>
   <Header />
   <ReadingProgress />
-  <main id="main" class="blog-post-page">
+  <main id="main">
     <slot />
   </main>
   <Footer />

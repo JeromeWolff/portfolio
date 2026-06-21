@@ -23,28 +23,39 @@ const blogLinks = [
 const links = isHome ? homeLinks : blogLinks;
 ---
 
-<header class="site-header" role="banner">
-  <div class="site-header-inner">
+<header
+  class="sticky top-0 z-30 w-full border-b border-divider"
+  style="background: rgba(6, 12, 25, 0.85); backdrop-filter: saturate(180%) blur(12px);"
+  role="banner"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
     <a
       href={isHome ? '#hero' : '/'}
-      class="site-header-logo"
+      class="text-lg font-bold tracking-tight transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-canvas rounded"
       aria-label="Jerome Wolff - Home"
       data-astro-prefetch={!isHome ? 'hover' : undefined}
     >
-      Jerome Wolff
+      <span class="gradient-text">Jerome Wolff</span>
     </a>
-    <nav class="site-header-nav" aria-label="Main navigation">
-      <ul class="site-header-list">
+
+    <nav aria-label="Main navigation">
+      <ul class="flex flex-wrap items-center gap-0.5 list-none m-0 p-0 sm:gap-1">
         {
           links.map(({ href, icon: Icon, isActive, label }) => (
             <li>
               <a
                 href={href}
-                class:list={['site-header-link', isActive && 'site-header-link-active']}
+                class:list={[
+                  'inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+                  isActive
+                    ? 'bg-primary/10 text-primary-light'
+                    : 'text-secondary hover:text-foreground hover:bg-white/[0.05]',
+                ]}
                 data-astro-prefetch={getPrefetchStrategy(href)}
               >
-                <Icon size={16} aria-hidden="true" />
-                {label}
+                <Icon size={14} aria-hidden="true" />
+                <span class="hidden sm:inline">{label}</span>
+                <span class="sm:hidden">{label}</span>
               </a>
             </li>
           ))

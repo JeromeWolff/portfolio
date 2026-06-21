@@ -1,8 +1,6 @@
 ---
 import { Cloud, ExternalLink, FolderKanban, Gamepad2, ShoppingCart } from '@lucide/astro';
 
-import Section from './Section.astro';
-
 import { projectsConfig } from '@config/projects';
 
 const iconMap = {
@@ -10,67 +8,140 @@ const iconMap = {
   Gamepad2,
   ShoppingCart,
 };
+
+const [featured, ...rest] = projectsConfig.projects;
+const FeaturedIcon = iconMap[featured.icon];
 ---
 
-<Section
-  id="projects"
-  titleId="projects-heading"
-  title="Projects"
-  class="projects-section"
-  titleClass="projects-title"
-  contentClass="projects-content"
->
-  <FolderKanban slot="icon" size={28} aria-hidden="true" />
-  <div class="projects-grid">
-    {
-      projectsConfig.projects.map(({ description, href, icon, repo, tags, title }) => {
-        const Icon = iconMap[icon];
+<section id="projects" class="w-full py-20 md:py-28" aria-labelledby="projects-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-12 text-center">
+      <div
+        class="mb-4 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
+        style="background: rgba(59, 130, 246, 0.08);"
+      >
+        <FolderKanban size={11} aria-hidden="true" />
+        Projects
+      </div>
+      <h2 id="projects-heading" class="text-3xl font-bold tracking-tight sm:text-4xl">
+        Things I've built
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-secondary">
+        From gaming platforms serving millions to cloud-native infrastructure products.
+      </p>
+    </div>
 
-        return (
-          <article class="project-subsection">
-            <h3 class="project-subsection-heading">
-              <Icon size={18} aria-hidden="true" class="project-subsection-icon" />
-              {title}
-            </h3>
-            <p class="project-subsection-text">{description}</p>
-            {tags?.length ? (
-              <ul class="project-subsection-tags" aria-label="Technologies">
-                {tags.map((tag) => (
+    <!-- Bento grid -->
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <!-- Featured project -->
+      <article
+        class="group relative overflow-hidden rounded-2xl border border-divider p-6 transition-all duration-300 hover:border-primary/25 hover:bg-card-hover md:col-span-2 lg:p-8"
+        style="background: var(--color-card);"
+      >
+        <!-- Subtle glow overlay on hover -->
+        <div
+          class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style="background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59,130,246,0.05) 0%, transparent 70%);"
+          aria-hidden="true"
+        >
+        </div>
+
+        <div class="relative">
+          <div class="mb-3 flex flex-wrap items-center gap-2">
+            <div
+              class="inline-flex items-center gap-1.5 rounded-full border border-primary/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-light"
+              style="background: rgba(59, 130, 246, 0.08);"
+            >
+              <FeaturedIcon size={11} aria-hidden="true" />
+              Featured
+            </div>
+          </div>
+
+          <h3 class="mb-3 text-xl font-bold text-foreground sm:text-2xl">{featured.title}</h3>
+          <p class="mb-5 max-w-3xl text-base leading-relaxed text-secondary">
+            {featured.description}
+          </p>
+
+          {
+            featured.tags?.length ? (
+              <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label="Technologies">
+                {featured.tags.map((tag) => (
                   <li>
-                    <span class="project-subsection-tag">{tag}</span>
+                    <span
+                      class="inline-block rounded-full border border-divider-2 px-3 py-1 text-sm text-secondary"
+                      style="background: rgba(255,255,255,0.03);"
+                    >
+                      {tag}
+                    </span>
                   </li>
                 ))}
               </ul>
-            ) : null}
-            {href || repo ? (
-              <div class="project-subsection-links">
-                {href ? (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-subsection-link"
-                  >
-                    <ExternalLink size={14} aria-hidden="true" />
-                    View live
-                  </a>
-                ) : null}
-                {repo ? (
-                  <a
-                    href={repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-subsection-link"
-                  >
-                    <ExternalLink size={14} aria-hidden="true" />
-                    Repo
-                  </a>
-                ) : null}
+            ) : null
+          }
+        </div>
+      </article>
+
+      <!-- Secondary projects -->
+      {
+        rest.map(({ description, href, icon, repo, tags, title }) => {
+          const Icon = iconMap[icon];
+          return (
+            <article
+              class="group relative overflow-hidden rounded-2xl border border-divider p-6 transition-all duration-300 hover:border-primary/25 hover:bg-card-hover"
+              style="background: var(--color-card);"
+            >
+              <div class="mb-3 inline-flex items-center gap-2 text-primary-light">
+                <Icon size={18} aria-hidden="true" />
+                <h3 class="text-lg font-bold text-foreground m-0">{title}</h3>
               </div>
-            ) : null}
-          </article>
-        );
-      })
-    }
+              <p class="mb-4 text-sm leading-relaxed text-secondary">{description}</p>
+
+              {tags?.length ? (
+                <ul class="mb-4 flex flex-wrap gap-2 list-none m-0 p-0" aria-label="Technologies">
+                  {tags.map((tag) => (
+                    <li>
+                      <span
+                        class="inline-block rounded-full border border-divider-2 px-2.5 py-0.5 text-xs text-secondary"
+                        style="background: rgba(255,255,255,0.03);"
+                      >
+                        {tag}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+
+              {href || repo ? (
+                <div class="flex gap-4">
+                  {href ? (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-sm font-medium text-primary-light transition-colors hover:text-foreground"
+                    >
+                      <ExternalLink size={13} aria-hidden="true" />
+                      View live
+                    </a>
+                  ) : null}
+                  {repo ? (
+                    <a
+                      href={repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-sm font-medium text-primary-light transition-colors hover:text-foreground"
+                    >
+                      <ExternalLink size={13} aria-hidden="true" />
+                      GitHub
+                    </a>
+                  ) : null}
+                </div>
+              ) : null}
+            </article>
+          );
+        })
+      }
+    </div>
   </div>
-</Section>
+</section>

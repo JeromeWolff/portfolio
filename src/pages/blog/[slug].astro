@@ -80,38 +80,71 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
     structuredData={blogPostingSchema}
   />
 
-  <section class="blog-post-hero">
-    <div class="blog-post-hero-inner">
-      <a href="/blog" class="blog-post-backlink" data-astro-prefetch="hover">
-        <ArrowLeft size={16} aria-hidden="true" />
+  <!-- Back link bar -->
+  <div class="border-b border-divider" style="background: var(--color-card);">
+    <div class="mx-auto max-w-3xl px-4 py-4 sm:px-6">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-1.5 rounded-full border border-divider px-3 py-1.5 text-sm text-subtle transition-all duration-200 hover:border-primary/30 hover:text-foreground"
+        style="background: rgba(255,255,255,0.02);"
+        data-astro-prefetch="hover"
+      >
+        <ArrowLeft size={14} aria-hidden="true" />
         Back to blog
       </a>
-      <div class="blog-post-taxonomy">
+    </div>
+  </div>
+
+  <!-- Post hero -->
+  <div
+    class="relative overflow-hidden pb-10 pt-12"
+    style="background: linear-gradient(180deg, var(--color-card) 0%, var(--color-canvas) 100%);"
+  >
+    <div class="pointer-events-none absolute inset-0 glow-bg opacity-40" aria-hidden="true"></div>
+
+    <div class="relative mx-auto max-w-3xl px-4 sm:px-6">
+      <!-- Category + tags -->
+      <div class="mb-6 flex flex-wrap items-center gap-2">
         <span class="blog-post-category">{post.metadata.category}</span>
         {
           post.metadata.tags.map((tag) => (
             <span class="blog-post-tag">
-              <Tag size={12} aria-hidden="true" />
+              <Tag size={11} aria-hidden="true" />
               {tag}
             </span>
           ))
         }
       </div>
-      <h1 class="blog-post-title">{post.metadata.title}</h1>
-      <p class="blog-post-description">{post.metadata.description}</p>
-      <div class="blog-post-meta">
-        <span>
-          <CalendarDays size={16} aria-hidden="true" />
+
+      <!-- Title -->
+      <h1
+        class="mb-5 text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl"
+        style="letter-spacing: -0.03em;"
+      >
+        {post.metadata.title}
+      </h1>
+
+      <!-- Description -->
+      <p class="mb-6 text-lg leading-relaxed text-secondary">
+        {post.metadata.description}
+      </p>
+
+      <!-- Meta -->
+      <div class="flex flex-wrap items-center gap-5 text-sm text-subtle">
+        <span class="flex items-center gap-1.5">
+          <CalendarDays size={14} aria-hidden="true" />
           {dateFormatter.format(new Date(post.metadata.publishedAt))}
         </span>
-        <span>
-          <Clock3 size={16} aria-hidden="true" />
+        <span class="flex items-center gap-1.5">
+          <Clock3 size={14} aria-hidden="true" />
           {post.metadata.readingTimeText}
         </span>
       </div>
+
+      <!-- Featured image -->
       {
         post.metadata.featuredImage ? (
-          <figure class="blog-image blog-post-featured-image">
+          <figure class="blog-post-featured-image">
             <img
               src={post.metadata.featuredImage}
               alt={post.metadata.title}
@@ -122,81 +155,113 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
         ) : null
       }
     </div>
-  </section>
+  </div>
 
-  <section class="blog-post-layout">
-    <article class="blog-post-article">
-      <div class="blog-markdown">
-        <Content />
-      </div>
-    </article>
+  <!-- Article + TOC -->
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="flex items-start gap-12 xl:gap-16">
+      <!-- Article content -->
+      <article class="min-w-0 flex-1">
+        <div class="blog-markdown">
+          <Content />
+        </div>
+      </article>
 
-    <aside class="blog-post-sidebar">
-      <TOC headings={tocHeadings} />
-    </aside>
-  </section>
-
-  <section class="blog-post-footer-sections">
-    <div class="blog-post-navigation">
-      {
-        adjacent.previous ? (
-          <a
-            href={`/blog/${adjacent.previous.metadata.slug}`}
-            class="blog-post-nav-link"
-            data-astro-prefetch="hover"
-          >
-            <ArrowLeft size={16} aria-hidden="true" />
-            <span>
-              <strong>Previous article</strong>
-              <span>{adjacent.previous.metadata.title}</span>
-            </span>
-          </a>
-        ) : (
-          <div />
-        )
-      }
-      {
-        adjacent.next ? (
-          <a
-            href={`/blog/${adjacent.next.metadata.slug}`}
-            class="blog-post-nav-link blog-post-nav-link-next"
-            data-astro-prefetch="hover"
-          >
-            <span>
-              <strong>Next article</strong>
-              <span>{adjacent.next.metadata.title}</span>
-            </span>
-            <ArrowRight size={16} aria-hidden="true" />
-          </a>
-        ) : (
-          <div />
-        )
-      }
+      <!-- TOC sidebar -->
+      <aside class="sticky top-24 hidden w-72 shrink-0 xl:block">
+        <TOC headings={tocHeadings} />
+      </aside>
     </div>
+  </div>
 
-    {
-      related.length > 0 ? (
-        <section class="blog-post-related" aria-labelledby="related-posts-heading">
-          <div class="blog-post-hero-inner">
-            <h2 id="related-posts-heading" class="blog-post-related-title">
-              <BookOpenText size={24} aria-hidden="true" />
-              Related articles
-            </h2>
-            <div class="blog-post-related-grid">
-              {related.map((relatedPost) => (
-                <article class="blog-post-related-card">
-                  <h3>
-                    <a href={`/blog/${relatedPost.metadata.slug}`} data-astro-prefetch="hover">
-                      {relatedPost.metadata.title}
-                    </a>
-                  </h3>
-                  <p>{relatedPost.metadata.description}</p>
-                </article>
-              ))}
-            </div>
+  <!-- Prev / Next navigation -->
+  <div class="border-t border-divider">
+    <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          adjacent.previous ? (
+            <a
+              href={`/blog/${adjacent.previous.metadata.slug}`}
+              class="group flex items-center gap-3 rounded-xl border border-divider p-4 transition-all duration-200 hover:border-primary/20 hover:bg-card-hover"
+              style="background: var(--color-card);"
+              data-astro-prefetch="hover"
+            >
+              <ArrowLeft
+                size={16}
+                class="shrink-0 text-subtle transition-colors group-hover:text-primary-light"
+                aria-hidden="true"
+              />
+              <span class="min-w-0">
+                <span class="mb-0.5 block text-xs text-subtle">Previous</span>
+                <span class="block text-sm font-semibold text-foreground line-clamp-2">
+                  {adjacent.previous.metadata.title}
+                </span>
+              </span>
+            </a>
+          ) : (
+            <div />
+          )
+        }
+        {
+          adjacent.next ? (
+            <a
+              href={`/blog/${adjacent.next.metadata.slug}`}
+              class="group flex items-center justify-end gap-3 rounded-xl border border-divider p-4 text-right transition-all duration-200 hover:border-primary/20 hover:bg-card-hover"
+              style="background: var(--color-card);"
+              data-astro-prefetch="hover"
+            >
+              <span class="min-w-0">
+                <span class="mb-0.5 block text-xs text-subtle">Next</span>
+                <span class="block text-sm font-semibold text-foreground line-clamp-2">
+                  {adjacent.next.metadata.title}
+                </span>
+              </span>
+              <ArrowRight
+                size={16}
+                class="shrink-0 text-subtle transition-colors group-hover:text-primary-light"
+                aria-hidden="true"
+              />
+            </a>
+          ) : (
+            <div />
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Related posts -->
+  {
+    related.length > 0 ? (
+      <section class="border-t border-divider" aria-labelledby="related-posts-heading">
+        <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+          <h2 id="related-posts-heading" class="mb-6 flex items-center gap-2 text-lg font-bold">
+            <BookOpenText size={18} class="text-primary-light" aria-hidden="true" />
+            Related articles
+          </h2>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {related.map((relatedPost) => (
+              <article
+                class="rounded-xl border border-divider p-4 transition-all duration-200 hover:border-primary/20 hover:bg-card-hover"
+                style="background: var(--color-card);"
+              >
+                <h3 class="m-0 mb-2 text-sm font-semibold text-foreground line-clamp-2">
+                  <a
+                    href={`/blog/${relatedPost.metadata.slug}`}
+                    class="transition-colors hover:text-primary-light"
+                    data-astro-prefetch="hover"
+                  >
+                    {relatedPost.metadata.title}
+                  </a>
+                </h3>
+                <p class="m-0 text-xs leading-relaxed text-secondary line-clamp-3">
+                  {relatedPost.metadata.description}
+                </p>
+              </article>
+            ))}
           </div>
-        </section>
-      ) : null
-    }
-  </section>
+        </div>
+      </section>
+    ) : null
+  }
 </BlogLayout>

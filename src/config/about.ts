@@ -1,16 +1,23 @@
 export const aboutConfig = {
   birthdate: '2004-07-12',
+  intro:
+    'Software engineer and technical founder. I design systems that scale and lead teams that ship — from backend architecture to cloud infrastructure to developer experience.',
+  location: 'Germany',
   sections: [
     {
       title: 'Focus',
       content:
-        'Distributed systems, microservices, DevOps/CI/CD, and cloud architecture. Strong in the Java/Spring ecosystems, databases and messaging, and container platforms. I also focus on technical leadership: architecture, platform direction, and delivery enablement.',
+        'Distributed systems, microservices, DevOps/CI/CD, and cloud-native architecture. Strong in the Java/Spring ecosystem, container platforms, and observability tooling. I also lead engineering at the organizational level — architecture decisions, platform direction, and delivery enablement.',
       icon: 'Target',
     },
     {
-      title: 'What I work on',
-      content:
-        'Backend and architecture — designing APIs and services with maintainability and scale in mind. Cloud and platform — containers, orchestration, infrastructure-as-code, observability-ready setups. Delivery — CI/CD pipelines and developer experience improvements that actually ship.',
+      title: 'What I build',
+      items: [
+        'Backend systems, APIs & microservices',
+        'Cloud platforms, Kubernetes & infrastructure-as-code',
+        'CI/CD pipelines & developer tooling',
+        'Mobile & web products from zero to production',
+      ],
       icon: 'Briefcase',
     },
     {

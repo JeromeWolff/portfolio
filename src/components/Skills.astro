@@ -12,27 +12,52 @@ const iconMap = {
 };
 ---
 
-<section id="skills" class="skills" aria-labelledby="skills-heading">
-  <div class="skills-inner">
-    <h2 id="skills-heading" class="skills-title">
-      <SquareCode size={28} aria-hidden="true" class="skills-title-icon" />
-      Skills
-    </h2>
-    <div class="skills-list">
+<section id="skills" class="w-full py-20 md:py-28" aria-labelledby="skills-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-12 text-center">
+      <div
+        class="mb-4 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
+        style="background: rgba(59, 130, 246, 0.08);"
+      >
+        <SquareCode size={11} aria-hidden="true" />
+        Skills
+      </div>
+      <h2 id="skills-heading" class="text-3xl font-bold tracking-tight sm:text-4xl">
+        Technical expertise
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-secondary">
+        Full-stack proficiency across backend, cloud infrastructure, databases, and frontend.
+      </p>
+    </div>
+
+    <!-- Skills list -->
+    <div class="flex flex-col gap-3">
       {
         skillsConfig.categories.map(({ icon, items, title }) => {
           const Icon = iconMap[icon];
-
           return (
-            <div class="skills-row" aria-label={`${title} skills`}>
-              <span class="skills-row-label">
-                <Icon size={16} aria-hidden="true" class="skills-row-icon" />
+            <div
+              class="flex flex-wrap items-center gap-3 rounded-xl border border-divider p-4 transition-colors duration-200 hover:border-primary/15"
+              style="background: var(--color-card);"
+              aria-label={`${title} skills`}
+            >
+              <span
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-light"
+                style="background: rgba(59, 130, 246, 0.08); min-width: 7rem;"
+              >
+                <Icon size={11} aria-hidden="true" class="shrink-0" />
                 {title}
               </span>
-              <ul class="skills-pills">
+              <ul class="flex flex-wrap gap-2 list-none m-0 p-0">
                 {items.map((skill) => (
                   <li>
-                    <span class="skills-pill">{skill}</span>
+                    <span
+                      class="inline-block cursor-default rounded-full border border-divider-2 px-3 py-1 text-sm text-secondary transition-all duration-150 hover:border-primary/25 hover:text-foreground"
+                      style="background: rgba(255,255,255,0.03);"
+                    >
+                      {skill}
+                    </span>
                   </li>
                 ))}
               </ul>

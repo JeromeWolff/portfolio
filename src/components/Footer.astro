@@ -1,6 +1,7 @@
 ---
-import { Globe, Mail, SquareCode, UserRound } from '@lucide/astro';
+import { ArrowUpRight, Globe, Mail, SquareCode, UserRound } from '@lucide/astro';
 
+import { siteConfig } from '@config/site';
 import { socialLinks } from '@config/social';
 
 const iconMap = {
@@ -17,39 +18,83 @@ interface Props {
 }
 
 const {
-  title = 'Get in Touch',
-  subtext = "I'd love to hear from you! Reach out via the links below.",
+  title = "Let's build something great.",
+  subtext = 'Open to senior engineering, architecture consulting, and technical leadership conversations.',
   copyright = `© ${new Date().getFullYear()} Jerome Wolff. All rights reserved.`,
 } = Astro.props;
 ---
 
-<footer id="contact" class="footer" role="contentinfo" aria-labelledby="contact-heading">
-  <div class="footer-container">
-    <div class="footer-information">
-      <h2 id="contact-heading" class="footer-information-title">{title}</h2>
-      <p class="footer-information-subtext">{subtext}</p>
+<footer id="contact" role="contentinfo" class="w-full">
+  <!-- Contact CTA section -->
+  <div
+    class="relative overflow-hidden border-t border-divider py-24 md:py-32"
+    aria-labelledby="contact-heading"
+  >
+    <!-- Background effects -->
+    <div class="pointer-events-none absolute inset-0 dot-grid-bg opacity-20" aria-hidden="true">
     </div>
-    <div class="footer-social">
-      {
-        socialLinks.map(({ href, icon, label }) => {
-          const Icon = iconMap[icon];
+    <div class="pointer-events-none absolute inset-0 glow-bg opacity-60" aria-hidden="true"></div>
 
-          return (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              class="footer-social-link"
-            >
-              <Icon size={20} aria-hidden="true" />
-            </a>
-          );
-        })
-      }
+    <div class="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">
+      <div
+        class="mb-6 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
+        style="background: rgba(11, 21, 38, 0.6); backdrop-filter: blur(8px);"
+      >
+        <Mail size={11} aria-hidden="true" />
+        Contact
+      </div>
+
+      <h2
+        id="contact-heading"
+        class="mb-5 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl"
+      >
+        {title}
+      </h2>
+      <p class="mx-auto mb-10 max-w-md text-lg text-secondary">
+        {subtext}
+      </p>
+
+      <!-- Email CTA -->
+      <a
+        href={`mailto:${siteConfig.person.email}`}
+        class="group mb-12 inline-flex items-center gap-2 rounded-xl border border-divider-2 px-6 py-4 text-xl font-bold text-foreground transition-all duration-200 hover:border-primary/40 hover:text-primary-light sm:text-2xl"
+        style="background: rgba(11, 21, 38, 0.6); backdrop-filter: blur(8px);"
+      >
+        {siteConfig.person.email}
+        <ArrowUpRight
+          size={22}
+          class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          aria-hidden="true"
+        />
+      </a>
+
+      <!-- Social links -->
+      <div class="flex items-center justify-center gap-3">
+        {
+          socialLinks.map(({ href, icon, label }) => {
+            const Icon = iconMap[icon];
+            return (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                class="flex h-11 w-11 items-center justify-center rounded-xl border border-divider text-secondary transition-all duration-150 hover:border-primary/30 hover:bg-primary/10 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                style="background: var(--color-card);"
+              >
+                <Icon size={20} aria-hidden="true" />
+              </a>
+            );
+          })
+        }
+      </div>
     </div>
-    <div class="footer-copyright">
-      <p>{copyright}</p>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-divider py-5" style="background: var(--color-canvas);">
+    <div class="mx-auto flex max-w-6xl items-center justify-center px-4 sm:px-6">
+      <p class="text-sm text-subtle m-0">{copyright}</p>
     </div>
   </div>
 </footer>

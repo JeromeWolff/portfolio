@@ -1,3 +1,6 @@
+import { resolve } from 'path';
+import { fileURLToPath } from 'url';
+
 import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
@@ -6,10 +9,12 @@ import expressiveCode from 'astro-expressive-code';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import rehypeBlogContent from './src/blog/plugins/rehype-blog-content.mjs';
 import remarkBlogCallouts from './src/blog/plugins/remark-blog-callouts.mjs';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const src = (p) => resolve(__dirname, 'src', p);
 
 const site = process.env.PUBLIC_SITE_URL ?? 'https://www.jeromewolff.de';
 
@@ -53,9 +58,19 @@ export default defineConfig({
     }),
   },
   vite: {
+    resolve: {
+      alias: {
+        '@': src(''),
+        '@blog': src('blog'),
+        '@components': src('components'),
+        '@config': src('config'),
+        '@layouts': src('layouts'),
+        '@styles': src('styles'),
+      },
+    },
     build: {
       sourcemap: 'hidden',
     },
-    plugins: [tsconfigPaths()],
+    plugins: [],
   },
 });
