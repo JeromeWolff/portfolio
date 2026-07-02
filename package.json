@@ -24,7 +24,7 @@
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vercel": "^10.0.8",
     "@eslint/js": "^10.0.1",
-    "@lucide/astro": "^1.22.0",
+    "@lucide/astro": "^1.23.0",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.3.2",
     "@types/node": "^26.0.1",
