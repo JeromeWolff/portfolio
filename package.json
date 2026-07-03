@@ -68,7 +68,7 @@
       "prettier --write"
     ]
   },
-  "name": "jeromewolff.github.io",
+  "name": "jeromewolff.de",
   "packageManager": "pnpm@11.9.0",
   "private": false,
   "scripts": {
