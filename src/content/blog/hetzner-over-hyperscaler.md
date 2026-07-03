@@ -49,11 +49,10 @@ cloud platform:
   instances
 - **Block storage**: Up to 10TB volumes, attachable to any server
 - **Object storage**: S3-compatible (Hetzner Object Storage) via API
-- **Managed databases**: PostgreSQL and MySQL, point-in-time recovery
 - **Load balancers**: Layer 4 and Layer 7, automatic TLS
 - **Private networking**: VLAN-based private networks, firewall rules
-- **Kubernetes**: Hetzner Cloud Controller Manager for self-managed K8s, or use
-  Hetzner's managed offering
+- **Kubernetes**: no managed control plane — run self-managed K8s (k3s/kubeadm)
+  with the Hetzner Cloud Controller Manager and CSI driver
 - **Datacenters**: Nuremberg, Falkenstein, Helsinki (EU); Ashburn, Hillsboro (
   US)
 
@@ -120,13 +119,23 @@ resource "hcloud_load_balancer_target" "app" {
   use_private_ip   = true
 }
 
-resource "hcloud_managed_database" "postgres" {
+resource "hcloud_server" "postgres" {
   name        = "app-postgres"
-  type        = "pg-2"  # 2 vCPU, 4GB, HA available
-  version     = "16"
+  server_type = "cx32" # 4 vCPU, 8GB — run Postgres yourself, no managed offering
+  image       = "ubuntu-24.04"
   location    = "nbg1"
+
+  network {
+    network_id = hcloud_network.main.id
+    ip         = "10.0.1.20"
+  }
 }
 ```
+
+Hetzner has no managed database service, so PostgreSQL/MySQL runs on a
+dedicated server (or a Kubernetes StatefulSet) with your own backup and
+failover tooling — [Patroni](https://patroni.readthedocs.io/) or a managed
+backup script to Object Storage are common choices.
 
 No vendor lock-in beyond the Hetzner API itself — and switching providers means
 changing a Terraform provider and resource types, not rewriting application
@@ -163,11 +172,10 @@ stringData:
 
 With the CCM installed, Kubernetes LoadBalancer services automatically provision
 Hetzner Load Balancers. Persistent volumes use Hetzner block storage via the CSI
-driver. The operational surface is similar to EKS or GKE at a fraction of the
-cost.
-
-Alternatively, [Hetzner's managed Kubernetes (K8s)](https://www.hetzner.com/cloud)
-removes the control plane management burden entirely.
+driver. Unlike EKS or GKE, there's no managed control plane — you own etcd,
+upgrades, and control-plane HA yourself (tools like
+[kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
+or managed k3s setups reduce that burden but don't remove it).
 
 > [!TIP]
 > Deploy your Hetzner Kubernetes cluster across Hetzner's Nuremberg and
@@ -200,15 +208,17 @@ AWS/GCP/Azure:
 | AWS-native services (Bedrock, SageMaker, etc.) | Yes                    | No Hetzner equivalent                        |
 | Enterprise compliance (FedRAMP, HIPAA BAA)     | Yes                    | Hetzner not certified                        |
 | Kubernetes at 1000+ node scale                 | Yes                    | Managed control plane at that scale matters  |
+| Managed database with HA/PITR out of the box   | Yes                    | Hetzner has no managed database offering     |
 | Serverless / event-driven workloads            | Yes                    | Lambda, Cloud Run have no Hetzner equivalent |
 | Startup with AWS credits ($100k+)              | Situationally          | Use the credits, then re-evaluate            |
 | Standard web/API/data workloads                | No                     | Hetzner delivers the same outcome cheaper    |
 | Side projects, developer tools, SaaS MVPs      | No                     | 70% cost reduction with zero capability loss |
 
 The pattern is clear: hyperscalers are justified when you need their specific
-managed services or global footprint. For general compute, databases, object
-storage, and Kubernetes — Hetzner is cost-equivalent on capability and
-dramatically cheaper.
+managed services (managed databases, managed Kubernetes control planes) or
+global footprint. For general compute, object storage, and self-managed
+databases and Kubernetes — Hetzner delivers the same outcome at a fraction of
+the cost, in exchange for owning more of the operational work yourself.
 
 ## The Operational Reality
 
