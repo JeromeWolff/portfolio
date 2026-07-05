@@ -1,3 +1,4 @@
+import { createRequire } from 'module';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -15,6 +16,7 @@ import remarkBlogCallouts from './src/blog/plugins/remark-blog-callouts.mjs';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const src = (p) => resolve(__dirname, 'src', p);
+const require = createRequire(import.meta.url);
 
 const site = process.env.PUBLIC_SITE_URL ?? 'https://www.jeromewolff.de';
 
@@ -66,6 +68,10 @@ export default defineConfig({
         '@config': src('config'),
         '@layouts': src('layouts'),
         '@styles': src('styles'),
+        // Vite's built-in CSS @import resolver fails on tailwindcss's
+        // "style" export condition (vite@8 + tailwindcss@4.3.2), so point
+        // the bare specifier at the concrete file directly.
+        tailwindcss: require.resolve('tailwindcss/index.css'),
       },
     },
     build: {
