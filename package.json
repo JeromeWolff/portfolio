@@ -53,7 +53,7 @@
     "stylelint-prettier": "^5.0.3",
     "tailwindcss": "^4.3.2",
     "typescript": "^7.0.2",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   },
   "lint-staged": {
     "*.{astro,cjs,js,jsx,ts,tsx}": [
