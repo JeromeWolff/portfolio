@@ -1,5 +1,5 @@
 ---
-import { Briefcase, FolderKanban, House, Mail, NotebookPen, SquareCode, User } from '@lucide/astro';
+import { Briefcase, FolderKanban, House, SquareCode, User } from '@lucide/astro';
 
 const pathname = Astro.url.pathname;
 const isHome = pathname === '/';
@@ -10,17 +10,17 @@ const homeLinks = [
   { label: 'Skills', href: '#skills', icon: SquareCode },
   { label: 'Projects', href: '#projects', icon: FolderKanban },
   { label: 'Experience', href: '#experience', icon: Briefcase },
-  { label: 'Blog', href: '/blog', icon: NotebookPen, isActive: pathname === '/blog' },
-  { label: 'Contact', href: '#contact', icon: Mail },
 ];
 
-const blogLinks = [
+const otherLinks = [
   { label: 'Home', href: '/', icon: House, isActive: pathname === '/' },
-  { label: 'Blog', href: '/blog', icon: NotebookPen, isActive: pathname.startsWith('/blog') },
-  { label: 'Contact', href: '/#contact', icon: Mail },
+  { label: 'About', href: '/#about', icon: User },
+  { label: 'Skills', href: '/#skills', icon: SquareCode },
+  { label: 'Projects', href: '/#projects', icon: FolderKanban },
+  { label: 'Experience', href: '/#experience', icon: Briefcase },
 ];
 
-const links = isHome ? homeLinks : blogLinks;
+const links = isHome ? homeLinks : otherLinks;
 ---
 
 <header

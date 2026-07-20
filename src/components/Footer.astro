@@ -1,7 +1,6 @@
 ---
-import { ArrowUpRight, Globe, Mail, SquareCode, UserRound } from '@lucide/astro';
+import { Globe, Mail, SquareCode, UserRound } from '@lucide/astro';
 
-import { siteConfig } from '@config/site';
 import { socialLinks } from '@config/social';
 
 const iconMap = {
@@ -12,62 +11,21 @@ const iconMap = {
 };
 
 interface Props {
-  title?: string;
-  subtext?: string;
   copyright?: string;
 }
 
-const {
-  title = "Let's build something great.",
-  subtext = 'Open to senior engineering, architecture consulting, and technical leadership conversations.',
-  copyright = `© ${new Date().getFullYear()} Jerome Wolff. All rights reserved.`,
-} = Astro.props;
+const { copyright = `© ${new Date().getFullYear()} Jerome Wolff. All rights reserved.` } =
+  Astro.props;
 ---
 
-<footer id="contact" role="contentinfo" class="w-full">
-  <!-- Contact CTA section -->
-  <div
-    class="relative overflow-hidden border-t border-divider py-24 md:py-32"
-    aria-labelledby="contact-heading"
-  >
+<footer role="contentinfo" class="w-full">
+  <div class="relative overflow-hidden border-t border-divider py-16 md:py-20">
     <!-- Background effects -->
     <div class="pointer-events-none absolute inset-0 dot-grid-bg opacity-20" aria-hidden="true">
     </div>
     <div class="pointer-events-none absolute inset-0 glow-bg opacity-60" aria-hidden="true"></div>
 
     <div class="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">
-      <div
-        class="mb-6 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
-        style="background: rgba(11, 21, 38, 0.6); backdrop-filter: blur(8px);"
-      >
-        <Mail size={11} aria-hidden="true" />
-        Contact
-      </div>
-
-      <h2
-        id="contact-heading"
-        class="mb-5 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl"
-      >
-        {title}
-      </h2>
-      <p class="mx-auto mb-10 max-w-md text-lg text-secondary">
-        {subtext}
-      </p>
-
-      <!-- Email CTA -->
-      <a
-        href={`mailto:${siteConfig.person.email}`}
-        class="group mb-12 inline-flex items-center gap-2 rounded-xl border border-divider-2 px-6 py-4 text-xl font-bold text-foreground transition-all duration-200 hover:border-primary/40 hover:text-primary-light sm:text-2xl"
-        style="background: rgba(11, 21, 38, 0.6); backdrop-filter: blur(8px);"
-      >
-        {siteConfig.person.email}
-        <ArrowUpRight
-          size={22}
-          class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          aria-hidden="true"
-        />
-      </a>
-
       <!-- Social links -->
       <div class="flex items-center justify-center gap-3">
         {

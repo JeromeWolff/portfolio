@@ -3,10 +3,8 @@ export const heroConfig = {
   tagline: 'Software Architect · CTO · Technical Founder',
   subtext:
     'Building scalable systems, cloud-native platforms, and developer-focused products that earn trust at scale.',
-  ctaLabel: 'Get in touch',
-  ctaHref: '#contact',
-  ctaSecondaryLabel: 'View projects',
-  ctaSecondaryHref: '#projects',
+  ctaLabel: 'View projects',
+  ctaHref: '#projects',
   stats: [
     { value: '4.4M+', label: 'Users served' },
     { value: '4', label: 'Companies led' },

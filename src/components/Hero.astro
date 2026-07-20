@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, ChevronRight } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
 
 import { heroConfig } from '@config/hero';
 
@@ -9,8 +9,6 @@ interface Props {
   subtext?: string;
   ctaLabel?: string;
   ctaHref?: string;
-  ctaSecondaryLabel?: string;
-  ctaSecondaryHref?: string;
 }
 
 const {
@@ -19,8 +17,6 @@ const {
   subtext = heroConfig.subtext,
   ctaLabel = heroConfig.ctaLabel,
   ctaHref = heroConfig.ctaHref,
-  ctaSecondaryLabel = heroConfig.ctaSecondaryLabel,
-  ctaSecondaryHref = heroConfig.ctaSecondaryHref,
 } = Astro.props;
 
 const stats = heroConfig.stats;
@@ -79,14 +75,6 @@ const stats = heroConfig.stats;
       >
         {ctaLabel}
         <ArrowRight size={18} aria-hidden="true" />
-      </a>
-      <a
-        href={ctaSecondaryHref}
-        class="inline-flex items-center gap-2 rounded-xl border border-divider-2 px-7 py-3.5 text-base font-semibold text-foreground transition-all duration-150 hover:border-primary/40 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-        style="background: rgba(11, 21, 38, 0.6); backdrop-filter: blur(8px);"
-      >
-        {ctaSecondaryLabel}
-        <ChevronRight size={18} aria-hidden="true" />
       </a>
     </div>
 
