@@ -1,0 +1,133 @@
+---
+/**
+ * Custom hairline diagrams — one per case study. Drawn, not stock.
+ * Everything inherits `currentColor`; a single highlighted element uses
+ * --dia-accent so it can shift on the inverted plate.
+ */
+interface Props {
+  kind: 'network' | 'marketplace' | 'platform' | 'edge';
+  class?: string;
+}
+const { kind, class: className = '' } = Astro.props;
+
+const common = {
+  fill: 'none',
+  stroke: 'currentColor',
+  'stroke-width': '1.25',
+  'stroke-linecap': 'round' as const,
+  'stroke-linejoin': 'round' as const,
+};
+---
+
+<svg
+  viewBox="0 0 240 160"
+  class:list={['h-auto w-full', className]}
+  role="img"
+  aria-hidden="true"
+  style="--dia-accent: var(--color-accent);"
+  {...common}
+>
+  {
+    kind === 'network' && (
+      <g>
+        {/* edges from coordinator to servers */}
+        <path
+          d="M120 80 L48 36 M120 80 L192 36 M120 80 L48 124 M120 80 L192 124 M120 80 L120 24 M120 80 L120 136"
+          opacity="0.55"
+        />
+        {/* mesh hints */}
+        <path d="M48 36 L120 24 L192 36 M48 124 L120 136 L192 124" opacity="0.3" />
+        {/* server nodes */}
+        <rect x="41" y="29" width="14" height="14" />
+        <rect x="185" y="29" width="14" height="14" />
+        <rect x="41" y="117" width="14" height="14" />
+        <rect x="185" y="117" width="14" height="14" />
+        <rect x="113" y="17" width="14" height="14" />
+        <rect x="113" y="129" width="14" height="14" />
+        {/* coordinator — the accent */}
+        <circle cx="120" cy="80" r="10" style="stroke: var(--dia-accent);" stroke-width="1.5" />
+        <circle
+          cx="120"
+          cy="80"
+          r="2.5"
+          style="stroke: var(--dia-accent); fill: var(--dia-accent);"
+        />
+      </g>
+    )
+  }
+
+  {
+    kind === 'marketplace' && (
+      <g>
+        {/* platform core */}
+        <rect
+          x="86"
+          y="18"
+          width="68"
+          height="26"
+          rx="2"
+          style="stroke: var(--dia-accent);"
+          stroke-width="1.5"
+        />
+        {/* distribution bus */}
+        <path
+          d="M120 44 L120 74 M40 74 L200 74 M40 74 L40 98 M120 74 L120 98 M200 74 L200 98"
+          opacity="0.6"
+        />
+        {/* store fronts with little roofs */}
+        <path d="M22 112 L40 98 L58 112 M22 112 L22 140 L58 140 L58 112" />
+        <path d="M102 112 L120 98 L138 112 M102 112 L102 140 L138 140 L138 112" />
+        <path d="M182 112 L200 98 L218 112 M182 112 L182 140 L218 140 L218 112" />
+      </g>
+    )
+  }
+
+  {
+    kind === 'platform' && (
+      <g>
+        {/* layered stack: games on top, platform, backend */}
+        <rect
+          x="70"
+          y="20"
+          width="100"
+          height="30"
+          rx="2"
+          style="stroke: var(--dia-accent);"
+          stroke-width="1.5"
+        />
+        <rect x="50" y="65" width="140" height="30" rx="2" />
+        <rect x="60" y="110" width="120" height="30" rx="2" />
+        {/* connectors */}
+        <path d="M100 50 L100 65 M140 50 L140 65 M90 95 L90 110 M150 95 L150 110" opacity="0.6" />
+        {/* left bracket implying one stack */}
+        <path d="M34 22 L28 22 L28 138 L34 138" opacity="0.5" />
+      </g>
+    )
+  }
+
+  {
+    kind === 'edge' && (
+      <g>
+        {/* the function unit — a small cube */}
+        <path
+          d="M40 62 L64 50 L88 62 L88 96 L64 108 L40 96 Z"
+          style="stroke: var(--dia-accent);"
+          stroke-width="1.5"
+        />
+        <path
+          d="M40 62 L64 74 L88 62 M64 74 L64 108"
+          style="stroke: var(--dia-accent);"
+          stroke-width="1.25"
+          opacity="0.7"
+        />
+        {/* deploy arrow */}
+        <path d="M96 79 L150 79 M142 72 L150 79 L142 86" opacity="0.7" />
+        {/* jurisdiction boundary (dashed) + region */}
+        <path d="M160 30 L160 130" stroke-dasharray="3 5" opacity="0.5" />
+        <rect x="172" y="54" width="46" height="50" rx="2" />
+        {/* a location pin inside the region */}
+        <path d="M195 66 a7 7 0 1 1 -0.1 0 M195 80 L195 92" opacity="0.75" />
+      </g>
+    )
+  }
+</svg>

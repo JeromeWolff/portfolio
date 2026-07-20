@@ -1,103 +1,76 @@
 ---
-import { Briefcase, Check, MapPin, Sparkles, Target, User } from '@lucide/astro';
-
+import SectionHead from '@components/SectionHead.astro';
 import { aboutConfig } from '@config/about';
 
-const iconMap = { Briefcase, Sparkles, Target };
+const { birthdate, building, facts, offClock, paragraphs } = aboutConfig;
 
-function calculateAge(birthdate: string): number {
-  const birthDate = new Date(birthdate).getTime();
-  const ageDifMs = Date.now() - birthDate;
-  return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
+function calculateAge(dob: string): number {
+  const d = new Date(dob);
+  const now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  const m = now.getMonth() - d.getMonth();
+  if (m < 0 || (m === 0 && now.getDate() < d.getDate())) age -= 1;
+  return age;
 }
+const age = calculateAge(birthdate);
 
-const age = calculateAge(aboutConfig.birthdate);
+const [lead, ...body] = paragraphs;
 ---
 
-<section id="about" class="w-full py-20 md:py-28" aria-labelledby="about-heading">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <!-- Section header -->
-    <div class="mb-10 text-center">
-      <div
-        class="mb-4 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
-        style="background: rgba(59, 130, 246, 0.08);"
-      >
-        <User size={11} aria-hidden="true" />
-        About
+<section id="about" class="pt-20 md:pt-28" aria-labelledby="about-heading">
+  <SectionHead
+    mark="About"
+    note={`b. 2004 · age ${age}`}
+    title="Who's behind the systems"
+    titleId="about-heading"
+  />
+
+  <div class="mx-auto mt-12 max-w-6xl px-5 sm:px-8 md:mt-16">
+    <div class="grid grid-cols-12 gap-x-8 gap-y-12">
+      <!-- Narrative -->
+      <div class="col-span-12 md:col-span-6 md:col-start-3" data-reveal>
+        <p class="text-xl leading-relaxed text-ink">{lead}</p>
+        {body.map((para) => <p class="mt-5 leading-relaxed text-graphite">{para}</p>)}
       </div>
-      <h2 id="about-heading" class="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-        Who I am
-      </h2>
-      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-secondary">
-        {aboutConfig.intro}
-      </p>
-    </div>
 
-    <!-- Quick-facts bar -->
-    <div
-      class="mb-4 rounded-2xl border border-divider px-6 py-5"
-      style="background: var(--color-card);"
-    >
-      <dl class="flex flex-wrap items-center justify-center gap-6 sm:gap-12">
-        <div class="flex flex-col items-center gap-1">
-          <dt class="text-xs font-semibold uppercase tracking-widest text-subtle">Age</dt>
-          <dd class="text-2xl font-bold tracking-tight gradient-text">{age}</dd>
-        </div>
-        <div class="hidden h-8 w-px sm:block" style="background: var(--color-divider);"></div>
-        <div class="flex flex-col items-center gap-1">
-          <dt class="text-xs font-semibold uppercase tracking-widest text-subtle">Based in</dt>
-          <dd class="flex items-center gap-1.5 text-lg font-semibold text-foreground">
-            <MapPin size={14} class="text-secondary" aria-hidden="true" />
-            {aboutConfig.location}
-          </dd>
-        </div>
-      </dl>
-    </div>
-
-    <!-- Three equal cards -->
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-      {
-        aboutConfig.sections.map((section) => {
-          const Icon = iconMap[section.icon as keyof typeof iconMap];
-          const hasItems = 'items' in section;
-          const content = !hasItems ? section.content : undefined;
-          const items = hasItems ? section.items : undefined;
-
-          return (
-            <article
-              class="group relative overflow-hidden rounded-2xl border border-divider p-6 transition-all duration-300 hover:border-primary/20 hover:bg-card-hover"
-              style="background: var(--color-card);"
-            >
-              <div
-                class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-light"
-                style="background: rgba(59, 130, 246, 0.08);"
-              >
-                <Icon size={11} aria-hidden="true" />
-                {section.title}
+      <!-- Field notes -->
+      <aside
+        class="col-span-12 md:col-span-3 md:col-start-10"
+        data-reveal
+        style="--reveal-delay: 100ms"
+        aria-label="Field notes"
+      >
+        <dl class="m-0">
+          <div class="flex items-baseline justify-between border-t border-ink py-2">
+            <dt class="mono-label m-0">Age</dt>
+            <dd class="mono-data m-0 text-sm font-medium text-ink">{age}</dd>
+          </div>
+          {
+            facts.map((f) => (
+              <div class="flex items-baseline justify-between gap-3 border-t border-rule py-2">
+                <dt class="mono-label m-0 shrink-0">{f.key}</dt>
+                <dd class="mono-data m-0 text-right text-sm text-ink">{f.value}</dd>
               </div>
+            ))
+          }
+        </dl>
 
-              {content && <p class="text-sm leading-relaxed text-secondary m-0">{content}</p>}
+        <p class="mono-label mt-8 mb-3">Builds</p>
+        <ul class="flex flex-col gap-2.5 list-none m-0 p-0">
+          {
+            building.map((item) => (
+              <li class="grid grid-cols-[0.9rem_1fr] gap-2 text-sm leading-snug text-graphite">
+                <span class="mt-1.5 h-1 w-1 bg-accent" aria-hidden="true" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
 
-              {items && (
-                <ul class="m-0 flex flex-col gap-2.5 p-0 list-none">
-                  {items.map((item) => (
-                    <li class="flex items-start gap-2.5 text-sm leading-relaxed text-secondary">
-                      <span
-                        class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border border-primary/25"
-                        style="background: rgba(59,130,246,0.08);"
-                        aria-hidden="true"
-                      >
-                        <Check size={10} class="text-primary-light" />
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </article>
-          );
-        })
-      }
+        <p class="mt-8 border-t border-rule pt-4 text-sm italic leading-relaxed text-graphite">
+          {offClock}
+        </p>
+      </aside>
     </div>
   </div>
 </section>

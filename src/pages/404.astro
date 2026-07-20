@@ -12,26 +12,39 @@ import PageLayout from '@layouts/PageLayout.astro';
     noindex
   />
 
-  <section class="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
-    <div class="pointer-events-none absolute inset-0 dot-grid-bg opacity-40" aria-hidden="true">
+  <section class="mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-5 py-24 sm:px-8">
+    <div class="flex items-center justify-between gap-4">
+      <span class="mono-label">Error</span>
+      <span class="mono-label hidden sm:inline">no such coordinate</span>
     </div>
-    <div class="pointer-events-none absolute inset-0 glow-bg" aria-hidden="true"></div>
+    <hr class="rule-h mt-4" />
 
-    <div class="relative z-10 mx-auto max-w-2xl px-4 py-24 text-center sm:px-6">
-      <h1 class="mb-6 text-5xl font-bold tracking-tight sm:text-6xl">
-        <span class="gradient-text">Page not found</span>
-      </h1>
-      <p class="mx-auto mb-10 max-w-md text-lg text-secondary">
-        The page you were looking for does not exist or is no longer public.
-      </p>
-      <a
-        href="/"
-        class="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-base font-semibold text-white transition-all duration-150 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-        style="background: #2563eb; box-shadow: 0 4px 16px rgba(59,130,246,0.35), 0 1px 3px rgba(0,0,0,0.3);"
-        data-astro-prefetch="hover"
+    <div class="grid grid-cols-12 gap-x-8 pt-12">
+      <p
+        class="col-span-12 font-display font-semibold leading-none text-rule-strong md:col-span-4"
+        style="font-size: clamp(5rem, 14vw, 10rem);"
+        aria-hidden="true"
       >
-        Back home
-      </a>
+        404
+      </p>
+      <div class="col-span-12 md:col-span-7 md:col-start-6 md:self-end">
+        <h1 class="text-3xl sm:text-4xl">This page went off the grid.</h1>
+        <p class="mt-4 max-w-md text-lg leading-relaxed text-graphite">
+          The address doesn't resolve to anything I've built. It may have moved, or it never existed
+          in the first place.
+        </p>
+        <a
+          href="/"
+          class="group mt-8 inline-flex items-center gap-2.5 border border-ink px-5 py-3 text-sm font-medium text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"
+          data-astro-prefetch="hover"
+        >
+          <span
+            class="transition-transform duration-200 group-hover:-translate-x-0.5"
+            aria-hidden="true">←</span
+          >
+          Back to the start
+        </a>
+      </div>
     </div>
   </section>
 </PageLayout>

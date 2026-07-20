@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: 'Jerome Wolff',
-  title: 'Jerome Wolff | Full Stack Developer & CTO',
+  title: 'Jerome Wolff — Backend & systems engineer',
   description:
-    'Full Stack Developer and CTO specializing in Java, TypeScript, React Native, Spring, and scalable systems. Portfolio, projects, and experience.',
+    'Jerome Wolff is a backend and systems engineer and CTO in Germany. He builds distributed backends, marketplace and gaming platforms, and the infrastructure other developers rely on. Case studies, stack, and experience.',
   shortDescription:
-    'Full Stack Developer and CTO. Java, TypeScript, React Native, Spring. Portfolio and experience.',
+    'Backend & systems engineer and CTO in Germany. Distributed systems, platforms, and the infrastructure behind products used by millions.',
   keywords: [
     'Jerome Wolff',
     'Full Stack Developer',

@@ -1,90 +1,60 @@
 ---
-import { Briefcase } from '@lucide/astro';
-
+import SectionHead from '@components/SectionHead.astro';
 import { experienceConfig } from '@config/experience';
 
-const currentRegex = /heute|present|current/i;
+const { experiences } = experienceConfig;
+const currentRegex = /present|heute|current/i;
+const count = experiences.length;
 ---
 
-<section id="experience" class="w-full py-20 md:py-28" aria-labelledby="experience-heading">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <!-- Section header -->
-    <div class="mb-12 text-center">
-      <div
-        class="mb-4 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
-        style="background: rgba(59, 130, 246, 0.08);"
-      >
-        <Briefcase size={11} aria-hidden="true" />
-        Experience
-      </div>
-      <h2 id="experience-heading" class="text-3xl font-bold tracking-tight sm:text-4xl">
-        Where I've worked
-      </h2>
-    </div>
+<section id="path" class="pt-20 pb-24 md:pt-28 md:pb-32" aria-labelledby="path-heading">
+  <SectionHead
+    mark="Path"
+    note={`${count} roles · since 2020`}
+    title="How I got here"
+    titleId="path-heading"
+    intro="Not a straight line. A web presence and a PLC, four years of games at scale, then leading engineering — with a few honest day jobs along the way."
+  />
 
-    <!-- Timeline -->
-    <div class="relative pl-7">
-      <!-- Vertical track line -->
-      <div
-        class="absolute left-1.25 top-3 bottom-3 w-px rounded"
-        style="background: var(--color-divider);"
-        aria-hidden="true"
-      >
-      </div>
+  <div class="mx-auto mt-10 max-w-6xl px-5 sm:px-8 md:mt-14">
+    <ol class="m-0 list-none p-0">
+      {
+        experiences.map((experience) => {
+          const { company, duration, role } = experience;
+          const description = 'description' in experience ? experience.description : undefined;
+          const isCurrent = currentRegex.test(duration);
+          return (
+            <li
+              class="grid grid-cols-12 gap-x-6 gap-y-2 border-t border-rule py-6 last:border-b"
+              data-reveal
+            >
+              <div class="col-span-12 flex items-center gap-2.5 sm:col-span-3">
+                {isCurrent ? (
+                  <span class="h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
+                ) : (
+                  <span class="h-1.5 w-1.5 shrink-0 border border-rule-strong" aria-hidden="true" />
+                )}
+                <span class="mono-data text-sm text-graphite">{duration}</span>
+              </div>
 
-      <ol class="flex flex-col gap-3 list-none m-0 p-0">
-        {
-          experienceConfig.experiences.map((experience) => {
-            const { company, duration, role } = experience;
-            const description = 'description' in experience ? experience.description : undefined;
-            const isCurrent = currentRegex.test(duration);
-
-            return (
-              <li class="relative">
-                <div
-                  class:list={[
-                    'absolute -left-7 top-4 h-2.5 w-2.5 rounded-full border-2 border-canvas',
-                    isCurrent ? 'bg-primary' : 'bg-divider-2',
-                  ]}
-                  style={isCurrent ? 'box-shadow: 0 0 0 3px rgba(59,130,246,0.25);' : ''}
-                  aria-hidden="true"
-                />
-
-                <div
-                  class="rounded-xl border border-divider p-4 transition-all duration-200 hover:border-primary/20 hover:bg-card-hover"
-                  style="background: var(--color-card);"
-                >
-                  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1.5 mb-1">
-                    <span class="text-base font-semibold text-foreground">{role}</span>
-                    <span
-                      class="rounded border border-primary/20 px-2 py-0.5 text-sm font-medium text-primary-light"
-                      style="background: rgba(59, 130, 246, 0.08);"
-                    >
-                      {company}
+              <div class="col-span-12 sm:col-span-9">
+                <div class="flex flex-wrap items-baseline gap-x-2.5">
+                  <h3 class="text-lg font-medium text-ink">{role}</h3>
+                  <span class="text-graphite">— {company}</span>
+                  {isCurrent && (
+                    <span class="mono-label text-accent" aria-label="current role">
+                      now
                     </span>
-                    <span
-                      class:list={[
-                        'ml-auto text-xs font-medium',
-                        isCurrent
-                          ? 'rounded border border-success/25 px-2 py-0.5 text-success'
-                          : 'text-subtle',
-                      ]}
-                      style={isCurrent ? 'background: rgba(16, 185, 129, 0.08);' : ''}
-                    >
-                      {duration}
-                    </span>
-                  </div>
-                  {description ? (
-                    <p class="text-sm leading-relaxed text-secondary m-0 max-w-3xl">
-                      {description}
-                    </p>
-                  ) : null}
+                  )}
                 </div>
-              </li>
-            );
-          })
-        }
-      </ol>
-    </div>
+                {description && (
+                  <p class="mt-2 max-w-2xl text-sm leading-relaxed text-graphite">{description}</p>
+                )}
+              </div>
+            </li>
+          );
+        })
+      }
+    </ol>
   </div>
 </section>

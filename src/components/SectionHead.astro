@@ -1,0 +1,36 @@
+---
+/**
+ * The margin-ledger section header — the site's recurring signature.
+ * A drafted top rule, then a label + a note that encodes something true
+ * about the section (a count, a span) in the left margin, then the title.
+ * Bodies below stay bespoke per section; this keeps the rhythm.
+ */
+interface Props {
+  mark: string;
+  note: string;
+  title: string;
+  titleId: string;
+  intro?: string;
+  class?: string;
+}
+const { mark, note, title, titleId, intro, class: className = '' } = Astro.props;
+---
+
+<div class:list={['mx-auto max-w-6xl px-5 sm:px-8', className]}>
+  <hr class="rule-h" />
+  <div class="grid grid-cols-12 gap-x-6 pt-5">
+    <div
+      class="col-span-12 mb-5 flex items-baseline gap-3 md:col-span-2 md:mb-0 md:flex-col md:items-start md:gap-1.5"
+      data-reveal
+    >
+      <span class="mono-label font-medium text-ink" aria-hidden="true">{mark}</span>
+      <span class="mono-label" aria-hidden="true">{note}</span>
+    </div>
+    <div class="col-span-12 md:col-span-10 md:col-start-3" data-reveal style="--reveal-delay: 80ms">
+      <h2 id={titleId} class="max-w-3xl text-3xl sm:text-4xl md:text-[2.75rem]">
+        {title}
+      </h2>
+      {intro && <p class="mt-4 max-w-2xl text-lg leading-relaxed text-graphite">{intro}</p>}
+    </div>
+  </div>
+</div>

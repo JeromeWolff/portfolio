@@ -1,66 +1,101 @@
 ---
-import { Briefcase, FolderKanban, House, SquareCode, User } from '@lucide/astro';
+import { siteConfig } from '@config/site';
 
 const pathname = Astro.url.pathname;
 const isHome = pathname === '/';
-const getPrefetchStrategy = (href: string) => (href.startsWith('/') ? 'hover' : undefined);
+const base = isHome ? '' : '/';
 
-const homeLinks = [
-  { label: 'About', href: '#about', icon: User },
-  { label: 'Skills', href: '#skills', icon: SquareCode },
-  { label: 'Projects', href: '#projects', icon: FolderKanban },
-  { label: 'Experience', href: '#experience', icon: Briefcase },
+const links = [
+  { label: 'Work', href: `${base}#work`, id: 'work' },
+  { label: 'About', href: `${base}#about`, id: 'about' },
+  { label: 'Path', href: `${base}#path`, id: 'path' },
 ];
-
-const otherLinks = [
-  { label: 'Home', href: '/', icon: House, isActive: pathname === '/' },
-  { label: 'About', href: '/#about', icon: User },
-  { label: 'Skills', href: '/#skills', icon: SquareCode },
-  { label: 'Projects', href: '/#projects', icon: FolderKanban },
-  { label: 'Experience', href: '/#experience', icon: Briefcase },
-];
-
-const links = isHome ? homeLinks : otherLinks;
 ---
 
-<header
-  class="sticky top-0 z-30 w-full border-b border-divider"
-  style="background: rgba(6, 12, 25, 0.85); backdrop-filter: saturate(180%) blur(12px);"
-  role="banner"
->
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-    <a
-      href={isHome ? '#hero' : '/'}
-      class="text-lg font-bold tracking-tight transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-canvas rounded"
-      aria-label="Jerome Wolff - Home"
-      data-astro-prefetch={!isHome ? 'hover' : undefined}
-    >
-      <span class="gradient-text">Jerome Wolff</span>
-    </a>
+<header id="site-header" class="sticky top-0 z-40" data-header>
+  <div
+    class="border-b border-transparent transition-colors duration-300"
+    style="background: color-mix(in srgb, var(--color-paper) 82%, transparent); backdrop-filter: saturate(120%) blur(6px);"
+    data-header-bar
+  >
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+      <a
+        href={isHome ? '#top' : '/'}
+        class="group flex items-baseline gap-2.5"
+        aria-label="Jerome Wolff — home"
+      >
+        <span class="font-display text-[1.05rem] font-semibold tracking-tight text-ink">
+          Jerome Wolff
+        </span>
+        <span class="mono-label hidden sm:inline">systems engineer</span>
+      </a>
 
-    <nav aria-label="Main navigation">
-      <ul class="flex flex-wrap items-center gap-0.5 list-none m-0 p-0 sm:gap-1">
-        {
-          links.map(({ href, icon: Icon, isActive, label }) => (
-            <li>
-              <a
-                href={href}
-                class:list={[
-                  'inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
-                  isActive
-                    ? 'bg-primary/10 text-primary-light'
-                    : 'text-secondary hover:text-foreground hover:bg-white/[0.05]',
-                ]}
-                data-astro-prefetch={getPrefetchStrategy(href)}
-              >
-                <Icon size={14} aria-hidden="true" />
-                <span class="hidden sm:inline">{label}</span>
-                <span class="sm:hidden">{label}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+      <nav aria-label="Sections" class="flex items-center gap-5 sm:gap-7">
+        <ul class="flex items-center gap-5 sm:gap-7 list-none m-0 p-0">
+          {
+            links.map(({ href, id, label }) => (
+              <li>
+                <a
+                  href={href}
+                  data-navlink={id}
+                  class="link-draw text-sm font-medium text-graphite transition-colors hover:text-ink"
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <a
+          href={`mailto:${siteConfig.person.email}`}
+          class="mono-label hidden border border-rule-strong px-2.5 py-1.5 text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper md:inline-flex"
+        >
+          Email →
+        </a>
+      </nav>
+    </div>
   </div>
 </header>
+
+<script>
+  // Toggle a hairline under the header once the page has scrolled.
+  const bar = document.querySelector<HTMLElement>('[data-header-bar]');
+  const onScroll = () => {
+    if (!bar) return;
+    bar.style.borderBottomColor = window.scrollY > 12 ? 'var(--color-rule)' : 'transparent';
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll-spy: mark the nav link for the section currently in view.
+  const navLinks = new Map<string, HTMLElement>();
+  document
+    .querySelectorAll<HTMLElement>('[data-navlink]')
+    .forEach((el) => navLinks.set(el.dataset.navlink!, el));
+
+  const sections = ['work', 'about', 'path']
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => Boolean(el));
+
+  if (sections.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const setActive = (id: string | null) => {
+      navLinks.forEach((el, key) => {
+        const active = key === id;
+        el.classList.toggle('text-ink', active);
+        el.style.backgroundSize = active ? '100% 1px' : '';
+        if (active) el.setAttribute('aria-current', 'true');
+        else el.removeAttribute('aria-current');
+      });
+    };
+    const spy = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5] }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
+</script>

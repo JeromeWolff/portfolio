@@ -1,0 +1,138 @@
+---
+import Diagram from '@components/Diagram.astro';
+import type { CaseStudy } from '@config/projects';
+
+interface Props {
+  study: CaseStudy;
+  total: number;
+  plate?: boolean;
+  reversed?: boolean;
+}
+const { study, total, plate = false, reversed = false } = Astro.props;
+
+const rows = [
+  { label: 'Context', kind: 'prose' as const, text: study.context },
+  { label: 'The hard part', kind: 'prose' as const, text: study.challenge },
+  { label: 'Approach', kind: 'list' as const, items: study.approach },
+  { label: 'Outcome', kind: 'prose' as const, text: study.outcome },
+  { label: 'What it taught me', kind: 'prose' as const, text: study.lessons },
+];
+
+// Tone-aware token names so the same markup works on paper and on the ink plate.
+const t = plate
+  ? {
+      head: 'text-plate-ink',
+      body: 'text-plate-graphite',
+      faint: 'text-plate-graphite',
+      rule: 'border-plate-rule',
+      tag: 'border-plate-rule text-plate-graphite',
+      numeral: 'text-plate-rule',
+      diaAccent: 'var(--color-accent-bright)',
+    }
+  : {
+      head: 'text-ink',
+      body: 'text-graphite',
+      faint: 'text-subtle',
+      rule: 'border-rule',
+      tag: 'border-rule-strong text-graphite',
+      numeral: 'text-rule-strong',
+      diaAccent: 'var(--color-accent)',
+    };
+
+const metaFirst = !reversed;
+---
+
+<article class="grid grid-cols-12 gap-x-8 gap-y-10" data-reveal>
+  <!-- Meta / diagram column -->
+  <div
+    class:list={[
+      'col-span-12 md:col-span-4',
+      metaFirst ? 'md:order-1' : 'md:order-2 md:col-start-9',
+    ]}
+  >
+    <div class="flex items-start justify-between gap-3">
+      <div
+        class:list={['font-display text-6xl font-semibold leading-none', t.numeral]}
+        aria-hidden="true"
+      >
+        {study.index}
+      </div>
+      <div class:list={['mono-label pt-1 text-right', t.faint]}>
+        {study.index} / {String(total).padStart(2, '0')}
+      </div>
+    </div>
+
+    <div class:list={['mt-6 border-t pt-4', t.rule]}>
+      <p class:list={['text-base font-semibold', t.head]}>{study.org}</p>
+      <p class:list={['mono-label mt-1', t.faint]}>{study.role}</p>
+    </div>
+
+    <dl class="mt-4 m-0">
+      <div class:list={['flex justify-between border-t py-2', t.rule]}>
+        <dt class:list={['mono-label m-0', t.faint]}>Period</dt>
+        <dd class:list={['mono-data m-0 text-sm', t.head]}>{study.period}</dd>
+      </div>
+      <div class:list={['flex justify-between border-t py-2', t.rule]}>
+        <dt class:list={['mono-label m-0', t.faint]}>Scale</dt>
+        <dd class:list={['mono-data m-0 text-sm', t.head]}>{study.scale}</dd>
+      </div>
+    </dl>
+
+    <div class="mt-8 max-w-[16rem]" style={`--dia-accent: ${t.diaAccent}; color: currentColor;`}>
+      <div class:list={[t.head]}>
+        <Diagram kind={study.diagram} />
+      </div>
+    </div>
+
+    <ul class="mt-6 flex flex-wrap gap-1.5 list-none m-0 p-0" aria-label="Stack">
+      {
+        study.stack.map((s) => (
+          <li>
+            <span class:list={['inline-block border px-2 py-0.5 font-mono text-xs', t.tag]}>
+              {s}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <!-- Narrative column -->
+  <div
+    class:list={[
+      'col-span-12 md:col-span-7',
+      metaFirst ? 'md:order-2 md:col-start-6' : 'md:order-1 md:col-start-1',
+    ]}
+  >
+    <h3 class:list={['text-2xl sm:text-3xl md:text-[2rem]', t.head]}>{study.title}</h3>
+    <p class:list={['mt-4 text-lg leading-relaxed', t.body]}>{study.summary}</p>
+
+    <dl class="mt-8 m-0">
+      {
+        rows.map((row) => (
+          <div class:list={['grid grid-cols-12 gap-x-4 border-t py-5', t.rule]}>
+            <dt class:list={['col-span-12 mb-2 sm:col-span-3 sm:mb-0']}>
+              <span class:list={['mono-label', t.faint]}>{row.label}</span>
+            </dt>
+            <dd class="col-span-12 m-0 sm:col-span-9">
+              {row.kind === 'prose' ? (
+                <p class:list={['leading-relaxed', t.body]}>{row.text}</p>
+              ) : (
+                <ul class="flex flex-col gap-3 list-none m-0 p-0">
+                  {row.items?.map((item, i) => (
+                    <li class="grid grid-cols-[1.5rem_1fr] gap-2">
+                      <span class:list={['mono-data text-sm', t.faint]} aria-hidden="true">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span class:list={['leading-relaxed', t.body]}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</article>

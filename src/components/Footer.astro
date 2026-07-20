@@ -1,58 +1,42 @@
 ---
-import { Globe, Mail, SquareCode, UserRound } from '@lucide/astro';
-
 import { socialLinks } from '@config/social';
 
-const iconMap = {
-  Globe,
-  Github: SquareCode,
-  Linkedin: UserRound,
-  Mail,
-};
-
-interface Props {
-  copyright?: string;
-}
-
-const { copyright = `© ${new Date().getFullYear()} Jerome Wolff. All rights reserved.` } =
-  Astro.props;
+const year = new Date().getFullYear();
 ---
 
-<footer role="contentinfo" class="w-full">
-  <div class="relative overflow-hidden border-t border-divider py-16 md:py-20">
-    <!-- Background effects -->
-    <div class="pointer-events-none absolute inset-0 dot-grid-bg opacity-20" aria-hidden="true">
-    </div>
-    <div class="pointer-events-none absolute inset-0 glow-bg opacity-60" aria-hidden="true"></div>
-
-    <div class="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">
-      <!-- Social links -->
-      <div class="flex items-center justify-center gap-3">
+<footer role="contentinfo" class="mt-8 border-t border-ink bg-paper-sunken">
+  <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
+    <nav class="max-w-xs" aria-label="Elsewhere">
+      <p class="mono-label">Elsewhere</p>
+      <ul class="mt-4 flex flex-col gap-3 list-none m-0 p-0">
         {
-          socialLinks.map(({ href, icon, label }) => {
-            const Icon = iconMap[icon];
-            return (
+          socialLinks.map(({ href, label }) => (
+            <li>
               <a
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                class="flex h-11 w-11 items-center justify-center rounded-xl border border-divider text-secondary transition-all duration-150 hover:border-primary/30 hover:bg-primary/10 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                style="background: var(--color-card);"
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="group inline-flex w-full items-center justify-between gap-4 text-graphite transition-colors hover:text-ink"
               >
-                <Icon size={20} aria-hidden="true" />
+                <span class="link-draw">{label}</span>
+                <span
+                  class="text-subtle transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-ink"
+                  aria-hidden="true"
+                >
+                  ↗
+                </span>
               </a>
-            );
-          })
+            </li>
+          ))
         }
-      </div>
-    </div>
+      </ul>
+    </nav>
   </div>
 
-  <!-- Bottom bar -->
-  <div class="border-t border-divider py-5" style="background: var(--color-canvas);">
-    <div class="mx-auto flex max-w-6xl items-center justify-center px-4 sm:px-6">
-      <p class="text-sm text-subtle m-0">{copyright}</p>
+  <!-- Colophon bar -->
+  <div class="border-t border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-5 sm:px-8">
+      <p class="mono-label m-0">© {year} Jerome Wolff</p>
     </div>
   </div>
 </footer>

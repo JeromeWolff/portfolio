@@ -1,82 +1,38 @@
 @import 'tailwindcss';
 
 @theme {
-  /* === Backgrounds === */
-  --color-canvas: #060c19;
-  --color-card: #0b1526;
-  --color-card-hover: #10203a;
-  --color-card-overlay: #162844;
+  /* === Surfaces — warm putty / drafting paper, not cream === */
+  --color-paper: #e7e2d6;
+  --color-paper-raised: #f0ece2;
+  --color-paper-sunken: #ded7c8;
 
-  /* === Brand (Blue) === */
-  --color-primary: #3b82f6;
-  --color-primary-dark: #2563eb;
-  --color-primary-light: #60a5fa;
+  /* === Ink — warm near-black, plus graphite for hierarchy === */
+  --color-ink: #1b1a17;
+  --color-graphite: #57524a;
+  --color-subtle: #7a746a;
 
-  /* === Accent (Indigo) === */
-  --color-accent: #818cf8;
-  --color-accent-light: #a5b4fc;
+  /* === Rules — hairlines drawn on paper === */
+  --color-rule: #cbc4b4;
+  --color-rule-strong: #b1a993;
 
-  /* === Text === */
-  --color-foreground: #f1f5f9;
-  --color-secondary: #94a3b8;
-  --color-subtle: #64748b;
+  /* === Signal — one flat drafting blue, used sparingly === */
+  --color-accent: #294b8f;
+  --color-accent-bright: #3a63b8;
 
-  /* === Borders === */
-  --color-divider: #182a42;
-  --color-divider-2: #1e3255;
+  /* === On the inverted ink plate === */
+  --color-plate: #1b1a17;
+  --color-plate-2: #23211c;
+  --color-plate-rule: #3a382f;
+  --color-plate-ink: #e7e2d6;
+  --color-plate-graphite: #a29b8c;
 
-  /* === Semantic === */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-
-  /* === Typography === */
-  --font-sans:
-    -apple-system, blinkmacsystemfont, 'Segoe UI', 'Noto Sans', helvetica, arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji';
-  --font-mono: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, monospace;
-
-  /* === Animations === */
-  --animate-fade-up: fadeup 0.5s ease-out both;
-  --animate-fade-in: fadein 0.4s ease-out both;
-  --animate-pulse-soft: pulsesoft 2s ease-in-out infinite;
+  /* === Type roles === */
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', consolas, monospace;
 }
 
-/* === Keyframes === */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes pulseSoft {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-/* === Base styles === */
+/* === Base === */
 *,
 *::before,
 *::after {
@@ -85,20 +41,25 @@
 
 html {
   scroll-behavior: smooth;
+
+  /* room for the sticky header when jumping to anchors */
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-canvas);
-  color: var(--color-foreground);
+  background-color: var(--color-paper);
+  color: var(--color-graphite);
   margin: 0;
-  padding: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  line-height: 1.6;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
 }
 
 main {
@@ -106,88 +67,155 @@ main {
   width: 100%;
 }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-a:hover {
-  color: var(--color-primary-light);
-}
-
-a:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-  border-radius: 3px;
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-  color: var(--color-foreground);
-  font-family: var(--font-sans);
-  font-weight: 700;
-  line-height: 1.2;
-  margin-top: 0;
-  margin-bottom: 0.75rem;
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
 }
 
 p {
-  color: var(--color-secondary);
-  margin-bottom: 1rem;
-  line-height: 1.7;
+  margin: 0;
 }
 
-/* Skip link */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* === Type utilities === */
+
+/* The "data" voice — monospace labels, coordinates, spec rows */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-subtle);
+}
+
+.mono-data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* A drawn-in underline for text links — micro-interaction, not decoration */
+.link-draw {
+  background-image: linear-gradient(currentcolor, currentcolor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  padding-bottom: 1px;
+}
+
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Accent inline link */
+.link-accent {
+  color: var(--color-accent);
+}
+
+/* The single bold typographic mark — a scaled accent underline */
+.hl-underline {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.08em;
+  padding-bottom: 0.04em;
+}
+
+/* === Signature: the margin ledger === */
+
+/* A ruled index number set in the left margin, aligned to each section head. */
+.ledger-mark {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--color-subtle);
+  text-transform: uppercase;
+}
+
+/* Hairline rule that reads as a drafted line */
+.rule-h {
+  height: 1px;
+  background: var(--color-rule);
+  border: 0;
+  margin: 0;
+}
+
+/* === Scroll reveal — subtle, opt-out via reduced motion === */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* === Skip link === */
 .skip-link {
   position: absolute;
   top: -100px;
   left: 1rem;
   z-index: 9999;
   padding: 0.5rem 1rem;
-  background: var(--color-primary);
-  color: #fff;
-  font-weight: 600;
-  border-radius: 6px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   transition: top 0.2s ease;
 }
 
 .skip-link:focus {
   top: 1rem;
-  outline: 2px solid var(--color-primary-light);
 }
 
-/* === Custom utility classes === */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-accent-light) 60%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 
-.dot-grid-bg {
-  background-image: radial-gradient(rgb(148, 163, 184, 0.12) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-.glow-bg {
-  background: radial-gradient(
-    ellipse 80% 60% at 50% 0%,
-    rgb(59, 130, 246, 0.09) 0%,
-    transparent 70%
-  );
-}
-
-.hero-ambient {
-  background: radial-gradient(
-    circle,
-    rgb(59, 130, 246, 0.35) 0%,
-    rgb(129, 140, 248, 0.18) 50%,
-    transparent 70%
-  );
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

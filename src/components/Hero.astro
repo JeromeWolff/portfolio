@@ -1,97 +1,72 @@
 ---
-import { ArrowRight } from '@lucide/astro';
-
+import Diagram from '@components/Diagram.astro';
 import { heroConfig } from '@config/hero';
 
-interface Props {
-  title?: string;
-  tagline?: string;
-  subtext?: string;
-  ctaLabel?: string;
-  ctaHref?: string;
-}
-
-const {
-  title = heroConfig.title,
-  tagline = heroConfig.tagline,
-  subtext = heroConfig.subtext,
-  ctaLabel = heroConfig.ctaLabel,
-  ctaHref = heroConfig.ctaHref,
-} = Astro.props;
-
-const stats = heroConfig.stats;
+const { cta, eyebrow, lead, spec } = heroConfig;
 ---
 
-<section
-  id="hero"
-  class="relative flex min-h-[92vh] items-center justify-center overflow-hidden"
-  aria-labelledby="hero-title"
->
-  <!-- Background dot grid -->
-  <div class="pointer-events-none absolute inset-0 dot-grid-bg opacity-40" aria-hidden="true"></div>
-
-  <!-- Radial glow -->
-  <div class="pointer-events-none absolute inset-0 glow-bg" aria-hidden="true"></div>
-
-  <!-- Ambient orb -->
-  <div
-    class="pointer-events-none absolute left-1/2 top-1/3 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-15 blur-3xl hero-ambient"
-    aria-hidden="true"
-  >
-  </div>
-
-  <div class="relative z-10 mx-auto max-w-4xl px-4 py-24 text-center sm:px-6">
-    <!-- Eyebrow badge -->
-    <div
-      class="mb-8 inline-flex items-center gap-2 rounded-full border border-divider-2 px-4 py-2 text-sm font-medium text-secondary"
-      style="background: rgba(11, 21, 38, 0.6); backdrop-filter: blur(8px);"
-    >
-      <span
-        class="h-1.5 w-1.5 rounded-full bg-success"
-        style="animation: pulseSoft 2s ease-in-out infinite;"
-        aria-hidden="true"></span>
-      {tagline}
+<section id="top" class="relative overflow-hidden">
+  <div class="mx-auto max-w-6xl px-5 pt-14 pb-20 sm:px-8 md:pt-20 md:pb-28">
+    <!-- Drafting annotation row -->
+    <div class="flex items-center justify-between gap-4">
+      <span class="mono-label">{eyebrow}</span>
+      <span class="mono-label hidden sm:inline">54.42°N / 13.43°E</span>
     </div>
+    <hr class="rule-h mt-4" />
 
-    <!-- Main heading -->
-    <h1
-      id="hero-title"
-      class="mb-6 text-5xl font-bold leading-none tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
-    >
-      <span class="gradient-text">{title}</span>
-    </h1>
+    <div class="grid grid-cols-12 gap-x-8 gap-y-14 pt-12 md:pt-16">
+      <!-- Thesis -->
+      <div class="col-span-12 lg:col-span-8" data-reveal>
+        <h1
+          class="font-display font-semibold text-ink"
+          style="font-size: clamp(2.6rem, 7vw, 5.25rem); line-height: 1.02; letter-spacing: -0.03em;"
+        >
+          I build the backends that carry{' '}
+          <span class="hl-underline whitespace-nowrap">millions</span>{' '}
+          of users.
+        </h1>
 
-    <!-- Subtext -->
-    <p class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-secondary sm:text-xl">
-      {subtext}
-    </p>
+        <p class="mt-8 max-w-xl text-lg leading-relaxed text-graphite">{lead}</p>
 
-    <!-- CTAs -->
-    <div class="mb-20 flex flex-wrap items-center justify-center gap-4">
-      <a
-        href={ctaHref}
-        class="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-base font-semibold text-white transition-all duration-150 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-        style="background: #2563eb; box-shadow: 0 4px 16px rgba(59,130,246,0.35), 0 1px 3px rgba(0,0,0,0.3);"
-      >
-        {ctaLabel}
-        <ArrowRight size={18} aria-hidden="true" />
-      </a>
-    </div>
-
-    <!-- Stats row -->
-    {
-      stats && stats.length > 0 && (
-        <div class="border-t border-divider pt-10">
-          <div class="grid grid-cols-2 gap-6 sm:grid-cols-4">
-            {stats.map(({ label, value }) => (
-              <div class="text-center">
-                <div class="gradient-text text-3xl font-bold md:text-4xl">{value}</div>
-                <div class="mt-1.5 text-sm text-subtle">{label}</div>
-              </div>
-            ))}
-          </div>
+        <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <a
+            href={cta.href}
+            class="group inline-flex items-center gap-2.5 border border-ink px-5 py-3 text-sm font-medium text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"
+          >
+            {cta.label}
+            <span
+              class="transition-transform duration-200 group-hover:translate-y-0.5"
+              aria-hidden="true">↓</span
+            >
+          </a>
+          <p class="mono-label m-0">Currently — CTO at Valorbyte &amp; Shabo Group</p>
         </div>
-      )
-    }
+      </div>
+
+      <!-- Spec block: the data, drafted -->
+      <div class="col-span-12 lg:col-span-4 lg:pt-2" data-reveal style="--reveal-delay: 120ms">
+        <figure class="m-0">
+          <div class="ml-auto max-w-[15rem] text-ink">
+            <Diagram kind="network" />
+          </div>
+          <figcaption class="mono-label mt-2 block text-right">
+            fig.00 — distributed systems
+          </figcaption>
+        </figure>
+
+        <dl class="mt-8 m-0">
+          {
+            spec.map((row) => (
+              <div class="flex items-baseline justify-between gap-4 border-b border-rule py-2.5">
+                <dt class="mono-label m-0">{row.key}</dt>
+                <dd class="mono-data m-0 text-right text-[0.9rem] font-medium text-ink">
+                  {row.value}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
   </div>
 </section>

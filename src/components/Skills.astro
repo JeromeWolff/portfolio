@@ -1,70 +1,51 @@
 ---
-import { Cloud, Database, Languages, Smartphone, SquareCode } from '@lucide/astro';
-
+import SectionHead from '@components/SectionHead.astro';
 import { skillsConfig } from '@config/skills';
 
-const iconMap = {
-  Cloud,
-  Database,
-  Languages,
-  Smartphone,
-  SquareCode,
-};
+const { categories } = skillsConfig;
 ---
 
-<section id="skills" class="w-full py-20 md:py-28" aria-labelledby="skills-heading">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <!-- Section header -->
-    <div class="mb-12 text-center">
-      <div
-        class="mb-4 inline-flex items-center gap-1.5 rounded-full border border-divider-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-light"
-        style="background: rgba(59, 130, 246, 0.08);"
-      >
-        <SquareCode size={11} aria-hidden="true" />
-        Skills
-      </div>
-      <h2 id="skills-heading" class="text-3xl font-bold tracking-tight sm:text-4xl">
-        Technical expertise
-      </h2>
-      <p class="mx-auto mt-3 max-w-xl text-secondary">
-        Full-stack proficiency across backend, cloud infrastructure, databases, and frontend.
-      </p>
-    </div>
+<section id="stack" class="pt-20 md:pt-28" aria-labelledby="stack-heading">
+  <SectionHead
+    mark="Stack"
+    note={`${categories.length} groups`}
+    title="Tools I actually reach for"
+    titleId="stack-heading"
+    intro="No logo wall. This is the working set — grouped by where in a system it lives."
+  />
 
-    <!-- Skills list -->
-    <div class="flex flex-col gap-3">
+  <div class="mx-auto mt-10 max-w-6xl px-5 sm:px-8 md:mt-14">
+    <dl class="m-0">
       {
-        skillsConfig.categories.map(({ icon, items, title }) => {
-          const Icon = iconMap[icon];
-          return (
-            <div
-              class="flex flex-wrap items-center gap-3 rounded-xl border border-divider p-4 transition-colors duration-200 hover:border-primary/15"
-              style="background: var(--color-card);"
-              aria-label={`${title} skills`}
-            >
-              <span
-                class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-light"
-                style="background: rgba(59, 130, 246, 0.08); min-width: 7rem;"
-              >
-                <Icon size={11} aria-hidden="true" class="shrink-0" />
-                {title}
+        categories.map((cat, i) => (
+          <div
+            class="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 border-t border-rule py-5 last:border-b"
+            data-reveal
+            style={`--reveal-delay: ${i * 60}ms`}
+          >
+            <dt class="col-span-12 flex items-baseline gap-3 sm:col-span-3">
+              <span class="mono-data text-sm text-rule-strong" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
               </span>
-              <ul class="flex flex-wrap gap-2 list-none m-0 p-0">
-                {items.map((skill) => (
-                  <li>
-                    <span
-                      class="inline-block cursor-default rounded-full border border-divider-2 px-3 py-1 text-sm text-secondary transition-all duration-150 hover:border-primary/25 hover:text-foreground"
-                      style="background: rgba(255,255,255,0.03);"
-                    >
-                      {skill}
-                    </span>
+              <span class="font-display text-lg font-medium text-ink">{cat.title}</span>
+            </dt>
+            <dd class="col-span-12 m-0 sm:col-span-9">
+              <ul class="flex flex-wrap items-center gap-x-1 gap-y-1.5 list-none m-0 p-0">
+                {cat.items.map((item, j) => (
+                  <li class="flex items-center">
+                    {j > 0 && (
+                      <span class="mx-2 text-subtle" aria-hidden="true">
+                        ·
+                      </span>
+                    )}
+                    <span class="text-graphite">{item}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-          );
-        })
+            </dd>
+          </div>
+        ))
       }
-    </div>
+    </dl>
   </div>
 </section>

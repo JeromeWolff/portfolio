@@ -1,6 +1,17 @@
 ---
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+
+// Self-hosted faces — technical grotesque + engineered humanist + data mono.
+// Imported as JS modules so Vite emits hashed woff2 assets (importing them
+// through the Tailwind-processed CSS leaves the urls unresolved).
+import '@fontsource-variable/space-grotesk/index.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+
 import '@styles/global.css';
 
 interface Props {
@@ -16,8 +27,8 @@ const { bodyClass, lang = 'en' } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#060c19" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#e7e2d6" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -29,5 +40,27 @@ const { bodyClass, lang = 'en' } = Astro.props;
     <slot />
     <SpeedInsights />
     <Analytics />
+
+    <script>
+      // Subtle, one-shot reveal. Honors reduced-motion by never observing.
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const items = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-in'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
+        );
+        items.forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>
