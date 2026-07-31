@@ -19,7 +19,7 @@
     "@vercel/speed-insights": "^2.0.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vercel": "^11.0.3",
     "@eslint/js": "^10.0.1",
