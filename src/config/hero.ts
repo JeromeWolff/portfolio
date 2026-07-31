@@ -10,7 +10,6 @@ export const heroConfig = {
   spec: [
     { key: 'Role', value: 'Systems engineer / CTO' },
     { key: 'Based', value: 'Rügen, Germany' },
-    { key: 'Coord', value: '54.42°N · 13.43°E' },
     { key: 'Building since', value: '2020' },
     { key: 'Users served', value: '4.4M+' },
   ],
