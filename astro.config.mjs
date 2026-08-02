@@ -42,19 +42,15 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': src(''),
-        '@components': src('components'),
-        '@config': src('config'),
-        '@layouts': src('layouts'),
-        '@styles': src('styles'),
-        // Vite's built-in CSS @import resolver fails on tailwindcss's
-        // "style" export condition (vite@8 + tailwindcss@4.3.2), so point
-        // the bare specifier at the concrete file directly.
         tailwindcss: require.resolve('tailwindcss/index.css'),
       },
+      tsconfigPaths: true
     },
     build: {
+      manifest: true,
+      emptyOutDir: true,
       sourcemap: 'hidden',
+      minify: 'oxc',
     },
     plugins: [],
   },
