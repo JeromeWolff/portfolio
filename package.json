@@ -32,7 +32,7 @@
     "@vitest/coverage-v8": "^4.1.10",
     "astro": "^7.2.4",
     "astro-expressive-code": "^0.44.1",
-    "eslint": "^10.9.0",
+    "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.1.0",
     "eslint-plugin-import-x": "^4.17.1",
