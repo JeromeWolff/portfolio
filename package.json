@@ -28,7 +28,7 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.4.0",
     "@typescript-eslint/eslint-plugin": "^8.68.0",
-    "@typescript-eslint/parser": "^8.68.0",
+    "@typescript-eslint/parser": "^8.69.0",
     "@vitest/coverage-v8": "^4.1.10",
     "astro": "^7.2.9",
     "astro-expressive-code": "^0.44.2",
