@@ -1,6 +1,13 @@
 export const experienceConfig = {
   experiences: [
     {
+      company: 'SEfA - Software Entwicklung für Abrechnungszentren GmbH',
+      role: 'Application Developer',
+      duration: '08/2026 - Present',
+      description:
+        'Modernizing frontend systems with TypeScript and SvelteKit at the Bremen-based software subsidiary of AS Abrechnungsstelle AG.',
+    },
+    {
       company: 'Wolff-Consulting GbR',
       role: 'Partner',
       duration: '12/2025 - Present',
