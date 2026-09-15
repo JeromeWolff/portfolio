@@ -138,8 +138,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
       '@lucide/astro':
-        specifier: ^1.41.0
-        version: 1.41.0(astro@7.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(@vercel/functions@3.9.5)(jiti@2.7.0)(yaml@2.9.0))
+        specifier: ^1.45.0
+        version: 1.45.0(astro@7.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(@vercel/functions@3.9.5)(jiti@2.7.0)(yaml@2.9.0))
       '@playwright/test':
         specifier: ^1.63.0
         version: 1.63.0
@@ -954,8 +954,8 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@lucide/astro@1.41.0':
-    resolution: {integrity: sha512-B6i+gssCkaI9o2mTGLslHOSNyFUv5i6bqxATozpFepdT5XH/n3gjcH4jQ6efqMRGIrqaKsFr5TRwgfKEMqlHiQ==}
+  '@lucide/astro@1.45.0':
+    resolution: {integrity: sha512-U4PZYsb90BNPDHzp/GTkLrFfstuVc9Qjj+00kVF2HUA4TLx/JCZozeoyZm3ncODgg3XtqCCXW7b3kIT7xbokgg==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -4780,7 +4780,7 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@lucide/astro@1.41.0(astro@7.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(@vercel/functions@3.9.5)(jiti@2.7.0)(yaml@2.9.0))':
+  '@lucide/astro@1.45.0(astro@7.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(@vercel/functions@3.9.5)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
       astro: 7.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(@vercel/functions@3.9.5)(jiti@2.7.0)(yaml@2.9.0)
 
@@ -5086,8 +5086,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.69.0(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.69.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.69.0
+      '@typescript-eslint/tsconfig-utils': 8.70.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.70.0
       debug: 4.4.3(supports-color@10.2.2)
       typescript: 6.0.3
     transitivePeerDependencies:
