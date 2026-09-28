@@ -21,7 +21,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/vercel": "^11.0.10",
+    "@astrojs/vercel": "^11.0.11",
     "@eslint/js": "^10.0.1",
     "@lucide/astro": "^1.48.0",
     "@playwright/test": "^1.63.0",
