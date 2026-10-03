@@ -18,43 +18,41 @@ const count = experiences.length;
 
   <div class="mx-auto mt-10 max-w-6xl px-5 sm:px-8 md:mt-14">
     <ol class="m-0 list-none p-0">
-      {
-        experiences.map((experience) => {
-          const { company, duration, role } = experience;
-          const description = 'description' in experience ? experience.description : undefined;
-          const isCurrent = currentRegex.test(duration);
-          return (
-            <li
-              class="grid grid-cols-12 gap-x-6 gap-y-2 border-t border-rule py-6 last:border-b"
-              data-reveal
-            >
-              <div class="col-span-12 flex items-center gap-2.5 sm:col-span-3">
-                {isCurrent ? (
-                  <span class="h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
-                ) : (
-                  <span class="h-1.5 w-1.5 shrink-0 border border-rule-strong" aria-hidden="true" />
-                )}
-                <span class="mono-data text-sm text-graphite">{duration}</span>
-              </div>
+      {experiences.map((experience) => {
+        const { company, duration, role } = experience;
+        const description = 'description' in experience ? experience.description : undefined;
+        const isCurrent = currentRegex.test(duration);
+        return (
+          <li
+            class="grid grid-cols-12 gap-x-6 gap-y-2 border-t border-rule py-6 last:border-b"
+            data-reveal
+          >
+            <div class="col-span-12 flex items-center gap-2.5 sm:col-span-3">
+              {isCurrent ? (
+                <span class="h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
+              ) : (
+                <span class="h-1.5 w-1.5 shrink-0 border border-rule-strong" aria-hidden="true" />
+              )}
+              <span class="mono-data text-sm text-graphite">{duration}</span>
+            </div>
 
-              <div class="col-span-12 sm:col-span-9">
-                <div class="flex flex-wrap items-baseline gap-x-2.5">
-                  <h3 class="text-lg font-medium text-ink">{role}</h3>
-                  <span class="text-graphite">— {company}</span>
-                  {isCurrent && (
-                    <span class="mono-label text-accent" aria-label="current role">
-                      now
-                    </span>
-                  )}
-                </div>
-                {description && (
-                  <p class="mt-2 max-w-2xl text-sm leading-relaxed text-graphite">{description}</p>
+            <div class="col-span-12 sm:col-span-9">
+              <div class="flex flex-wrap items-baseline gap-x-2.5">
+                <h3 class="text-lg font-medium text-ink">{role}</h3>
+                <span class="text-graphite">— {company}</span>
+                {isCurrent && (
+                  <span class="mono-label text-accent" aria-label="current role">
+                    now
+                  </span>
                 )}
               </div>
-            </li>
-          );
-        })
-      }
+              {description && (
+                <p class="mt-2 max-w-2xl text-sm leading-relaxed text-graphite">{description}</p>
+              )}
+            </div>
+          </li>
+        );
+      })}
     </ol>
   </div>
 </section>

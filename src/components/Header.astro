@@ -32,19 +32,17 @@ const links = [
 
       <nav aria-label="Sections" class="flex items-center gap-5 sm:gap-7">
         <ul class="flex items-center gap-5 sm:gap-7 list-none m-0 p-0">
-          {
-            links.map(({ href, id, label }) => (
-              <li>
-                <a
-                  href={href}
-                  data-navlink={id}
-                  class="link-draw text-sm font-medium text-graphite transition-colors hover:text-ink"
-                >
-                  {label}
-                </a>
-              </li>
-            ))
-          }
+          {links.map(({ href, id, label }) => (
+            <li>
+              <a
+                href={href}
+                data-navlink={id}
+                class="link-draw text-sm font-medium text-graphite transition-colors hover:text-ink"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
         <a
           href={`mailto:${siteConfig.person.email}`}

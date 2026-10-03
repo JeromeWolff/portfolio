@@ -23,8 +23,12 @@ const { mark, note, title, titleId, intro, class: className = '' } = Astro.props
       class="col-span-12 mb-5 flex items-baseline gap-3 md:col-span-2 md:mb-0 md:flex-col md:items-start md:gap-1.5"
       data-reveal
     >
-      <span class="mono-label font-medium text-ink" aria-hidden="true">{mark}</span>
-      <span class="mono-label" aria-hidden="true">{note}</span>
+      <span class="mono-label font-medium text-ink" aria-hidden="true">
+        {mark}
+      </span>
+      <span class="mono-label" aria-hidden="true">
+        {note}
+      </span>
     </div>
     <div class="col-span-12 md:col-span-10 md:col-start-3" data-reveal style="--reveal-delay: 80ms">
       <h2 id={titleId} class="max-w-3xl text-3xl sm:text-4xl md:text-[2.75rem]">

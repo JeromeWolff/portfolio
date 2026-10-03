@@ -30,7 +30,9 @@ const [lead, ...body] = paragraphs;
       <!-- Narrative -->
       <div class="col-span-12 md:col-span-6 md:col-start-3" data-reveal>
         <p class="text-xl leading-relaxed text-ink">{lead}</p>
-        {body.map((para) => <p class="mt-5 leading-relaxed text-graphite">{para}</p>)}
+        {body.map((para) => (
+          <p class="mt-5 leading-relaxed text-graphite">{para}</p>
+        ))}
       </div>
 
       <!-- Field notes -->
@@ -45,26 +47,22 @@ const [lead, ...body] = paragraphs;
             <dt class="mono-label m-0">Age</dt>
             <dd class="mono-data m-0 text-sm font-medium text-ink">{age}</dd>
           </div>
-          {
-            facts.map((f) => (
-              <div class="flex items-baseline justify-between gap-3 border-t border-rule py-2">
-                <dt class="mono-label m-0 shrink-0">{f.key}</dt>
-                <dd class="mono-data m-0 text-right text-sm text-ink">{f.value}</dd>
-              </div>
-            ))
-          }
+          {facts.map((f) => (
+            <div class="flex items-baseline justify-between gap-3 border-t border-rule py-2">
+              <dt class="mono-label m-0 shrink-0">{f.key}</dt>
+              <dd class="mono-data m-0 text-right text-sm text-ink">{f.value}</dd>
+            </div>
+          ))}
         </dl>
 
         <p class="mono-label mt-8 mb-3">Builds</p>
         <ul class="flex flex-col gap-2.5 list-none m-0 p-0">
-          {
-            building.map((item) => (
-              <li class="grid grid-cols-[0.9rem_1fr] gap-2 text-sm leading-snug text-graphite">
-                <span class="mt-1.5 h-1 w-1 bg-accent" aria-hidden="true" />
-                {item}
-              </li>
-            ))
-          }
+          {building.map((item) => (
+            <li class="grid grid-cols-[0.9rem_1fr] gap-2 text-sm leading-snug text-graphite">
+              <span class="mt-1.5 h-1 w-1 bg-accent" aria-hidden="true" />
+              {item}
+            </li>
+          ))}
         </ul>
 
         <p class="mt-8 border-t border-rule pt-4 text-sm italic leading-relaxed text-graphite">

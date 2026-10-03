@@ -16,36 +16,34 @@ const { categories } = skillsConfig;
 
   <div class="mx-auto mt-10 max-w-6xl px-5 sm:px-8 md:mt-14">
     <dl class="m-0">
-      {
-        categories.map((cat, i) => (
-          <div
-            class="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 border-t border-rule py-5 last:border-b"
-            data-reveal
-            style={`--reveal-delay: ${i * 60}ms`}
-          >
-            <dt class="col-span-12 flex items-baseline gap-3 sm:col-span-3">
-              <span class="mono-data text-sm text-rule-strong" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span class="font-display text-lg font-medium text-ink">{cat.title}</span>
-            </dt>
-            <dd class="col-span-12 m-0 sm:col-span-9">
-              <ul class="flex flex-wrap items-center gap-x-1 gap-y-1.5 list-none m-0 p-0">
-                {cat.items.map((item, j) => (
-                  <li class="flex items-center">
-                    {j > 0 && (
-                      <span class="mx-2 text-subtle" aria-hidden="true">
-                        ·
-                      </span>
-                    )}
-                    <span class="text-graphite">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </dd>
-          </div>
-        ))
-      }
+      {categories.map((cat, i) => (
+        <div
+          class="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 border-t border-rule py-5 last:border-b"
+          data-reveal
+          style={`--reveal-delay: ${i * 60}ms`}
+        >
+          <dt class="col-span-12 flex items-baseline gap-3 sm:col-span-3">
+            <span class="mono-data text-sm text-rule-strong" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="font-display text-lg font-medium text-ink">{cat.title}</span>
+          </dt>
+          <dd class="col-span-12 m-0 sm:col-span-9">
+            <ul class="flex flex-wrap items-center gap-x-1 gap-y-1.5 list-none m-0 p-0">
+              {cat.items.map((item, j) => (
+                <li class="flex items-center">
+                  {j > 0 && (
+                    <span class="mx-2 text-subtle" aria-hidden="true">
+                      ·
+                    </span>
+                  )}
+                  <span class="text-graphite">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      ))}
     </dl>
   </div>
 </section>

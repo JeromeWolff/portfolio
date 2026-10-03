@@ -21,8 +21,7 @@ const { cta, eyebrow, lead, spec } = heroConfig;
           style="font-size: clamp(2.6rem, 7vw, 5.25rem); line-height: 1.02; letter-spacing: -0.03em;"
         >
           I build the backends that carry{' '}
-          <span class="hl-underline whitespace-nowrap">millions</span>{' '}
-          of users.
+          <span class="hl-underline whitespace-nowrap">millions</span> of users.
         </h1>
 
         <p class="mt-8 max-w-xl text-lg leading-relaxed text-graphite">{lead}</p>
@@ -35,8 +34,10 @@ const { cta, eyebrow, lead, spec } = heroConfig;
             {cta.label}
             <span
               class="transition-transform duration-200 group-hover:translate-y-0.5"
-              aria-hidden="true">↓</span
+              aria-hidden="true"
             >
+              ↓
+            </span>
           </a>
           <p class="mono-label m-0">Currently — CTO at Valorbyte &amp; Shabo Group</p>
         </div>
@@ -54,16 +55,14 @@ const { cta, eyebrow, lead, spec } = heroConfig;
         </figure>
 
         <dl class="mt-8 m-0">
-          {
-            spec.map((row) => (
-              <div class="flex items-baseline justify-between gap-4 border-b border-rule py-2.5">
-                <dt class="mono-label m-0">{row.key}</dt>
-                <dd class="mono-data m-0 text-right text-[0.9rem] font-medium text-ink">
-                  {row.value}
-                </dd>
-              </div>
-            ))
-          }
+          {spec.map((row) => (
+            <div class="flex items-baseline justify-between gap-4 border-b border-rule py-2.5">
+              <dt class="mono-label m-0">{row.key}</dt>
+              <dd class="mono-data m-0 text-right text-[0.9rem] font-medium text-ink">
+                {row.value}
+              </dd>
+            </div>
+          ))}
         </dl>
       </div>
     </div>

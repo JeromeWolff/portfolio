@@ -9,26 +9,24 @@ const year = new Date().getFullYear();
     <nav class="max-w-xs" aria-label="Elsewhere">
       <p class="mono-label">Elsewhere</p>
       <ul class="mt-4 flex flex-col gap-3 list-none m-0 p-0">
-        {
-          socialLinks.map(({ href, label }) => (
-            <li>
-              <a
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                class="group inline-flex w-full items-center justify-between gap-4 text-graphite transition-colors hover:text-ink"
+        {socialLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="group inline-flex w-full items-center justify-between gap-4 text-graphite transition-colors hover:text-ink"
+            >
+              <span class="link-draw">{label}</span>
+              <span
+                class="text-subtle transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-ink"
+                aria-hidden="true"
               >
-                <span class="link-draw">{label}</span>
-                <span
-                  class="text-subtle transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-ink"
-                  aria-hidden="true"
-                >
-                  ↗
-                </span>
-              </a>
-            </li>
-          ))
-        }
+                ↗
+              </span>
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   </div>

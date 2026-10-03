@@ -85,15 +85,11 @@ const metaFirst = !reversed;
     </div>
 
     <ul class="mt-6 flex flex-wrap gap-1.5 list-none m-0 p-0" aria-label="Stack">
-      {
-        study.stack.map((s) => (
-          <li>
-            <span class:list={['inline-block border px-2 py-0.5 font-mono text-xs', t.tag]}>
-              {s}
-            </span>
-          </li>
-        ))
-      }
+      {study.stack.map((s) => (
+        <li>
+          <span class:list={['inline-block border px-2 py-0.5 font-mono text-xs', t.tag]}>{s}</span>
+        </li>
+      ))}
     </ul>
   </div>
 
@@ -108,31 +104,29 @@ const metaFirst = !reversed;
     <p class:list={['mt-4 text-lg leading-relaxed', t.body]}>{study.summary}</p>
 
     <dl class="mt-8 m-0">
-      {
-        rows.map((row) => (
-          <div class:list={['grid grid-cols-12 gap-x-4 border-t py-5', t.rule]}>
-            <dt class:list={['col-span-12 mb-2 sm:col-span-3 sm:mb-0']}>
-              <span class:list={['mono-label', t.faint]}>{row.label}</span>
-            </dt>
-            <dd class="col-span-12 m-0 sm:col-span-9">
-              {row.kind === 'prose' ? (
-                <p class:list={['leading-relaxed', t.body]}>{row.text}</p>
-              ) : (
-                <ul class="flex flex-col gap-3 list-none m-0 p-0">
-                  {row.items?.map((item, i) => (
-                    <li class="grid grid-cols-[1.5rem_1fr] gap-2">
-                      <span class:list={['mono-data text-sm', t.faint]} aria-hidden="true">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span class:list={['leading-relaxed', t.body]}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </dd>
-          </div>
-        ))
-      }
+      {rows.map((row) => (
+        <div class:list={['grid grid-cols-12 gap-x-4 border-t py-5', t.rule]}>
+          <dt class:list={['col-span-12 mb-2 sm:col-span-3 sm:mb-0']}>
+            <span class:list={['mono-label', t.faint]}>{row.label}</span>
+          </dt>
+          <dd class="col-span-12 m-0 sm:col-span-9">
+            {row.kind === 'prose' ? (
+              <p class:list={['leading-relaxed', t.body]}>{row.text}</p>
+            ) : (
+              <ul class="flex flex-col gap-3 list-none m-0 p-0">
+                {row.items?.map((item, i) => (
+                  <li class="grid grid-cols-[1.5rem_1fr] gap-2">
+                    <span class:list={['mono-data text-sm', t.faint]} aria-hidden="true">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span class:list={['leading-relaxed', t.body]}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </dd>
+        </div>
+      ))}
     </dl>
   </div>
 </article>
