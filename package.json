@@ -71,10 +71,10 @@
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
-    "format": "oxfmt && prettier --write \"**/*.astro\"",
-    "format:check": "oxfmt --check && prettier --check \"**/*.astro\"",
-    "lint": "oxlint && eslint .",
-    "lint:fix": "oxlint --fix && eslint . --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "preview": "astro preview",
@@ -87,7 +87,7 @@
     "test:e2e": "playwright test",
     "test:unit": "vitest run",
     "type-check": "astro check",
-    "validate": "pnpm run lint && pnpm run stylelint && pnpm run format:check && pnpm run type-check"
+    "validate": "pnpm run format:check && pnpm run lint && pnpm run stylelint && pnpm run type-check"
   },
   "type": "module",
   "version": "1.0.0"
