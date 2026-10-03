@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import"],
+  "env": {
+    "browser": true,
+    "es2026": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    ".astro/",
+    ".vercel/",
+    "build/",
+    "dist/",
+    "node_modules/",
+    "playwright-report/",
+    "test-results/"
+  ],
+  "rules": {
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    "import/first": "error",
+    "import/no-mutable-exports": "error",
+    "no-console": "warn",
+    "no-param-reassign": "error",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "no-var": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "typescript/no-explicit-any": "warn"
+  }
+}

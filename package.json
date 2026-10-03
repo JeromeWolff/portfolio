@@ -22,49 +22,47 @@
     "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/vercel": "^11.0.11",
-    "@eslint/js": "^10.0.1",
     "@lucide/astro": "^1.49.0",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.6.4",
-    "@typescript-eslint/eslint-plugin": "^8.71.0",
     "@typescript-eslint/parser": "^8.71.0",
     "@vitest/coverage-v8": "^4.1.11",
     "astro": "^7.3.5",
     "astro-expressive-code": "^0.44.2",
     "eslint": "^10.11.0",
-    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
-    "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-jsonc": "^3.4.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "globals": "^17.13.0",
     "husky": "^9.1.7",
-    "jsonc-eslint-parser": "^3.3.0",
     "lint-staged": "^17.6.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
     "stylelint": "^17.16.0",
-    "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-tailwindcss": "^1.0.1",
     "stylelint-order": "^8.1.1",
-    "stylelint-prettier": "^5.0.3",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.11"
   },
   "lint-staged": {
-    "*.{astro,cjs,js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+    "*.{cjs,js,mjs,jsx,ts,tsx}": [
+      "oxlint --fix",
+      "oxfmt --no-error-on-unmatched-pattern"
     ],
-    "*.{astro,json,css,scss,md,html}": [
+    "*.astro": [
+      "oxlint --fix",
+      "eslint --fix",
       "prettier --write"
     ],
     "*.{css,scss}": [
       "stylelint --fix",
-      "prettier --write"
+      "oxfmt --no-error-on-unmatched-pattern"
+    ],
+    "*.{json,jsonc,md,html,yml,yaml,toml}": [
+      "oxfmt --no-error-on-unmatched-pattern"
     ]
   },
   "name": "jeromewolff.de",
@@ -73,10 +71,10 @@
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "format": "oxfmt && prettier --write \"**/*.astro\"",
+    "format:check": "oxfmt --check && prettier --check \"**/*.astro\"",
+    "lint": "oxlint && eslint .",
+    "lint:fix": "oxlint --fix && eslint . --fix",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "preview": "astro preview",

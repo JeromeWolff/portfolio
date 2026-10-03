@@ -2,8 +2,8 @@ import { createRequire } from 'module';
 
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
-import { defineConfig, envField } from 'astro/config';
 import expressiveCode from 'astro-expressive-code';
+import { defineConfig, envField } from 'astro/config';
 
 const require = createRequire(import.meta.url);
 

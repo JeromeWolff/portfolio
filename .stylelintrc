@@ -1,10 +1,8 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-tailwindcss"],
-  "plugins": ["stylelint-prettier"],
   "rules": {
     "selector-class-pattern": null,
     "no-descending-specificity": null,
-    "prettier/prettier": true,
     "keyframes-name-pattern": null,
     "custom-property-pattern": null,
     "property-no-vendor-prefix": null,
