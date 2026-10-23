@@ -215,10 +215,10 @@ importers:
         version: 3.7.4
       '@astrojs/vercel':
         specifier: ^11.0.16
-        version: 11.0.16(astro@7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))(supports-color@10.2.2)
+        version: 11.0.16(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))(supports-color@10.2.2)
       '@lucide/astro':
         specifier: ^1.59.0
-        version: 1.59.0(astro@7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))
+        version: 1.59.0(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))
       '@playwright/test':
         specifier: ^1.64.1
         version: 1.64.1
@@ -235,11 +235,11 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12(vitest@4.1.12)
       astro:
-        specifier: ^7.4.0
-        version: 7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
+        specifier: ^7.4.1
+        version: 7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
       astro-expressive-code:
         specifier: ^0.44.2
-        version: 0.44.2(astro@7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))
+        version: 0.44.2(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))
       eslint:
         specifier: ^10.13.0
         version: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
@@ -1839,8 +1839,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0 || ^6.0.0-beta || ^7.0.0
 
-  astro@7.4.0:
-    resolution: {integrity: sha512-6ThZU2bp7asGSceVcnh3r23dE88HpYN5vxtnCWYYrjr8lpQjx4eDW6/W8WgNlcc+T/b8zHmQ/EcS4DpQG4ZoOg==}
+  astro@7.4.1:
+    resolution: {integrity: sha512-mzWNEWSef1VQDgFku6Gp0v8Qx53NOkNlOIDQcX9ovxAZ1QXic6cks/FFo+gxPM9anXuat4X1FhB61KTk3XFvgg==}
     engines: {node: '>=22.22.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     peerDependencies:
@@ -4346,14 +4346,14 @@ snapshots:
       is-docker: 4.0.0
       package-manager-detector: 1.9.0
 
-  '@astrojs/vercel@11.0.16(astro@7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))(supports-color@10.2.2)':
+  '@astrojs/vercel@11.0.16(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))(supports-color@10.2.2)':
     dependencies:
       '@astrojs/internal-helpers': 0.13.0
       '@vercel/analytics': 2.0.1
       '@vercel/functions': 3.10.1
       '@vercel/nft': 1.11.0(supports-color@10.2.2)
       '@vercel/routing-utils': 6.6.0
-      astro: 7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
       rolldown: 1.2.14
       tinyglobby: 0.2.17
     transitivePeerDependencies:
@@ -4752,9 +4752,9 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@lucide/astro@1.59.0(astro@7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))':
+  '@lucide/astro@1.59.0(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
-      astro: 7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
 
   '@mapbox/node-pre-gyp@2.0.3(supports-color@10.2.2)':
     dependencies:
@@ -5493,13 +5493,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-expressive-code@0.44.2(astro@7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)):
+  astro-expressive-code@0.44.2(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:
-      astro: 7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
       rehype-expressive-code: 0.44.2
       url-extras: 0.1.0
 
-  astro@7.4.0(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1):
+  astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1):
     dependencies:
       '@astrojs/compiler-rs': 0.5.2
       '@astrojs/internal-helpers': 0.13.0
