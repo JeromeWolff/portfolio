@@ -238,8 +238,8 @@ importers:
         specifier: ^7.4.1
         version: 7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
       astro-expressive-code:
-        specifier: ^0.44.2
-        version: 0.44.2(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: ^0.44.3
+        version: 0.44.3(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1))
       eslint:
         specifier: ^10.13.0
         version: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
@@ -693,17 +693,17 @@ packages:
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@expressive-code/core@0.44.2':
-    resolution: {integrity: sha512-Yw5KonQCD1HoOO2P89y4wifqS9qrJcGVY0LkVMUsVZjhi++bhz4WwQ37inenKFNOEVo50P7cjoVsCdaVnUbq8w==}
+  '@expressive-code/core@0.44.3':
+    resolution: {integrity: sha512-pffktF0TJoxC08dgNcutl/0LcSnTrjF6vXR39qVpwZ0EyxpwO9zjI7dbni6sO7w3yHpRBO0voLFvhzB+EPJRsA==}
 
-  '@expressive-code/plugin-frames@0.44.2':
-    resolution: {integrity: sha512-gVLm6TQMNIRWIaM7o+mCtxkGNjLZY5/2faSTLoXeo9wv/Pkj/0QAtZyXPVPrRsPARqiipATNFmfvQFLJudxPHQ==}
+  '@expressive-code/plugin-frames@0.44.3':
+    resolution: {integrity: sha512-ysW4VXk9vXEliA99Ur6ApUepVtx74sPolp6o/j45BRjZQoL5O6kXKMhSP4koQLih8HbC5B3ImIvO+HKKhkv/oA==}
 
-  '@expressive-code/plugin-shiki@0.44.2':
-    resolution: {integrity: sha512-ebWIvCDzXvjyD8rH6T6DfytYJw1GoArLR4nusIAE4VxXrCQf3d+owytiv010KU/dUg+SRLZskDn0N+HaFXeuSg==}
+  '@expressive-code/plugin-shiki@0.44.3':
+    resolution: {integrity: sha512-jAibAZPG7lDmi61EFJADZjoSZzjHiwZZdbbgR/mTlWXM4ON/Pyo/9tB2vrqQNKylsci6jqtCi6idrwqQXF53xA==}
 
-  '@expressive-code/plugin-text-markers@0.44.2':
-    resolution: {integrity: sha512-SNI7EgUSiADqbqUzzMbj1ZeC/r2pa5eg3KyFOGAd3a7EsIA4qzjXQLp+ODWQtHVDKFCdGs4J3ovSJUqvKIK96g==}
+  '@expressive-code/plugin-text-markers@0.44.3':
+    resolution: {integrity: sha512-4Ae2xRSDV5kdWPsi40xWbOtoihbzM0zLVjQKkDAnD5KzFXl+6/kd+VhuWOlTRVaJ5cqGk++vCbAaf0MR1XbZlw==}
 
   '@fontsource-variable/space-grotesk@5.3.0':
     resolution: {integrity: sha512-2IxmvfB08i9vnGB3Ym/AXvhRE+8XOjWMXIyDum03c+tPwH0FUoMNQfGpU8NXPxjbws0Vvss3AH0Zqt4oJBBAdw==}
@@ -1834,8 +1834,8 @@ packages:
     resolution: {integrity: sha512-WavQUarfgwSbpCq4xsdcIBdX5KArfI2d6DD8EIloJIMthnB1508iNpx4C77EhUyMd03LpEt8HAPzwF/cG0V39g==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
 
-  astro-expressive-code@0.44.2:
-    resolution: {integrity: sha512-avop7nZcRwC7quvIxVguhwEZ9Tp6IoTzKUCLwP30Fb7+er+pWQgcysP01dcuzRIJo81kLGg30q/YAI2Yb1Sdzg==}
+  astro-expressive-code@0.44.3:
+    resolution: {integrity: sha512-LUpQmmvzr90JXP5QIAopgdjlOKLuT3x0wlPAUpc4OZtPtFS8sbflPcGPpL/lG3pQuUCQV2CXUFgYNBYNu9tphA==}
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0 || ^6.0.0-beta || ^7.0.0
 
@@ -2277,8 +2277,8 @@ packages:
     resolution: {integrity: sha512-KfYbmpRm0VbLjEvVa9yGwCi9GI34xvi7A/HXYWQO65CSD2u3MczUJSuwXKFIxlGsgBQizV9q5J9NHj4VG0n+pA==}
     engines: {node: '>=12.0.0'}
 
-  expressive-code@0.44.2:
-    resolution: {integrity: sha512-MLNghkvhyFgVW4oCD5DxBuYnnTXIf0PygzGmfT6OZeOOYWh/D4sH1j931biElkA5RG/J9wY/iuSMGAPF5vzHOg==}
+  expressive-code@0.44.3:
+    resolution: {integrity: sha512-7RGslhJTNt01pdn5I3QmVh5C8ZIiSm0A+ORQ9j9r39oOgJVKjn/7dXl9rMT/SqmFLE6pJkTYI7UjW0BxJnW7OQ==}
 
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
@@ -3256,9 +3256,9 @@ packages:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
     engines: {node: '>= 0.4'}
 
-  postcss-nested@6.2.0:
-    resolution: {integrity: sha512-HQbt28KulC5AJzG+cZtj9kvKB93CFCdLvog1WFLf1D+xmMvPGlBstkpTEZfK5+AN9hfJocyBFCNiqyS48bpgzQ==}
-    engines: {node: '>=12.0'}
+  postcss-nested@7.0.2:
+    resolution: {integrity: sha512-5osppouFc0VR9/VYzYxO03VaDa3e8F23Kfd6/9qcZTUI8P58GIYlArOET2Wq0ywSl2o2PjELhYOFI4W7l5QHKw==}
+    engines: {node: '>=18.0'}
     peerDependencies:
       postcss: ^8.2.14
 
@@ -3267,10 +3267,6 @@ packages:
     engines: {node: '>=18.0'}
     peerDependencies:
       postcss: ^8.4.31
-
-  postcss-selector-parser@6.1.4:
-    resolution: {integrity: sha512-bIoJLOmjCO1S9XdY/DcnR5hJxvrDir1PbGChrzXG3vw0/FOliy/fA3dmdhQ441kah4gKv+TwckGzex6wNS5cnQ==}
-    engines: {node: '>=4'}
 
   postcss-selector-parser@7.1.6:
     resolution: {integrity: sha512-7qASPzhKF2l2KLboRZux8CCTRMdGiV08vWmyKzPz22qZ7ZjQBOeY7rNzNoCLSUiftJ7HUq0GERHmxw/t0dCdMw==}
@@ -3349,8 +3345,8 @@ packages:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
 
-  rehype-expressive-code@0.44.2:
-    resolution: {integrity: sha512-jvjQpsfWKBquDrEl5YQA3CJybRRIuDOYsui1BJTs5oKDUK8pPkJSSxY8FjxNlIFIdtgrTjC1zuahuY4Cc1j9SQ==}
+  rehype-expressive-code@0.44.3:
+    resolution: {integrity: sha512-vaVuQPobFXvmtcHXQ5uqXZlzuuPnLyIuZcX/03sX1U/Qfj9fZrPYI9w66OSr/PUx6alzRYmreEwgYBbsVx8HsA==}
 
   request-light@0.5.8:
     resolution: {integrity: sha512-3Zjgh+8b5fhRJBQZoy+zbVKpAQGLyka0MPgW3zruTF4dFFJ8Fqcfu9YsAvi/rvdcaTeWG3MkbZv4WKxAn/84Lg==}
@@ -4567,7 +4563,7 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@expressive-code/core@0.44.2':
+  '@expressive-code/core@0.44.3':
     dependencies:
       '@ctrl/tinycolor': 4.2.1
       hast-util-select: 6.0.4
@@ -4575,22 +4571,22 @@ snapshots:
       hast-util-to-text: 4.0.2
       hastscript: 9.0.1
       postcss: 8.5.30
-      postcss-nested: 6.2.0(postcss@8.5.30)
+      postcss-nested: 7.0.2(postcss@8.5.30)
       unist-util-visit: 5.1.0
       unist-util-visit-parents: 6.0.2
 
-  '@expressive-code/plugin-frames@0.44.2':
+  '@expressive-code/plugin-frames@0.44.3':
     dependencies:
-      '@expressive-code/core': 0.44.2
+      '@expressive-code/core': 0.44.3
 
-  '@expressive-code/plugin-shiki@0.44.2':
+  '@expressive-code/plugin-shiki@0.44.3':
     dependencies:
-      '@expressive-code/core': 0.44.2
+      '@expressive-code/core': 0.44.3
       shiki: 4.5.0
 
-  '@expressive-code/plugin-text-markers@0.44.2':
+  '@expressive-code/plugin-text-markers@0.44.3':
     dependencies:
-      '@expressive-code/core': 0.44.2
+      '@expressive-code/core': 0.44.3
 
   '@fontsource-variable/space-grotesk@5.3.0': {}
 
@@ -5493,10 +5489,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-expressive-code@0.44.2(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)):
+  astro-expressive-code@0.44.3(astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:
       astro: 7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1)
-      rehype-expressive-code: 0.44.2
+      rehype-expressive-code: 0.44.3
       url-extras: 0.1.0
 
   astro@7.4.1(@types/node@26.6.5)(@vercel/functions@3.10.1)(jiti@2.7.0)(yaml@2.9.1):
@@ -6084,12 +6080,12 @@ snapshots:
 
   expect-type@1.4.0: {}
 
-  expressive-code@0.44.2:
+  expressive-code@0.44.3:
     dependencies:
-      '@expressive-code/core': 0.44.2
-      '@expressive-code/plugin-frames': 0.44.2
-      '@expressive-code/plugin-shiki': 0.44.2
-      '@expressive-code/plugin-text-markers': 0.44.2
+      '@expressive-code/core': 0.44.3
+      '@expressive-code/plugin-frames': 0.44.3
+      '@expressive-code/plugin-shiki': 0.44.3
+      '@expressive-code/plugin-text-markers': 0.44.3
 
   extend@3.0.2: {}
 
@@ -7031,19 +7027,14 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-nested@6.2.0(postcss@8.5.30):
+  postcss-nested@7.0.2(postcss@8.5.30):
     dependencies:
       postcss: 8.5.30
-      postcss-selector-parser: 6.1.4
+      postcss-selector-parser: 7.1.6
 
   postcss-safe-parser@7.1.0(postcss@8.5.30):
     dependencies:
       postcss: 8.5.30
-
-  postcss-selector-parser@6.1.4:
-    dependencies:
-      cssesc: 3.0.0
-      util-deprecate: 1.0.2
 
   postcss-selector-parser@7.1.6:
     dependencies:
@@ -7124,9 +7115,9 @@ snapshots:
       gopd: 1.2.0
       set-function-name: 2.0.2
 
-  rehype-expressive-code@0.44.2:
+  rehype-expressive-code@0.44.3:
     dependencies:
-      expressive-code: 0.44.2
+      expressive-code: 0.44.3
 
   request-light@0.5.8: {}
 
