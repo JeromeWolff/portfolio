@@ -28,7 +28,7 @@
     "@types/node": "^26.6.6",
     "@typescript-eslint/parser": "^8.72.2",
     "@vitest/coverage-v8": "^5.0.5",
-    "astro": "^7.4.7",
+    "astro": "^7.4.8",
     "astro-expressive-code": "^0.44.3",
     "eslint": "^10.14.0",
     "eslint-plugin-astro": "^3.2.1",
