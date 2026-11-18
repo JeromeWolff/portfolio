@@ -192,8 +192,8 @@ importers:
         specifier: ^11.0.20
         version: 11.0.20(astro@7.4.11(@types/node@26.6.6)(@vercel/functions@3.10.5)(jiti@2.7.0)(yaml@2.9.1))(supports-color@10.2.2)
       '@lucide/astro':
-        specifier: ^1.72.0
-        version: 1.72.0(astro@7.4.11(@types/node@26.6.6)(@vercel/functions@3.10.5)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: ^1.73.0
+        version: 1.73.0(astro@7.4.11(@types/node@26.6.6)(@vercel/functions@3.10.5)(jiti@2.7.0)(yaml@2.9.1))
       '@playwright/test':
         specifier: ^1.65.0
         version: 1.65.0
@@ -853,8 +853,8 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@lucide/astro@1.72.0':
-    resolution: {integrity: sha512-+kBS2kCF0eAOzQom0OIJY0YfaVyRYICgeimNZgOeGIEtwov4EVhMEGjOP3Yb2fWjlLIADY6DfsIaUBW6toVhjg==}
+  '@lucide/astro@1.73.0':
+    resolution: {integrity: sha512-FpCBGh0D4yc3uFxcJ/qcBaEq2MzG70DHavYbbPjMYLVadAuFVM4CNcgdGKxanvFR5TS050+aF7gIAEVjfXyOcQ==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -4644,7 +4644,7 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@lucide/astro@1.72.0(astro@7.4.11(@types/node@26.6.6)(@vercel/functions@3.10.5)(jiti@2.7.0)(yaml@2.9.1))':
+  '@lucide/astro@1.73.0(astro@7.4.11(@types/node@26.6.6)(@vercel/functions@3.10.5)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
       astro: 7.4.11(@types/node@26.6.6)(@vercel/functions@3.10.5)(jiti@2.7.0)(yaml@2.9.1)
 
